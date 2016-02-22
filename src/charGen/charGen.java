@@ -8,8 +8,6 @@ import java.util.Scanner;
 //This class is designed so that multiple future classes can utilize it's methods for generation
 //of content based upon design team decisions - kam271*/
 
-
-
 public class charGen {
 	
 	/*
