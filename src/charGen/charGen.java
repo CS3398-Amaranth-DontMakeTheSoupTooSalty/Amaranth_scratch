@@ -1,5 +1,7 @@
 package charGen;
 
+import charGen.pointAllocator;
+
 import java.util.Scanner;
 //Test for Eclipse Push
 //Test Success if this goes out there -kam271
@@ -141,10 +143,6 @@ public class charGen {
 	public static void main(String[] args){
 		
 		Scanner input = new Scanner( System.in );
-		
-
-		
-
 		
 		charGen.charStats playerCharacter = new charStats();
 		
