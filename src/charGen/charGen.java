@@ -8,7 +8,31 @@ import java.util.Scanner;
 //This class is designed so that multiple future classes can utilize it's methods for generation
 //of content based upon design team decisions - kam271*/
 
+
+
 public class charGen {
+	
+	/*
+	 * FUNCTION:
+	 *   charName
+	 * IN-PARAMETERS:
+	 *   charObject (charStats)
+	 * OUT-PARAMETERS:
+	 *   None
+	 * DESCRIPTION:
+	 *   Allows player to name their character   
+	 *
+	 *   This method follows the single responsibility principle by
+	 *   only handling the naming of the character and by only being
+	 *   responsible to the charGen class.
+	 *
+	 *   Demi Sommerville
+	 */
+	static void charName(charStats charObject, Scanner input){
+	    System.out.println("What is your Character's Name?");
+	    charObject.name = input.nextLine();
+	    System.out.println(charObject.name);
+	}
 	
 	/*CharStats handles Single Responsibility by separating the storage of the variables for the generic
 	//class that will be used for generation of all PC and NPC types in the game - kam271
@@ -34,17 +58,11 @@ public class charGen {
 		
 		charGen.charStats playerCharacter = new charStats();
 		
-		System.out.println("What is your Character's Name?");
-		playerCharacter.name = input.nextLine();
-		System.out.println(playerCharacter.name);
+		charName( playerCharacter, input );
 		
 		//Stat points to distribute 20
 		System.out.println("You have 20 stat points to distribute. Your current stats are: ");
 		
-		//System.out.println("Health: " + playerCharacter.health);
-		//System.out.println("Defense: " + playerCharacter.defense);
-		//System.out.println("Accuracy: " + playerCharacter.accuracy);
-		//System.out.println("Damage: " + playerCharacter.damage);
 		pointAllocator.charStatPrint( playerCharacter );
 		
 		pointAllocator.statAlloc ( playerCharacter );
