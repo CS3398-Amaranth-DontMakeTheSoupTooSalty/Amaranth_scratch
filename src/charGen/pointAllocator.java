@@ -3,7 +3,16 @@ import java.util.Scanner;
 import charGen.charGen.charStats;
 
 public class pointAllocator {
-	
+	/* Christinas comment section
+	 * function Name: charStatPrint
+
+	 * Description:  The Functio will display to the screen the the palyers current stats 
+	 *               health, defense, accuracy, and Damage.
+	 * variables: char stats, char objects
+	 * input: none 
+	 * output: current defense, health accuracy and damage
+	 * return nothing 
+	*/
 	static void charStatPrint( charStats charObject ){
 		System.out.println("Your current stats are: ");
 		System.out.println("Health: " + charObject.health); 
@@ -11,7 +20,10 @@ public class pointAllocator {
 		System.out.println("Accuracy: " + charObject.accuracy);
 		System.out.println("Damage: " + charObject.damage);
 	}
-	
+	/*	This helper function will be used when the player is awarded new skill points and must choose where 
+	* 	to allocate them. By staying as simple as possible, this function conforms tp the SRP by ensuring that it's 
+	*	sole purpose is to map user inputs into their character's stat values. - Noah Dunstatter
+	*/
 	static void statAllocChoice(String choice, charStats charObject, int statChoice, Scanner choiceInput )
 	{
 		if( choice.equals("He") || choice.equals("he") )
