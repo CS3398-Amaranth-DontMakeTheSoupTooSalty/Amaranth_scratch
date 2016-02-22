@@ -60,9 +60,6 @@ public class charGen {
 		
 		charName( playerCharacter, input );
 		
-		//Stat points to distribute 20
-		System.out.println("You have 20 stat points to distribute. Your current stats are: ");
-		
 		pointAllocator.charStatPrint( playerCharacter );
 		
 		pointAllocator.statAlloc ( playerCharacter );
