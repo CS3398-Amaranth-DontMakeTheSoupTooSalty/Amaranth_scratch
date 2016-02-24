@@ -14,11 +14,13 @@ public class pointAllocator {
 	 * return nothing 
 	*/
 	static void charStatPrint( charStats charObject ){
+		System.out.println("------------------------");
 		System.out.println("Your current stats are: ");
 		System.out.println("Health: " + charObject.health); 
 		System.out.println("Defense: " + charObject.defense);
 		System.out.println("Accuracy: " + charObject.accuracy);
 		System.out.println("Damage: " + charObject.damage);
+		System.out.println("------------------------");
 	}
 	/*	This helper function will be used when the player is awarded new skill points and must choose where 
 	* 	to allocate them. By staying as simple as possible, this function conforms tp the SRP by ensuring that it's 
