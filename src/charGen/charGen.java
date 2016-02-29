@@ -7,6 +7,7 @@ import java.util.Scanner;
 //This parent class will be the means by which NPCs and PCs are generated for the game world.
 //This class is designed so that multiple future classes can utilize it's methods for generation
 //of content based upon design team decisions - kam271*/
+// Earmarked for future adaptation
 
 public class charGen {
 	
