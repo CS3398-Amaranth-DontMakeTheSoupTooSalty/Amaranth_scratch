@@ -13,7 +13,7 @@ public class pointAllocator {
 	 * output: current defense, health accuracy and damage
 	 * return nothing 
 	*/
-	static void charStatPrint( charStats charObject ){
+	public static void charStatPrint( charStats charObject ){
 		System.out.println("------------------------");
 		System.out.println("Your current stats are: ");
 		System.out.println("Health: " + charObject.health); 
@@ -26,7 +26,7 @@ public class pointAllocator {
 	* 	to allocate them. By staying as simple as possible, this function conforms tp the SRP by ensuring that it's 
 	*	sole purpose is to map user inputs into their character's stat values. - Noah Dunstatter
 	*/
-	static void statAllocChoice(String choice, charStats charObject, int statChoice, Scanner choiceInput )
+	public static void statAllocChoice(String choice, charStats charObject, int statChoice, Scanner choiceInput )
 	{
 		if( choice.equals("He") || choice.equals("he") )
 		{
@@ -82,7 +82,7 @@ public class pointAllocator {
 		}
 	}
 	
-	static void statAlloc( charStats charObject ){
+	public static void statAlloc( charStats charObject ){
 		Scanner choiceInput = new Scanner ( System.in );
 		
 		while( charObject.statPoints > 0)

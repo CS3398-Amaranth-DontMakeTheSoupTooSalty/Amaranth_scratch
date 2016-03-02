@@ -1,5 +1,4 @@
 package charGen;
-import charGen.pointAllocator;
 import java.util.Scanner;
 
 /*Test for Eclipse Push
@@ -27,7 +26,7 @@ public class charGen {
 	 *
 	 *   Demi Sommerville
 	 */
-	static void charName(charStats charObject, Scanner input){
+	public void charName(charStats charObject, Scanner input){
 	    System.out.println("What is your Character's Name?");
 	    charObject.name = input.nextLine();
 	    System.out.println(charObject.name);
@@ -41,7 +40,7 @@ public class charGen {
 	//is true. Damage will be applied if Accuracy > Defense condition is met, which will be subtracted from the health pool
 	//This design is intentionally left open for expansion so that we can add additional stats if we believe resources
 	//allow, based upon client feedback -kam271*/
-	static class charStats{
+	public static class charStats{
 		String name = "";
 		int health = 20;
 		int defense = 10;
@@ -50,7 +49,7 @@ public class charGen {
 		
 		int statPoints = 20;
 	}
-
+/*
 	public static void main(String[] args){
 		
 		Scanner input = new Scanner( System.in );
@@ -65,4 +64,5 @@ public class charGen {
 		
 		input.close();
 	}
+	*/
 }
