@@ -1,6 +1,6 @@
 package character;
 
-// import charGen.*;
+import charGen.charGen;
 
 public class player extends character {
 	
@@ -23,7 +23,14 @@ public class player extends character {
 		defense = 0;
 		accuracy = 0;
 		damage = 0;
-		
 		/* call to charGen point allocator */
+	}
+	
+	public void statTransition( charGen.charStats playerCharacterType ){
+		name = playerCharacterType.name;
+		health = playerCharacterType.health;
+		defense = playerCharacterType.defense;
+		accuracy = playerCharacterType.accuracy;
+		damage = playerCharacterType.damage;
 	}
 }

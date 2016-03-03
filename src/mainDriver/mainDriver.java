@@ -13,15 +13,19 @@ public class mainDriver {
 		
 		Scanner input = new Scanner( System.in );
 		
+		player playerCharacter = new player();
+		
 		charGen objectCharGen = new charGen();
 		
-		charGen.charStats playerCharacter = new charStats();
+		charGen.charStats playerCharacterHolder = new charStats();
 		
-		objectCharGen.charName( playerCharacter, input );
+		objectCharGen.charName( playerCharacterHolder, input );
 		
-		pointAllocator.charStatPrint( playerCharacter );
+		pointAllocator.charStatPrint( playerCharacterHolder );
 		
-		pointAllocator.statAlloc ( playerCharacter );
+		pointAllocator.statAlloc ( playerCharacterHolder );
+		
+		playerCharacter.statTransition( playerCharacterHolder );
 		
 		input.close();
 	}

@@ -41,11 +41,11 @@ public class charGen {
 	//This design is intentionally left open for expansion so that we can add additional stats if we believe resources
 	//allow, based upon client feedback -kam271*/
 	public static class charStats{
-		String name = "";
-		int health = 20;
-		int defense = 10;
-		int accuracy = 10;
-		int damage = 2;
+		public String name = "";
+		public int health = 20;
+		public int defense = 10;
+		public int accuracy = 10;
+		public int damage = 2;
 		
 		int statPoints = 20;
 	}
