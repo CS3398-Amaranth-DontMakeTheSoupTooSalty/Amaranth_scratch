@@ -27,6 +27,17 @@ public class mainDriver {
 		
 		playerCharacter.statTransition( playerCharacterHolder );
 		
+		// begin tests of character classes
+		System.out.println("Test of character class methods");
+		playerCharacter.printStats();
+		
+		System.out.println("Name: " + playerCharacter.getName() );
+		System.out.println("Health: " + playerCharacter.getHealth()  );
+		System.out.println("Defense: " + playerCharacter.getDefense() );
+		System.out.println("Accuracy: " + playerCharacter.getAccuracy() );
+		System.out.println("Damage: " + playerCharacter.getDamage() );
+		// end of character class tests
+		
 		input.close();
 	}
 }
