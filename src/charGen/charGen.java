@@ -49,20 +49,5 @@ public class charGen {
 		
 		int statPoints = 20;
 	}
-/*
-	public static void main(String[] args){
-		
-		Scanner input = new Scanner( System.in );
-		
-		charGen.charStats playerCharacter = new charStats();
-		
-		charName( playerCharacter, input );
-		
-		pointAllocator.charStatPrint( playerCharacter );
-		
-		pointAllocator.statAlloc ( playerCharacter );
-		
-		input.close();
-	}
-	*/
+
 }

@@ -1,7 +1,5 @@
 package character;
 
-//import charGen.*;
-
 public class character {
 	
 	String name;

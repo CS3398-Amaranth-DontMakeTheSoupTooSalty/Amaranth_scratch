@@ -16,10 +16,10 @@ public class pointAllocator {
 	public static void charStatPrint( charStats charObject ){
 		System.out.println("------------------------");
 		System.out.println("Your current stats are: ");
-		System.out.println("Health: " + charObject.health); 
-		System.out.println("Defense: " + charObject.defense);
-		System.out.println("Accuracy: " + charObject.accuracy);
-		System.out.println("Damage: " + charObject.damage);
+		System.out.println("(He)alth: " + charObject.health); 
+		System.out.println("(De)fense: " + charObject.defense);
+		System.out.println("(Ac)curacy: " + charObject.accuracy);
+		System.out.println("(Da)mage: " + charObject.damage);
 		System.out.println("------------------------");
 	}
 	/*	This helper function will be used when the player is awarded new skill points and must choose where 
