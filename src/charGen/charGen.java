@@ -28,6 +28,7 @@ public class charGen {
 	 */
 	public void charName(charStats charObject, Scanner input){
 	    System.out.println("What is your Character's Name?");
+	    input.nextLine();
 	    charObject.name = input.nextLine();
 	    System.out.println(charObject.name);
 	}
