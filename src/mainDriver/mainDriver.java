@@ -106,7 +106,6 @@ public class mainDriver {
 	    gameWorld gameWorldObj = new gameWorld();
 	    gameWorldObj.environmentGeneratorCLI(testEnvironName, testEnvironDesc);
 	    
-	    
 		input.close();
 	}
 }
