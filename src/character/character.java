@@ -11,7 +11,7 @@ public class character implements Serializable {
 	int defense;
 	int accuracy;
 	int damage;
-	
+	String location = "";
 	public String getName() {return name;}
 	public int getHealth() {return health;}
 	public int getDefense() {return defense;}
