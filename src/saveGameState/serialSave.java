@@ -13,7 +13,7 @@ public class serialSave
          out.writeObject(myChar);
          out.close();
          fileOut.close();
-         System.out.printf("Serialized data is saved in characterObj.ser");
+         System.out.printf("Serialized data is saved in characterObj.ser\n");
    }catch(IOException i)
       {
           i.printStackTrace();
