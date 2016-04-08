@@ -1,13 +1,16 @@
 package character;
 
-public class character {
+import java.io.Serializable;
+
+public class character implements Serializable {
 	
+	
+	private static final long serialVersionUID = 1L;
 	String name;
 	int health;
 	int defense;
 	int accuracy;
 	int damage;
-	public String location;
 	
 	public String getName() {return name;}
 	public int getHealth() {return health;}
@@ -34,7 +37,6 @@ public class character {
 		defense = 0;
 		accuracy = 0;
 		damage = 0;
-		location = "";
 		
 		/* call to charGen */
 	}

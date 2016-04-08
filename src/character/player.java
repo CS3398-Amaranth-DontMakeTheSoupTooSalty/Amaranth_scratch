@@ -1,9 +1,14 @@
 package character;
 
+import java.io.Serializable;
+
 import charGen.charGen;
 
-public class player extends character {
+public class player extends character implements Serializable {
 	
+
+	private static final long serialVersionUID = 1L;
+
 	/*
 	 * FUNCTION:
 	 *   character()
@@ -23,7 +28,6 @@ public class player extends character {
 		defense = 0;
 		accuracy = 0;
 		damage = 0;
-		location="";
 		/* call to charGen point allocator */
 	}
 	
