@@ -15,9 +15,11 @@ import charGen.pointAllocator;
 import charGen.charGen.charStats;
 import character.character;
 import character.player;
+import environment.gameWorld;
 import environment.start;
 
 public class mainDriver {
+	@SuppressWarnings("static-access")
 	public static void main(String[] args){
 	
 		Scanner input = new Scanner( System.in );
@@ -98,6 +100,13 @@ public class mainDriver {
 	    else if (startObj.interfaceChoice == 3){
 	    	
 	    }
+	    //TEST BLOCK, TO BE REVISED FOR FILE SYSTEM
+	    String testEnvironDesc = "FOREST the thousand acre woods";
+	    String testEnvironName ="START";
+	    gameWorld gameWorldObj = new gameWorld();
+	    gameWorldObj.environmentGeneratorCLI(testEnvironName, testEnvironDesc);
+	    
+	    
 		input.close();
 	}
 }
