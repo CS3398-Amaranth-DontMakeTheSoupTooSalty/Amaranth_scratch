@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class start {
 	static int interfaceChoice;
+	static String NewGameChoice;
 	
 	public static void interfaceChoice(Scanner in){
 	    System.out.println("Choose an interface\n"
@@ -14,5 +15,11 @@ public class start {
 	    System.out.println(interfaceChoice);
 	}
 	
+	public static void NewGameQ(Scanner in){
+		System.out.println("(N)ew Game\n");
+		System.out.println("(L)oad Game");
+		
+		NewGameChoice = in.next();
+	}
 
 }
