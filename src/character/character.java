@@ -7,6 +7,7 @@ public class character {
 	int defense;
 	int accuracy;
 	int damage;
+	public String location;
 	
 	public String getName() {return name;}
 	public int getHealth() {return health;}
@@ -33,6 +34,7 @@ public class character {
 		defense = 0;
 		accuracy = 0;
 		damage = 0;
+		location = "";
 		
 		/* call to charGen */
 	}

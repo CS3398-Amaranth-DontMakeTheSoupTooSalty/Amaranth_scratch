@@ -23,6 +23,7 @@ public class player extends character {
 		defense = 0;
 		accuracy = 0;
 		damage = 0;
+		location="";
 		/* call to charGen point allocator */
 	}
 	
