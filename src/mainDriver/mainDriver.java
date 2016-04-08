@@ -17,6 +17,7 @@ import character.character;
 import character.player;
 import environment.gameWorld;
 import environment.start;
+import saveGameState.*;
 
 public class mainDriver {
 	@SuppressWarnings("static-access")
@@ -96,9 +97,12 @@ public class mainDriver {
 	    	//Function can be used, when called to do so, to allow player to see their
 	    	//current stats during play period
 	    	playerCharacter.printStats();
+	    	serialSave.saveChar(playerCharacter);
 	    }
 	    else if (startObj.interfaceChoice == 3){
-	    	
+	    	player loadedChar = new player();
+	    	loadedChar = serialSave.loadChar();
+	    	loadedChar.printStats();
 	    }
 	    //TEST BLOCK, TO BE REVISED FOR FILE SYSTEM
 	    String testEnvironDesc = "FOREST the thousand acre woods";
