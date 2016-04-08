@@ -70,45 +70,52 @@ public class mainDriver {
 	        btnExit.setBounds (350, 450, 100, 30);
 
 	        frame1.setVisible (true);
-
 	    }
 	    else if(startObj.interfaceChoice == 1){
 	    	
-	    	//Star a NewGame or LoadGame
-	    	start.NewGameQ(input);
-	    	//Create a player object
-	    	player playerCharacter = new player();
-	    	//Create a charGen object
-	    	charGen objectCharGen = new charGen();
-	    	//Generic holder instantiation for character stats
-	    	//Makes easier for us to pass as object to do stat manipulation
-	    	charGen.charStats playerCharacterHolder = new charStats();
-	    	//User chooses name for character. Separated intentionally from
-	    	//other stat allocation.
-	    	objectCharGen.charName( playerCharacterHolder, input );
-	    	//Shows current default stats
-	    	pointAllocator.charStatPrint( playerCharacterHolder );
-	    	//Handles the allocation of available character creation stat points
-	    	//prompting user to make choices on how they want to alloc their stats
-	    	pointAllocator.statAlloc ( playerCharacterHolder );
-	    	//Takes the place holder object stats and links it to playerChar object
-	    	playerCharacter.statTransition( playerCharacterHolder );
-	    	//print final stat choices to char so they see the results of their choices
-	    	//Function can be used, when called to do so, to allow player to see their
-	    	//current stats during play period
-	    	playerCharacter.printStats();
-	    	serialSave.saveChar(playerCharacter);
+	    	//If player selects a new game
+	    	if( start.NewGameQ(input) )
+	    	{
+	    		//Create a player object
+	    		player playerCharacter = new player();
+	    		//Create a charGen object
+	    		charGen objectCharGen = new charGen();
+	    		//Generic holder instantiation for character stats
+	    		//Makes easier for us to pass as object to do stat manipulation
+	    		charGen.charStats playerCharacterHolder = new charStats();
+	    		//User chooses name for character. Separated intentionally from
+	    		//other stat allocation.
+	    		objectCharGen.charName( playerCharacterHolder, input );
+	    		//Shows current default stats
+	    		pointAllocator.charStatPrint( playerCharacterHolder );
+	    		//Handles the allocation of available character creation stat points
+	    		//prompting user to make choices on how they want to alloc their stats
+	    		pointAllocator.statAlloc ( playerCharacterHolder );
+	    		//Takes the place holder object stats and links it to playerChar object
+	    		playerCharacter.statTransition( playerCharacterHolder );
+	    		//print final stat choices to char so they see the results of their choices
+	    		//Function can be used, when called to do so, to allow player to see their
+	    		//current stats during play period
+	    		playerCharacter.printStats();
+	    		serialSave.saveChar(playerCharacter);
+	    		
+	    		/* send character to game driver */
+	    	}
+	    	else // User wants to load game
+	    	{
+	    		player characterPlayer = new player();
+	    		characterPlayer = serialSave.loadChar();
+	    		/* send character to game driver */
+	    		
+	    	}
 	    }
-	    else if (startObj.interfaceChoice == 3){
-	    	player loadedChar = new player();
-	    	loadedChar = serialSave.loadChar();
-	    	loadedChar.printStats();
-	    }
+	    
 	    //TEST BLOCK, TO BE REVISED FOR FILE SYSTEM
 	    String testEnvironDesc = "FOREST the thousand acre woods";
 	    String testEnvironName ="START";
 	    gameWorld gameWorldObj = new gameWorld();
 	    gameWorldObj.environmentGeneratorCLI(testEnvironName, testEnvironDesc);
+	    
 	    
 		input.close();
 	}
