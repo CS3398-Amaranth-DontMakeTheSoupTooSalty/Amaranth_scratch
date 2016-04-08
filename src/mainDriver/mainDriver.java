@@ -69,7 +69,7 @@ public class mainDriver {
 	        frame1.setVisible (true);
 
 	    }
-	    else{
+	    else if(startObj.interfaceChoice == 1){
 	    	
 	    //Star a NewGame or LoadGame
 	    start.NewGameQ(input);
@@ -94,6 +94,9 @@ public class mainDriver {
 		//Function can be used, when called to do so, to allow player to see their
 		//current stats during play period
 		playerCharacter.printStats();
+	    }
+	    else if (startObj.interfaceChoice == 3){
+	    	
 	    }
 		input.close();
 	}
