@@ -14,7 +14,11 @@ public class mainDriver {
 	
 		Scanner input = new Scanner( System.in );
 		//Allows user to choose between a CLI or a GUI
-	    start.interfaceChoice(input);
+		start startObj = new start();
+	    startObj.interfaceChoice(input);
+	    if(startObj.interfaceChoice == 2)
+	    	//yourGuiCodeHere
+	    	System.out.println(startObj.interfaceChoice);
 	    //Star a NewGame or LoadGame
 	    start.NewGameQ(input);
 		//Create a player object
@@ -38,8 +42,6 @@ public class mainDriver {
 		//Function can be used, when called to do so, to allow player to see their
 		//current stats during play period
 		playerCharacter.printStats();
-		
-		
 		
 		input.close();
 	}

@@ -3,8 +3,8 @@ package environment;
 import java.util.Scanner;
 
 public class start {
-	static int interfaceChoice;
-	static String NewGameChoice;
+	public static int interfaceChoice;
+	public static String NewGameChoice;
 	
 	public static void interfaceChoice(Scanner in){
 	    System.out.println("Choose an interface\n"
