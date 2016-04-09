@@ -17,7 +17,7 @@ import character.character;
 import character.player;
 import environment.gameWorld;
 import environment.start;
-import gui.gui;
+import gui.Frame;
 import saveGameState.*;
 
 public class mainDriver {
@@ -29,8 +29,10 @@ public class mainDriver {
 		start startObj = new start();
 	    startObj.interfaceChoice(input);
 	    if(startObj.interfaceChoice == 2){
-	    	gui objGui = new gui();
-	    	gui.launchGUI();
+	    	Frame objGui = new Frame();
+	    	objGui.launchGUI();
+	    	
+	    	   
 	    }
 	    else if(startObj.interfaceChoice == 1){
 	    	
