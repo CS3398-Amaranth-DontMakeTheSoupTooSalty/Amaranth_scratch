@@ -1,0 +1,16 @@
+name 
+Forest Orc
+type
+Orc
+location
+Forest
+level 
+1
+health
+20
+defense 
+5
+damage
+3
+accuracy 
+2
