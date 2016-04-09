@@ -124,6 +124,7 @@ public class mainDriver {
 	    String testEnvironName ="START";
 	    gameWorld gameWorldObj = new gameWorld();
 	    gameWorldObj.environmentGeneratorCLI(testEnvironName, testEnvironDesc);
+	    environment.gameWorld.environmentCreatorCLI("TestFile", input);
 	    
 	    
 		input.close();
