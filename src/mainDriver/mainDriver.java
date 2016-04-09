@@ -74,12 +74,12 @@ public class mainDriver {
 	    }
 	    
 	    //TEST BLOCK, TO BE REVISED FOR FILE SYSTEM
-	    PrintWriter writer = new PrintWriter("the-file-name.txt", "UTF-8");
+	    //PrintWriter writer = new PrintWriter("the-file-name.txt", "UTF-8");
 	    String testEnvironDesc = "FOREST the thousand acre woods";
 	    String testEnvironName ="START";
 	    gameWorld gameWorldObj = new gameWorld();
 	    gameWorldObj.environmentGeneratorCLI(testEnvironName, testEnvironDesc);
-	    PrintWriter.close();
+	    //PrintWriter.close();
 	    
 	    
 		input.close();
