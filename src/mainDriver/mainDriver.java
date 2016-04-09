@@ -1,6 +1,8 @@
 package mainDriver;
 
 import java.awt.Container;
+import java.io.PrintWriter;
+import java.io.File;
 import java.awt.Font;
 //import java.awt.Insets;
 import java.util.Scanner;
@@ -111,10 +113,12 @@ public class mainDriver {
 	    }
 	    
 	    //TEST BLOCK, TO BE REVISED FOR FILE SYSTEM
+	    PrintWriter writer = new PrintWriter("the-file-name.txt", "UTF-8");
 	    String testEnvironDesc = "FOREST the thousand acre woods";
 	    String testEnvironName ="START";
 	    gameWorld gameWorldObj = new gameWorld();
 	    gameWorldObj.environmentGeneratorCLI(testEnvironName, testEnvironDesc);
+	    PrintWriter.close();
 	    
 	    
 		input.close();
