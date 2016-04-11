@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 //import java.awt.Insets;
 import java.util.Scanner;
 
+import javax.sound.sampled.Clip;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,27 +19,26 @@ import character.*;
 import character.player;
 import environment.gameWorld;
 import environment.start;
-<<<<<<< HEAD
 import gui.Frame;
-=======
->>>>>>> refs/remotes/origin/team_scratch
+import sound.Sound;
+
 import saveGameState.*;
 
 public class mainDriver {
 	@SuppressWarnings("static-access")
-	public static void main(String[] args){
+	public static void main(String[] args) {
 	
+		new Sound();
+		
 		Scanner input = new Scanner( System.in );
 		//Allows user to choose between a CLI or a GUI
 		start startObj = new start();
-	    startObj.interfaceChoice(input);
-	    if(startObj.interfaceChoice == 2){
-<<<<<<< HEAD
+	    	startObj.interfaceChoice(input);
+	    	if(startObj.interfaceChoice == 2) {
 	    	Frame objGui = new Frame();
 	    	objGui.launchGUI();
 	    	
 	    	   
-=======
 	        JFrame frame1;
 	        Container pane;
 	        JButton btnNewGame, btnExit, btnLoadGame;
@@ -81,7 +81,6 @@ public class mainDriver {
 	        btnExit.setBounds (350, 450, 100, 30);
 
 	        frame1.setVisible (true);
->>>>>>> refs/remotes/origin/team_scratch
 	    }
 	    else if(startObj.interfaceChoice == 1){
 	    	
