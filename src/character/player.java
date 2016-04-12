@@ -29,6 +29,7 @@ public class player extends character implements Serializable {
 		accuracy = 0;
 		damage = 0;
 		location = "START";
+		blocking = false;
 		/* call to charGen point allocator */
 	}
 	

@@ -17,6 +17,7 @@ public class enemy extends character implements Serializable {
 		accuracy = 0;
 		damage = 0;
 		level = 0;
+		blocking = false;
 		
 		/* call to charGen */
 	}
