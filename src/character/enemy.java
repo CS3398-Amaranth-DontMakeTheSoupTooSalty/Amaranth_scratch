@@ -36,53 +36,55 @@ public class enemy extends character implements Serializable {
 		System.out.println("************************");
 	}
 	
+	/********************************************************************
+	 *  enemyGen()
+	 * Given an enemy.txt file, this function will initialize the corresponding
+	 * enemy object       */
 	public static enemy enemyGen(String enemyFile) throws FileNotFoundException{
 		enemy newEnemy = new enemy();
 		String statDescriptor = "";
 		
 		java.io.File input = new java.io.File(enemyFile);
 		Scanner infile = new Scanner(input);
+		
 		while(infile.hasNextLine())
 		{
-			statDescriptor = infile.nextLine();
+			statDescriptor = infile.next();
+			System.out.println(statDescriptor);
 			switch(statDescriptor)
 			{
-				case "name":
-					
-					newEnemy.name = infile.nextLine();
+				case "name:":
+					newEnemy.name = infile.next();
+					infile.nextLine();
 					break;
-				case "type":
-					newEnemy.type = infile.nextLine();
+				case "type:":
+					newEnemy.type = infile.next();
+					infile.nextLine();
 					break;
-				case "location":
-					newEnemy.location = infile.nextLine();
+				case "location:":
+					newEnemy.location = infile.next();
+					infile.nextLine();
 					break;
-				case "health":
+				case "health:":
 					newEnemy.health = infile.nextInt();
-					infile.nextLine();
 					break;
-				case "level":
+				case "level:":
 					newEnemy.level = infile.nextInt();
-					infile.nextLine();
 					break;
-				case "damage":
+				case "damage:":
 					newEnemy.damage = infile.nextInt();
-					infile.nextLine();
 					break;
-				case "accuracy":
+				case "accuracy:":
 					newEnemy.accuracy = infile.nextInt();
-					infile.nextLine();
 					break;
-				case "defense":
+				case "defense:":
 					newEnemy.defense = infile.nextInt();
-					infile.nextLine();
 					break;
 			}
-			statDescriptor = "";
 		}
 		newEnemy.printEnemyStats();
 		infile.close();
-		return newEnemy; 
+		return newEnemy;
 	}
 	
 }
