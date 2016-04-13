@@ -14,6 +14,7 @@ import gui.Frame;
 import sound.Sound;
 import battle.*;
 import saveGameState.*;
+import Inventory.*;
 
 public class mainDriver {
 	@SuppressWarnings("static-access")
@@ -70,11 +71,17 @@ public class mainDriver {
 	    }
 	    else if(startObj.interfaceChoice == 3)
 	    {
+	    	/*
 	    	enemy newEnemy = new enemy();
 	    	try {
 				newEnemy = enemy.enemyGen("forestOrc.txt");
 			}catch(FileNotFoundException e) {e.printStackTrace();}
-	    	//newEnemy.printEnemyStats();
+	    	//newEnemy.printEnemyStats();*/
+	    	potion newPotion = new potion();
+	    	try {
+				newPotion = potion.potionGen("healthPotion.txt");
+			}catch(FileNotFoundException e) {e.printStackTrace();}
+	    	newPotion.printDetailed();
 	    }
 	    
 	    //TEST BLOCK, TO BE REVISED FOR FILE SYSTEM

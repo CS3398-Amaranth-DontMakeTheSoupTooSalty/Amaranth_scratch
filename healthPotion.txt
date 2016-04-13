@@ -1,0 +1,13 @@
+name: Health Potion
+
+description: Crimson red and bubbling with life-force, this mystery liquid looks safe to drink!
+
+value: 10
+
+count: 1
+
+rarity: 0
+
+stat_amnt: 10
+
+stat_field: health
