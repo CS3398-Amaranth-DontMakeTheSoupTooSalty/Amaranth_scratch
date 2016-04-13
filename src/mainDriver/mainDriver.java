@@ -2,7 +2,7 @@ package mainDriver;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-
+import javax.sound.sampled.Clip;
 import charGen.charGen;
 import charGen.pointAllocator;
 import charGen.charGen.charStats;
@@ -11,15 +11,20 @@ import character.player;
 import environment.gameWorld;
 import environment.start;
 import gui.Frame;
+import sound.Sound;
+import battle.*;
 import saveGameState.*;
 
 public class mainDriver {
 	@SuppressWarnings("static-access")
-	public static void main(String[] args){
+	public static void main(String[] args) {
 	
+		new Sound();
+		
 		Scanner input = new Scanner( System.in );
 		//Allows user to choose between a CLI or a GUI
 		start startObj = new start();
+
 	    startObj.interfaceChoice(input);
 	    if(startObj.interfaceChoice == 2){
 	    	Frame objGui = new Frame();

@@ -13,6 +13,7 @@ public class character implements Serializable {
 	int accuracy;
 	int damage;
 	int level;
+	boolean blocking;
 	
 	public String getName() {return name;}
 	public String getLoc() {return location;}
@@ -21,7 +22,12 @@ public class character implements Serializable {
 	public int getAccuracy() {return accuracy;}
 	public int getDamage() {return damage;}
 	public int getLevel() {return level;}
-	
+	public void setHealth(int _health) {health = _health;}
+	public void setDefense(int _defense) {defense = _defense;}
+	public void setAccuracy(int _accuracy) {accuracy = _accuracy;}
+	public void setDamage(int _damage) {damage = _damage;}
+	public boolean getBlocking() {return blocking;}
+	public void setBlocking(boolean block) {blocking = block;}
 
 	public character() {
 		name = "";
@@ -31,6 +37,7 @@ public class character implements Serializable {
 		accuracy = 0;
 		damage = 0;
 		level = 0;
+		blocking = false;
 		
 		/* call to charGen */
 	}
