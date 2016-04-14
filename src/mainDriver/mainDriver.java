@@ -99,12 +99,6 @@ public class mainDriver {
 	    		System.out.println("You have vanquished all your enemies!");
 	    	else if(returnVal == battle.ERROR)
 	    		System.out.println("Oh no, something went wrong!");
-	    	//newEnemy.printEnemyStats();*/
-	    	potion newPotion = new potion();
-	    	try {
-				newPotion = potion.potionGen("healthPotion.txt");
-			}catch(FileNotFoundException e) {e.printStackTrace();}
-	    	newPotion.printDetailed();
 	    }
 	    
 	    //TEST BLOCK, TO BE REVISED FOR FILE SYSTEM
