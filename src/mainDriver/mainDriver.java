@@ -88,6 +88,23 @@ public class mainDriver {
 			}catch(FileNotFoundException e) {e.printStackTrace();}
 	    	//newEnemy.printEnemyStats();
 	    }
+	    	
+	    else if(startObj.interfaceChoice == 4) {
+	    	int numEnemies;
+	    	player playerCharacter = new player();
+	    	int returnVal;
+	    	
+	    	System.out.println("How many enemies do you want to battle?");
+	    	System.out.println("Enter 1-4: ");
+	    	numEnemies = input.nextInt();
+	    	returnVal = battle.battleMode(playerCharacter, numEnemies, "forestOrc.txt");
+	    	if(returnVal == battle.PLAYER_DEATH)
+	    		System.out.println("You died!");
+	    	else if(returnVal == battle.ENEMIES_VANQUISHED)
+	    		System.out.println("You have vanquished all your enemies!");
+	    	else if(returnVal == battle.ERROR)
+	    		System.out.println("Oh no, something went wrong!");
+	    }
 	    
 	    //TEST BLOCK, TO BE REVISED FOR FILE SYSTEM
 	    String testEnvironDesc = "FOREST the thousand acre woods";
