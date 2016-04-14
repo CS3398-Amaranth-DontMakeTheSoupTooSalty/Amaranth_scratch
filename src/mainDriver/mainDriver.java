@@ -1,17 +1,8 @@
 package mainDriver;
 
-import java.awt.Container;
-import java.awt.Font;
 import java.io.FileNotFoundException;
-//import java.awt.Insets;
 import java.util.Scanner;
-
 import javax.sound.sampled.Clip;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-//import javax.swing.JTextField;
-
 import charGen.charGen;
 import charGen.pointAllocator;
 import charGen.charGen.charStats;
@@ -22,8 +13,8 @@ import environment.start;
 import gui.Frame;
 import sound.Sound;
 import battle.*;
-
 import saveGameState.*;
+import Inventory.*;
 
 public class mainDriver {
 	@SuppressWarnings("static-access")
@@ -34,13 +25,11 @@ public class mainDriver {
 		Scanner input = new Scanner( System.in );
 		//Allows user to choose between a CLI or a GUI
 		start startObj = new start();
-	    	startObj.interfaceChoice(input);
-	    	if(startObj.interfaceChoice == 2) {
+
+	    startObj.interfaceChoice(input);
+	    if(startObj.interfaceChoice == 2){
 	    	Frame objGui = new Frame();
 	    	objGui.launchGUI();
-	    	
-	    	   
-	       
 	    }
 	    else if(startObj.interfaceChoice == 1){
 	    	
@@ -82,11 +71,17 @@ public class mainDriver {
 	    }
 	    else if(startObj.interfaceChoice == 3)
 	    {
+	    	/*
 	    	enemy newEnemy = new enemy();
 	    	try {
 				newEnemy = enemy.enemyGen("forestOrc.txt");
 			}catch(FileNotFoundException e) {e.printStackTrace();}
-	    	//newEnemy.printEnemyStats();
+	    	//newEnemy.printEnemyStats();*/
+	    	potion newPotion = new potion();
+	    	try {
+				newPotion = potion.potionGen("healthPotion.txt");
+			}catch(FileNotFoundException e) {e.printStackTrace();}
+	    	newPotion.printDetailed();
 	    }
 	    	
 	    else if(startObj.interfaceChoice == 4) {
@@ -104,6 +99,12 @@ public class mainDriver {
 	    		System.out.println("You have vanquished all your enemies!");
 	    	else if(returnVal == battle.ERROR)
 	    		System.out.println("Oh no, something went wrong!");
+	    	//newEnemy.printEnemyStats();*/
+	    	potion newPotion = new potion();
+	    	try {
+				newPotion = potion.potionGen("healthPotion.txt");
+			}catch(FileNotFoundException e) {e.printStackTrace();}
+	    	newPotion.printDetailed();
 	    }
 	    
 	    //TEST BLOCK, TO BE REVISED FOR FILE SYSTEM

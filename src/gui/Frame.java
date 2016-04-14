@@ -18,28 +18,34 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+
 public class Frame extends JFrame implements ActionListener {
-	private JFrame frame1;
+	private JFrame mainFrame;
 	private Container container;
 	private JPanel panel;
 	private JButton btnNewGame, btnExit, btnLoadGame;
 	private JLabel lblGameName;
+	//private Insets insets;
 	
 	public void launchGUI(){
 
-		//JTextField txtServer;
-		//Insets insets;
-
 		//Create the frame
-		frame1 = new JFrame ("Game GUI Test");
+		mainFrame = new JFrame ("Game GUI Test");
 		//Set its size to 800x800 pixels
-		frame1.setSize (new Dimension(800,800));
-		frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame1.setLocationRelativeTo(null);
+		mainFrame.setSize (new Dimension(800,800));
+		//Set it to end program when x button is clicked
+		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//Set its default opening position to center of screen
+		mainFrame.setLocationRelativeTo(null);
+		//Set so the window can't change size?
+	    mainFrame.setResizable(false);
+	    
 		//Prepare panel
 		panel = new JPanel();
-		container = frame1.getContentPane();
-		//insets = pane.getInsets();
+		//allows the panels to actually show up on the frame
+		container = mainFrame.getContentPane();
+		//a representation of the borders of a container. It specifies the space that a container must leave at each of its edges
+		//insets = panel.getInsets(); 
 		container.add(panel);
 		//Apply the null layout
 		panel.setLayout (null);
@@ -52,8 +58,6 @@ public class Frame extends JFrame implements ActionListener {
 		btnNewGame.addActionListener(this);
 		btnLoadGame.addActionListener(this);
 	 	btnExit.addActionListener(this);
-
-		//txtServer = new JTextField (10);
 
 		//set font
 		lblGameName.setFont(new Font("Century Gothic", Font.PLAIN, 30));
@@ -74,16 +78,22 @@ public class Frame extends JFrame implements ActionListener {
 		btnExit.setBounds (350, 450, 100, 30);
 		
 
-		frame1.setVisible (true);
+		mainFrame.setVisible (true);
 	}
 	
 	public void actionPerformed(ActionEvent e){
 		if(e.getActionCommand()== "New Game"){
+		    //mainFrame.revalidate();
+            //mainFrame.repaint();
 			panel.removeAll();
 			panel.updateUI();
 			//call charGen?
+			charGenGui test = new charGenGui();
+			test.launchStatsGui(panel);
 		}
 		else if(e.getActionCommand()== "Load Game"){
+			//mainFrame.revalidate();
+            //mainFrame.repaint();
 			panel.removeAll();
 			panel.updateUI();
 			//load the saved game? Deal with reading save file?
@@ -93,25 +103,4 @@ public class Frame extends JFrame implements ActionListener {
 		}
 	}
 	
-/*	private class CloseListener implements ActionListener {
-		public void actionPerformed(ActionEvent e){
-			System.exit(0);
-		}
-	}
-	
-	private class NewGameListener implements ActionListener {
-		public void actionPerformed(ActionEvent e){
-			panel.removeAll();
-			panel.updateUI();
-			//call charGen?
-		}
-	}
-	
-	private class LoadGameListener implements ActionListener {
-		public void actionPerformed(ActionEvent e){
-			panel.removeAll();
-			panel.updateUI();
-			//load the saved game? Deal with reading save file?
-		}
-	}*/
 }
