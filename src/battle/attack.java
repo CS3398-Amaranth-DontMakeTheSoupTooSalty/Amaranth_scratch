@@ -8,7 +8,8 @@ public class attack {
 	public static final int ATTACK_MISSED = 1;
 	public static final int DEATH_BLOW = 2;
 	public static final int ERROR = -1;
-	public static int hitFactor;
+	public static final int missBase = 10;
+	public static int missFactor;
 	public static int qualityFactor;
 	
 	// FUNCTION:
@@ -37,16 +38,21 @@ public class attack {
 		
 		if(attacker.getAccuracy() > defender.getDefense()) {
 			qualityFactor = (attacker.getAccuracy() - defender.getDefense())/5;
-			hitFactor = 1;
+			missFactor = missBase + (attacker.getAccuracy() - defender.getDefense());
 		}
 		
 		else {
-			hitFactor = (defender.getDefense() - attacker.getAccuracy())/5;
+			missFactor = missBase - (defender.getDefense() - attacker.getAccuracy())/5;
 			qualityFactor = 0;
 		}
 			
-		// it's a hit
-		if((randVal % hitFactor) == 0) {
+		if(missFactor <= 0)
+			missFactor = 1; // ensures no divide by 0
+		
+		if((randVal % missFactor) == 0)
+			return ATTACK_MISSED;
+		
+		else {
 			defender.setHealth(defender.getHealth() - (attacker.getDamage() + qualityFactor));
 			if (defender.getHealth() <= 0) {
 				return DEATH_BLOW;
@@ -54,10 +60,7 @@ public class attack {
 			
 			else
 				return DAMAGE_DEALT;
-		}
-		
-		else
-			return ATTACK_MISSED;
+		}	
 	}
 
 }

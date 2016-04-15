@@ -38,18 +38,17 @@ public class battle {
 		int  randVal;
 		
 		while((playerChar.getHealth() > 0) && (remainingEnemies > 0)) {
-			// display player stats
-			playerChar.printStats();
 			// input player move
 			System.out.println("Choose your command:");
 			System.out.println("(Type the first two letters of command name to select it)");
 			System.out.println("(At)tack");
 			System.out.println("(Bl)ock");
 			System.out.println("(He)al");
-			choice = choiceInput.next();			
-			// call appropriate method
+
 			validChoice = false;
 			while(!validChoice) {
+				choice = choiceInput.next();
+				// call appropriate method
 				switch(choice.toLowerCase()) {
 					case "at":
 						// if blocking, remove block
@@ -126,7 +125,7 @@ public class battle {
 						defense.removeBlock(tempEnemy); // if blocking, remove block
 					
 					randVal = rand.nextInt(100) + 1; // generate random number (1-100)
-					if((tempEnemy.getHealth() < 5) && ((randVal % 2) == 0)) {
+					if((tempEnemy.getHealth() < 8) && ((randVal % 2) == 0)) {
 						magic.heal(tempEnemy);
 						System.out.println("Enemy " + (i+1) + " cast heal");
 					}
@@ -145,6 +144,8 @@ public class battle {
 						 returnVal = attack.attackUnarmed(tempEnemy, playerChar);
 						 if(returnVal == attack.DAMAGE_DEALT)
 							 System.out.println("Hit by Enemy " + (i+1));
+						 else if(returnVal == attack.DEATH_BLOW)
+							 System.out.println("Killed by Enemy " + (i+1));
 						 else
 							 System.out.println("Enemy " + (i+1) + " missed");
 					}
@@ -155,8 +156,9 @@ public class battle {
 					    Thread.currentThread().interrupt();
 					} // delay after enemy move
 				}
-				
 			}
+			// display player stats
+			playerChar.printStats();
 		}
 		choiceInput.close();
 		
