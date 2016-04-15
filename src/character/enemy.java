@@ -6,8 +6,11 @@ public class enemy extends character implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	String type;
+	static int blockFactor;
+	static int healFactor;
 	public String getType() {return type;}
-	
+	public static int getBlockFactor() {return blockFactor;}
+	public static int getHealFactor() {return healFactor;}	
 	
 	public enemy() {
 		name = "";
@@ -19,6 +22,8 @@ public class enemy extends character implements Serializable {
 		damage = 0;
 		level = 0;
 		blocking = false;
+		blockFactor = 5;
+		healFactor = 13;
 		
 		/* call to charGen */
 	}
