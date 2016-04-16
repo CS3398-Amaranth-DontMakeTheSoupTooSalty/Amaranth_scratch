@@ -42,6 +42,11 @@ public class enemy extends character implements Serializable {
 		System.out.println("************************");
 	}
 	
+	public void printSimpleEnemyStats() {
+		System.out.println("Name: " + name + ", Health: " + health);
+		System.out.println("************************");
+	}
+	
 	/********************************************************************
 	 *  enemyGen()
 	 * Given an enemy.txt file, this function will initialize the corresponding
@@ -56,7 +61,6 @@ public class enemy extends character implements Serializable {
 		while(infile.hasNextLine())
 		{
 			statDescriptor = infile.next();
-			System.out.println(statDescriptor);
 			switch(statDescriptor)
 			{
 				case "name:":

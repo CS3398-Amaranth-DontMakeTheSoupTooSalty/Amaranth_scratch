@@ -33,6 +33,11 @@ public class player extends character implements Serializable {
 		/* call to charGen point allocator */
 	}
 	
+	public void printSimplePlayerStats() {
+		System.out.println("Name: " + name + ", Health: " + health);
+		System.out.println("************************");
+	}
+	
 	public void statTransition( charGen.charStats playerCharacterType ){
 		name = playerCharacterType.name;
 		health = playerCharacterType.health;

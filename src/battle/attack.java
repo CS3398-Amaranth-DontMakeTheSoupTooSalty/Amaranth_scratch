@@ -4,11 +4,11 @@ import character.*;
 import java.util.Random;
 
 public class attack {
-	public static final int DAMAGE_DEALT = 0;
-	public static final int ATTACK_MISSED = 1;
-	public static final int DEATH_BLOW = 2;
-	public static final int ERROR = -1;
+	public static final int ATTACK_MISSED = -1;
+	public static final int DEATH_BLOW = -2;
+	public static final int ERROR = -3;
 	public static final int missBase = 10;
+	public static int damageDealt;
 	public static int missFactor;
 	public static int qualityFactor;
 	
@@ -53,13 +53,14 @@ public class attack {
 			return ATTACK_MISSED;
 		
 		else {
-			defender.setHealth(defender.getHealth() - (attacker.getDamage() + qualityFactor));
+			damageDealt = attacker.getDamage() + qualityFactor;
+			defender.setHealth(defender.getHealth() - damageDealt);
 			if (defender.getHealth() <= 0) {
 				return DEATH_BLOW;
 			}
 			
 			else
-				return DAMAGE_DEALT;
+				return damageDealt;
 		}	
 	}
 
