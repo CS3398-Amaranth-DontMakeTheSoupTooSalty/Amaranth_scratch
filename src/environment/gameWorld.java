@@ -18,12 +18,15 @@ public class gameWorld {
 	public static void environmentCreatorCLI( Scanner in){
 		int flag = 1;
 		int terrainType = 4;
-		String terrainArray[terrainType];
+		int choice;
+		String terrainArray[] = {"FOREST","CAVE","PLAINS","DESERT"};
 		String environmentName;
 		
 		while(flag == 1){
 		System.out.println("To create an area, press 1");
-		in.nextInt();
+		choice = in.nextInt();
+		if (choice != 1)
+			break;
 		System.out.println("Type the name of the New Area, no spaces");
 		environmentName = in.next();
 		File file = new File (environmentName+".env");
@@ -33,14 +36,15 @@ public class gameWorld {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		System.out.println("Choose a Terrain Type: ");
+		System.out.println("Choose a Terrain Type By Number: ");
 		for ( int i = 0; i<terrainType; i++)
 		{
-			
+			System.out.println((i+1)+" "+terrainArray[i]);
 		}
-		PrintWriter.println(environmentName);
-		}
+		choice = in.nextInt();
+		PrintWriter.println(terrainArray[choice-1]);
 		
 		PrintWriter.close();
+		}
 	}
 }
