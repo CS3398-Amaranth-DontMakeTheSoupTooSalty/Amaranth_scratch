@@ -2,6 +2,7 @@ package mainDriver;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.Array;
 import javax.sound.sampled.Clip;
 import charGen.charGen;
 import charGen.pointAllocator;
@@ -17,7 +18,7 @@ import saveGameState.*;
 import Inventory.*;
 
 public class mainDriver {
-	@SuppressWarnings("static-access")
+	
 	public static void main(String[] args) {
 	
 		new Sound();
@@ -71,17 +72,26 @@ public class mainDriver {
 	    }
 	    else if(startObj.interfaceChoice == 3)
 	    {
-	    	/*
-	    	enemy newEnemy = new enemy();
+	    	
+	    	
 	    	try {
-				newEnemy = enemy.enemyGen("forestOrc.txt");
+	    		enemy[] dudes; 
+	    		dudes = enemy.squadGen("forestOrc.txt", 75);
+	    		if(dudes == null)
+	    			System.out.println("No Battle :(");
+	    		else
+	    		{
+	    			System.out.println("BATTLE!");
+		    		int size = Array.getLength(dudes);
+		    		for(int i = 0; i < size; i++)
+		    			dudes[i].printEnemyStats();
+	    		}
 			}catch(FileNotFoundException e) {e.printStackTrace();}
-	    	//newEnemy.printEnemyStats();*/
-	    	potion newPotion = new potion();
+	    	/*potion newPotion = new potion();
 	    	try {
 				newPotion = potion.potionGen("healthPotion.txt");
 			}catch(FileNotFoundException e) {e.printStackTrace();}
-	    	newPotion.printDetailed();
+	    	newPotion.printDetailed();*/
 	    }
 	    	
 	    else if(startObj.interfaceChoice == 4) {

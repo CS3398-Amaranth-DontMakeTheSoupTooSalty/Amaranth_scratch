@@ -36,16 +36,17 @@ public class potion extends item implements Serializable {
 		
 		java.io.File input = new java.io.File(potionFile);
 		Scanner infile = new Scanner(input);
-		
+		int iterator = 0;
 		while(infile.hasNextLine())
 		{
+			if(iterator != 0)
+				infile.nextLine();
 			statDescriptor = infile.next();
 			switch(statDescriptor)
 			{
 				case "name:":
 					infile.skip(" "); //Skips the space between "description:" and the description text in input file
 					newPotion.name = infile.nextLine();
-					infile.nextLine();
 					break;
 				case "value:":
 					newPotion.value = infile.nextInt();
@@ -62,12 +63,12 @@ public class potion extends item implements Serializable {
 				case "description:":
 					infile.skip(" "); //Skips the space between "description:" and the description text in input file
 					newPotion.description = infile.nextLine();
-					infile.nextLine();
 					break;
 				case "stat_field:":
 					newPotion.stat_field = infile.next();
 					break;
 			}
+			iterator++;
 		}
 		infile.close();
 		return newPotion;
