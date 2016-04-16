@@ -106,7 +106,8 @@ public class mainDriver {
 	    String testEnvironName ="START";
 	    gameWorld gameWorldObj = new gameWorld();
 	    gameWorldObj.environmentGeneratorCLI(testEnvironName, testEnvironDesc);
-	    environment.gameWorld.environmentCreatorCLI(input);
+	    Scanner inputA = new Scanner( System.in );
+	    environment.gameWorld.environmentCreatorCLI(inputA);
 	    
 	    
 		input.close();
