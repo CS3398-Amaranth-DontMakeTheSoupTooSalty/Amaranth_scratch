@@ -23,7 +23,7 @@ public class Frame extends JFrame implements ActionListener {
 	private JFrame mainFrame;
 	private Container container;
 	private JPanel panel;
-	private JButton btnNewGame, btnExit, btnLoadGame;
+	private JButton btnNewGame, btnExit, btnLoadGame, btnBattleDemo;
 	private JLabel lblGameName;
 	//private Insets insets;
 	
@@ -54,10 +54,12 @@ public class Frame extends JFrame implements ActionListener {
 		btnLoadGame = new JButton ("Load Game");
 		btnExit = new JButton ("Exit");
 		lblGameName = new JLabel ("Le Creative Game Name");
+		btnBattleDemo = new JButton ("BATTLE DEMO");
 		
 		btnNewGame.addActionListener(this);
 		btnLoadGame.addActionListener(this);
 	 	btnExit.addActionListener(this);
+	 	btnBattleDemo.addActionListener(this);
 
 		//set font
 		lblGameName.setFont(new Font("Century Gothic", Font.PLAIN, 30));
@@ -69,6 +71,7 @@ public class Frame extends JFrame implements ActionListener {
 		panel.add (btnNewGame);
 		panel.add (btnLoadGame);
 		panel.add (btnExit);
+		panel.add (btnBattleDemo);
 
 		//Place all components  
 		/*      lblServer.setBounds (insets.left + 5, insets.top + 5, lblServer.getPreferredSize().width, lblServer.getPreferredSize().height);
@@ -76,6 +79,7 @@ public class Frame extends JFrame implements ActionListener {
 		btnNewGame.setBounds (350, 350, 100, 30);
 		btnLoadGame.setBounds (350, 400, 100, 30);
 		btnExit.setBounds (350, 450, 100, 30);
+		btnBattleDemo.setBounds(350, 500, 100, 30);
 		
 
 		mainFrame.setVisible (true);
@@ -98,6 +102,11 @@ public class Frame extends JFrame implements ActionListener {
 		}
 		else if(e.getActionCommand()== "Exit"){
 			System.exit(0);
+		}
+		else if(e.getActionCommand()== "BATTLE DEMO"){
+			panel.removeAll();
+			mainFrame.revalidate();
+            mainFrame.repaint();
 		}
 	}
 	
