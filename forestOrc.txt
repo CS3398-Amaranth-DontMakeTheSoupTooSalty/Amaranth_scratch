@@ -13,3 +13,7 @@ defense: 5
 damage: 3
 
 accuracy: 2
+
+blockFactor: 5
+
+healFactor: 13

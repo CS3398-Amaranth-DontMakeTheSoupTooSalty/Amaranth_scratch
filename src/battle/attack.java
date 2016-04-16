@@ -1,12 +1,16 @@
 package battle;
 
 import character.*;
+import java.util.Random;
 
 public class attack {
 	public static final int DAMAGE_DEALT = 0;
 	public static final int ATTACK_MISSED = 1;
 	public static final int DEATH_BLOW = 2;
 	public static final int ERROR = -1;
+	public static final int missBase = 10;
+	public static int missFactor;
+	public static int qualityFactor;
 	
 	// FUNCTION:
 	//  int attackUnarmedcharacter attacker, character defender)
@@ -28,18 +32,35 @@ public class attack {
 		if((attacker.getHealth() < 1) || (defender.getHealth() < 1))
 			return ERROR;
 		
-		if (attacker.getAccuracy() > defender.getDefense()) {
-			defender.setHealth(defender.getHealth() - attacker.getDamage());
+		Random rand = new Random();
+		int  randVal;
+		randVal = rand.nextInt(10) + 1; // generate random number (1-100)
+		
+		if(attacker.getAccuracy() > defender.getDefense()) {
+			qualityFactor = (attacker.getAccuracy() - defender.getDefense())/5;
+			missFactor = missBase + (attacker.getAccuracy() - defender.getDefense());
+		}
+		
+		else {
+			missFactor = missBase - (defender.getDefense() - attacker.getAccuracy())/5;
+			qualityFactor = 0;
+		}
+			
+		if(missFactor <= 0)
+			missFactor = 1; // ensures no divide by 0
+		
+		if((randVal % missFactor) == 0)
+			return ATTACK_MISSED;
+		
+		else {
+			defender.setHealth(defender.getHealth() - (attacker.getDamage() + qualityFactor));
 			if (defender.getHealth() <= 0) {
 				return DEATH_BLOW;
 			}
 			
 			else
 				return DAMAGE_DEALT;
-		}
-		
-		else
-			return ATTACK_MISSED;
+		}	
 	}
 
 }

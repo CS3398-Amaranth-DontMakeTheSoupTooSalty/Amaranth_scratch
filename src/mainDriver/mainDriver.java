@@ -63,8 +63,8 @@ public class mainDriver {
 	    	}
 	    	else // User wants to load game
 	    	{
-	    		player characterPlayer = new player();
-	    		characterPlayer = serialSave.loadChar();
+	    		player playerCharacter = new player();
+	    		playerCharacter = serialSave.loadChar();
 	    		/* send character to game driver */
 	    		
 	    	}
@@ -106,7 +106,7 @@ public class mainDriver {
 	    String testEnvironName ="START";
 	    gameWorld gameWorldObj = new gameWorld();
 	    gameWorldObj.environmentGeneratorCLI(testEnvironName, testEnvironDesc);
-	    environment.gameWorld.environmentCreatorCLI("TestFile", input);
+	    environment.gameWorld.environmentCreatorCLI(input);
 	    
 	    
 		input.close();
