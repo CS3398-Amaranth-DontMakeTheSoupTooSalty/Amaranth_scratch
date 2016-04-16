@@ -60,8 +60,13 @@ public class battle {
 						enemyChoice = choiceInput.nextInt();
 						returnVal = attack.attackUnarmed(playerChar, enemyArray[enemyChoice-1]);
 						
-						if(returnVal == attack.DEATH_BLOW)
+						if(returnVal == attack.DEATH_BLOW) {
+							System.out.println("Killed enemy " + enemyChoice);
 							remainingEnemies--;
+						}
+						
+						else if(returnVal == attack.damageDealt)
+							System.out.println("Hit enemy " + enemyChoice + " with " + returnVal + " damage");
 						
 						validChoice = true;
 						try {
@@ -80,6 +85,7 @@ public class battle {
 						else
 							defense.block(playerChar);
 						
+						System.out.println("Player blocking");
 						validChoice = true;
 						try {
 						    Thread.sleep(500);
@@ -94,6 +100,7 @@ public class battle {
 							defense.removeBlock(playerChar);
 						
 						magic.heal(playerChar);
+						System.out.println("Player health + 4");
 						validChoice = true;
 						
 						try {
@@ -119,7 +126,12 @@ public class battle {
 			// enemy move selection
 			for(int i = 0; i < numEnemies; i++) {
 				tempEnemy = enemyArray[i];
-				tempEnemy.printEnemyStats();
+				System.out.println("************************");
+				System.out.println("Enemy " + (i+1) + " - ");
+				if(tempEnemy.getHealth() <= 0)
+					System.out.println("DEAD");
+				else
+					tempEnemy.printSimpleEnemyStats();
 				if(tempEnemy.getHealth() > 0) {
 					if(tempEnemy.getBlocking() == true)
 						defense.removeBlock(tempEnemy); // if blocking, remove block
@@ -142,7 +154,7 @@ public class battle {
 					
 					else {
 						 returnVal = attack.attackUnarmed(tempEnemy, playerChar);
-						 if(returnVal == attack.DAMAGE_DEALT)
+						 if(returnVal == attack.damageDealt)
 							 System.out.println("Hit by Enemy " + (i+1));
 						 else if(returnVal == attack.DEATH_BLOW)
 							 System.out.println("Killed by Enemy " + (i+1));
@@ -158,14 +170,19 @@ public class battle {
 				}
 			}
 			// display player stats
-			playerChar.printStats();
+			System.out.println("************************");
+			System.out.println("Player Stats");
+			if(playerChar.getHealth() <= 0)
+				System.out.println("DEAD");
+			else
+				playerChar.printSimplePlayerStats();
 		}
 		choiceInput.close();
 		
 		if(remainingEnemies == 0)
 			return ENEMIES_VANQUISHED;
 		
-		else if(playerChar.getHealth() < 1)
+		else if(playerChar.getHealth() <= 0)
 			return PLAYER_DEATH;
 		
 		else
