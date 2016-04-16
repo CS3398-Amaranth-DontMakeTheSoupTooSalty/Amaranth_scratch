@@ -17,16 +17,26 @@ public class gameWorld {
 	
 	public static void environmentCreatorCLI( Scanner in){
 		int flag = 1;
-		while(flag == 1){
-		System.out.println("Create an Area?");
+		int terrainType = 4;
+		String terrainArray[terrainType];
+		String environmentName;
 		
-		System.out.println("Type the name of the New Area");
+		while(flag == 1){
+		System.out.println("To create an area, press 1");
+		in.nextInt();
+		System.out.println("Type the name of the New Area, no spaces");
+		environmentName = in.next();
 		File file = new File (environmentName+".env");
 		PrintWriter PrintWriter = null;
 		try {
 			PrintWriter = new PrintWriter (environmentName+".env");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+		}
+		System.out.println("Choose a Terrain Type: ");
+		for ( int i = 0; i<terrainType; i++)
+		{
+			
 		}
 		PrintWriter.println(environmentName);
 		}
