@@ -15,18 +15,22 @@ public class gameWorld {
 		System.out.println(areaModuleDescription);
 	}
 	
-	public static void environmentCreatorCLI(String environmentName, Scanner in){
+	public static void environmentCreatorCLI( Scanner in){
+		int flag = 1;
+		while(flag == 1){
+		System.out.println("Create an Area?");
+		
+		System.out.println("Type the name of the New Area");
 		File file = new File (environmentName+".env");
 		PrintWriter PrintWriter = null;
 		try {
 			PrintWriter = new PrintWriter (environmentName+".env");
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		PrintWriter.println(environmentName);
-		PrintWriter.println(environmentName);
-		System.out.println("Write a description for this area");
+		}
+		
 		PrintWriter.close();
 	}
 }
