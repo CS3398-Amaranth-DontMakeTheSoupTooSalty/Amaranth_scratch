@@ -24,10 +24,10 @@ public class player extends character implements Serializable {
 	 */
 	public player() {
 		name  = "";
-		health = 0;
-		defense = 0;
-		accuracy = 0;
-		damage = 0;
+		health = 20;
+		defense = 20;
+		accuracy = 20;
+		damage = 2;
 		location = "START";
 		blocking = false;
 		/* call to charGen point allocator */

@@ -83,19 +83,17 @@ public class Frame extends JFrame implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e){
 		if(e.getActionCommand()== "New Game"){
-		    //mainFrame.revalidate();
-            //mainFrame.repaint();
 			panel.removeAll();
-			panel.updateUI();
+			mainFrame.revalidate();
+            mainFrame.repaint();
 			//call charGen?
 			charGenGui test = new charGenGui();
 			test.launchStatsGui(panel);
 		}
 		else if(e.getActionCommand()== "Load Game"){
-			//mainFrame.revalidate();
-            //mainFrame.repaint();
 			panel.removeAll();
-			panel.updateUI();
+			mainFrame.revalidate();
+            mainFrame.repaint();
 			//load the saved game? Deal with reading save file?
 		}
 		else if(e.getActionCommand()== "Exit"){

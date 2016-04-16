@@ -7,15 +7,16 @@ public class defense {
 	public static final int BLOCK_OFF = 0;
 	public static final int ERROR = -1;
 	
-	public int block(character caller) {
+	public static int block(character caller) {
 		caller.setDefense(caller.getDefense() + 5);
 		caller.setBlocking(true);
 		return BLOCK_SET;
 	}
 	
-	public int removeBlock(character caller) {
+	public static int removeBlock(character caller) {
 		if (caller.getBlocking() == true) {
 			caller.setDefense(caller.getDefense() - 5);
+			caller.setBlocking(false);
 			return BLOCK_OFF;
 		}
 		
