@@ -86,6 +86,12 @@ public class enemy extends character implements Serializable {
 				case "defense:":
 					newEnemy.defense = infile.nextInt();
 					break;
+				case "healFactor:":
+					newEnemy.healFactor = infile.nextInt();
+					break;
+				case "blockFactor:":
+					newEnemy.blockFactor = infile.nextInt();
+					break;
 			}
 		}
 		newEnemy.printEnemyStats();
