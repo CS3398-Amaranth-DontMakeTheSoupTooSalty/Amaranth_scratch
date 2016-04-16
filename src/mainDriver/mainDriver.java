@@ -2,7 +2,7 @@ package mainDriver;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-import java.util.Array;
+import java.util.Arrays;
 import javax.sound.sampled.Clip;
 import charGen.charGen;
 import charGen.pointAllocator;
