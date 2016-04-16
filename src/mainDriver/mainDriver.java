@@ -63,8 +63,8 @@ public class mainDriver {
 	    	}
 	    	else // User wants to load game
 	    	{
-	    		player characterPlayer = new player();
-	    		characterPlayer = serialSave.loadChar();
+	    		player playerCharacter = new player();
+	    		playerCharacter = serialSave.loadChar();
 	    		/* send character to game driver */
 	    		
 	    	}
