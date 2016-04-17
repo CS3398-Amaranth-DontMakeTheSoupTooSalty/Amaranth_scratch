@@ -19,15 +19,18 @@ public class battle {
 		
 		int remainingEnemies = numEnemies;
 		enemy[] enemyArray = new enemy[numEnemies];
+		try {
+			enemyArray = enemy.enemyGen(enemyFile, numEnemies);
+		}catch(FileNotFoundException e) {e.printStackTrace();}
 		
-		for(int i = 0; i < numEnemies; i++) {
+		/*for(int i = 0; i < numEnemies; i++) {
 			enemy newEnemy = new enemy();
 			try {
-				newEnemy = enemy.enemyGen(enemyFile);
+				newEnemy = enemy.enemyGen(enemyFile, numEnemies);
 			}catch(FileNotFoundException e) {e.printStackTrace();}
 			
 			enemyArray[i] = newEnemy;
-		} // populates an array of enemy characters
+		} // populates an array of enemy characters*/
 		
 		Scanner choiceInput = new Scanner ( System.in );
 		String choice = "";
