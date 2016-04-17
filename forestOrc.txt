@@ -1,19 +1,19 @@
-name: Forest Orc
-
 type: Orc
 
-location: Forest
+name: Forest Orc
 
 level: 1
 
-health: 20
-
-defense: 5
+health: 10
 
 damage: 3
 
+defense: 3
+
 accuracy: 2
 
-blockFactor: 5
+blockFactor: 2
 
-healFactor: 13
+location: Forest
+
+healFactor: 2

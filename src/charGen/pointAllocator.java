@@ -99,6 +99,6 @@ public class pointAllocator {
 		
 		System.out.println(charObject.name);
 		charStatPrint( charObject );
-		choiceInput.close();
+		//choiceInput.close();
 	}
 }
