@@ -73,7 +73,7 @@ public class battle {
 						
 						validChoice = true;
 						try {
-						    Thread.sleep(500);
+						    Thread.sleep(1000);
 						} catch(InterruptedException ex) {
 						    Thread.currentThread().interrupt();
 						} // delay after player move
@@ -91,7 +91,7 @@ public class battle {
 						System.out.println("Player blocking");
 						validChoice = true;
 						try {
-						    Thread.sleep(500);
+						    Thread.sleep(1000);
 						} catch(InterruptedException ex) {
 						    Thread.currentThread().interrupt();
 						} // delay after player move
@@ -107,7 +107,7 @@ public class battle {
 						validChoice = true;
 						
 						try {
-						    Thread.sleep(500);
+						    Thread.sleep(1000);
 						} catch(InterruptedException ex) {
 						    Thread.currentThread().interrupt();
 						} // delay after player move
@@ -166,7 +166,7 @@ public class battle {
 					}
 					
 					try {
-					    Thread.sleep(500);
+					    Thread.sleep(1000);
 					} catch(InterruptedException ex) {
 					    Thread.currentThread().interrupt();
 					} // delay after enemy move
