@@ -17,6 +17,7 @@ import sound.Sound;
 import battle.*;
 import saveGameState.*;
 import Inventory.*;
+import spriteAnimation.*;
 
 public class mainDriver {
 	
