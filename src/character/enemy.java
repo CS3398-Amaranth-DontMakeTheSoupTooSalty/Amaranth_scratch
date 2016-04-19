@@ -4,8 +4,7 @@ import java.io.Serializable;
 import java.util.Scanner;
 import java.util.Random;
 
-public class enemy extends character implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class enemy extends character {
 	
 	String type;
 	int blockFactor;

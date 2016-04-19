@@ -36,21 +36,19 @@ public class character implements Serializable {
 		defense = 0;
 		accuracy = 0;
 		damage = 0;
-		level = 0;
+//change level default to 1
+		level = 1;
 		blocking = false;
 		
 		/* call to charGen */
 	}
 	
-	
+//Change to only take five lines
+//Delete second set of stars
 	public void printStats() {
 		System.out.println("************************");
 		System.out.println("Character Print Stats: ");
-		System.out.println("Name: " + name);
-		System.out.println("Health: " + health); 
-		System.out.println("Defense: " + defense);
-		System.out.println("Accuracy: " + accuracy);
-		System.out.println("Damage: " + damage);
-		System.out.println("************************");
+		System.out.println("Name: " + name +"  Health: " + health +"  Defense: " + defense);
+		System.out.println("Accuracy: " + accuracy + "  Damage: " + damage);
 	}
 }
