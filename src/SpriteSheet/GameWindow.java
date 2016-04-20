@@ -1,5 +1,8 @@
 package SpriteSheet;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.KeyAdapter;
@@ -10,11 +13,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import java.awt.Toolkit;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
 
 public class GameWindow extends JFrame {
 	
@@ -26,7 +30,7 @@ public class GameWindow extends JFrame {
 	SpriteSheet ss;
 	
 	Animator dude;
-	BackgroundImage backgroundScene;
+	BufferedImage background = null;
 	
 	public class AL extends KeyAdapter {
 		@SuppressWarnings("static-access")
@@ -61,8 +65,8 @@ public class GameWindow extends JFrame {
 					dude.resume();
 				}
 				
-				if(x >= 743)
-					x = 743;
+				if(x >= 725)
+					x = 725;
 				
 				preE = e;
 				x += 2;
@@ -77,8 +81,8 @@ public class GameWindow extends JFrame {
 					dude.resume();
 				}
 				
-				if(y <= 32)
-					y = 32;
+				if(y <= 320)
+					y = 320;
 				
 				preE = e;
 				y -= 2;
@@ -93,8 +97,8 @@ public class GameWindow extends JFrame {
 					dude.resume();
 				}
 				
-				if(y >= 540)
-					y = 540;
+				if(y >= 500)
+					y = 500;
 				
 				preE = e;
 				y += 2;
@@ -109,15 +113,26 @@ public class GameWindow extends JFrame {
 	}
 	
 	public GameWindow() {
+		// load background image		
+		BufferedImageLoader bgLoader = new BufferedImageLoader(); 
+		try {
+			background = bgLoader.loadImage("woods.png");
+		} catch (IOException ex) {
+			Logger.getLogger(GameWindow.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		
+		// game properties
 		addKeyListener(new AL());
 		setTitle("Battle Demo");
 		setSize(800, 600);
 		setResizable(false);
 		setVisible(true);
+		setBackground(Color.GREEN);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-		x = 50;
-		y = 50;
+		x = 650;
+		y = 400;
+				
 		init();
 	}
 	
@@ -133,14 +148,19 @@ public class GameWindow extends JFrame {
 		
 		sprites = new ArrayList<BufferedImage>();
 		
-		sprites.add(ss.grabSprite(0, 64, 32, 32));
-		sprites.add(ss.grabSprite(32, 64, 32, 32));
-		sprites.add(ss.grabSprite(64, 64, 32, 32));
+		sprites.add(ss.grabSprite(0, 32, 32, 32));
+		sprites.add(ss.grabSprite(32, 32, 32, 32));
+		sprites.add(ss.grabSprite(64, 32, 32, 32));
 		
 		dude = new Animator(sprites);
 		dude.setSpeed(200);
 		dude.play();
-		dude.pause();
+		try {
+		    Thread.sleep(300);                 
+		} catch(InterruptedException ex) {
+		    Thread.currentThread().interrupt();
+		}
+		dude.stop();
 	}
 	
 	Image dbImage;
@@ -155,15 +175,12 @@ public class GameWindow extends JFrame {
 	}
 	
 	public void paintComponent(Graphics g) {
+		g.drawImage(background, 0, 0, 800, 600, null);
 		if(dude != null) {
 			dude.update(System.currentTimeMillis());
-			g.drawImage(dude.sprite, x, y, 50, 50, null);
+			g.drawImage(dude.sprite, x, y, 75, 75, null);
 		}
 		repaint();
 	}
-	
-//	public static void main(String args[]) {
-//		GameWindow gameWindow = new GameWindow();
-//	}
 
 }
