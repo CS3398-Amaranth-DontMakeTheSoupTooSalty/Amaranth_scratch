@@ -17,7 +17,8 @@ import sound.Sound;
 import battle.*;
 import saveGameState.*;
 import Inventory.*;
-import spriteAnimation.*;
+//import spriteAnimation.*;
+import SpriteSheet.*;
 
 public class mainDriver {
 	
@@ -111,6 +112,10 @@ public class mainDriver {
 	    		System.out.println("You have vanquished all your enemies!");
 	    	else if(returnVal == battle.ERROR)
 	    		System.out.println("Oh no, something went wrong!");
+	    }
+	    
+	    else if(startObj.interfaceChoice == 5) {
+	    	GameWindow gameWindow = new GameWindow();
 	    }
 	    
 	    //TEST BLOCK, TO BE REVISED FOR FILE SYSTEM
