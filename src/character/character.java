@@ -1,6 +1,9 @@
 package character;
 
+import java.awt.image.BufferedImage;
 import java.io.Serializable;
+import java.util.ArrayList;
+import SpriteSheet.*;
 
 public class character implements Serializable {
 	
@@ -14,6 +17,14 @@ public class character implements Serializable {
 	int damage;
 	int level;
 	boolean blocking;
+	
+	// variables for animation
+	ArrayList<BufferedImage> sprites;
+	SpriteSheet ss;
+	Animator avatar;
+	BufferedImageLoader loader;
+	BufferedImage spriteSheet;
+	
 	
 	public String getName() {return name;}
 	public String getLoc() {return location;}
@@ -40,7 +51,11 @@ public class character implements Serializable {
 		level = 1;
 		blocking = false;
 		
-		/* call to charGen */
+		// initialization of animation variables
+		BufferedImageLoader loader = new BufferedImageLoader();
+		BufferedImage spriteSheet = null;
+		ss = new SpriteSheet(spriteSheet);
+		sprites = new ArrayList<BufferedImage>();
 	}
 	
 //Change to only take five lines
