@@ -26,10 +26,18 @@ public class GameWindow extends JFrame {
 	//int[] locationArray = new int[2];
 	
 	BufferedImage sprite;
-	ArrayList<BufferedImage> sprites;
-	SpriteSheet ss;
+	ArrayList<BufferedImage> sprites; // hero
+	ArrayList<BufferedImage> spritesOrcHit; // orc hit
+	ArrayList<BufferedImage> spritesOrcAttack; // orc attack
+	ArrayList<BufferedImage> spritesOrcHeal; // orc hit
+	SpriteSheet ss; // hero
+	SpriteSheet ssOrc; // orc
 	
 	Animator dude;
+	Animator enemy1;
+	Animator enemy2;
+	Animator enemy3;
+	
 	BufferedImage background = null;
 	
 	public class AL extends KeyAdapter {
@@ -139,8 +147,15 @@ public class GameWindow extends JFrame {
 	private void init() {		
 		BufferedImageLoader loader = new BufferedImageLoader();
 		BufferedImage spriteSheet = null;
+		BufferedImage spriteSheetOrc = null;
 		try {
 			spriteSheet = loader.loadImage("AnimationSpriteSheet.png");
+		} catch (IOException ex) {
+			Logger.getLogger(GameWindow.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		
+		try {
+			spriteSheetOrc = loader.loadImage("orc.png");
 		} catch (IOException ex) {
 			Logger.getLogger(GameWindow.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -151,6 +166,44 @@ public class GameWindow extends JFrame {
 		sprites.add(ss.grabSprite(0, 32, 32, 32));
 		sprites.add(ss.grabSprite(32, 32, 32, 32));
 		sprites.add(ss.grabSprite(64, 32, 32, 32));
+		
+		ssOrc = new SpriteSheet(spriteSheetOrc);
+		
+		spritesOrcHit = new ArrayList<BufferedImage>();
+		spritesOrcAttack = new ArrayList<BufferedImage>();
+		spritesOrcHeal = new ArrayList<BufferedImage>();
+		
+		// orc heal sequence
+		spritesOrcHeal.add(ssOrc.grabSprite(25, 10, 75, 100));
+		spritesOrcHeal.add(ssOrc.grabSprite(100, 10, 75, 100));
+		spritesOrcHeal.add(ssOrc.grabSprite(175, 10, 75, 100));
+		spritesOrcHeal.add(ssOrc.grabSprite(250, 10, 75, 100));
+		
+		// orc hit sequence
+		spritesOrcHit.add(ssOrc.grabSprite(10, 1280, 100, 100));
+		spritesOrcHit.add(ssOrc.grabSprite(240, 1280, 100, 100));
+		spritesOrcHit.add(ssOrc.grabSprite(375, 1280, 100, 100));
+		spritesOrcHit.add(ssOrc.grabSprite(500, 1280, 100, 100));
+		spritesOrcHit.add(ssOrc.grabSprite(600, 1280, 100, 100)); // orc  idle
+		
+		// orc attack sequence
+		spritesOrcAttack.add(ssOrc.grabSprite(10, 455, 100, 100));
+		spritesOrcAttack.add(ssOrc.grabSprite(120, 455, 100, 100));
+		spritesOrcAttack.add(ssOrc.grabSprite(220, 455, 100, 100));
+		spritesOrcAttack.add(ssOrc.grabSprite(10, 830, 100, 100));
+		//spritesOrcAttack.add(ssOrc.grabSprite(130, 830, 100, 100));
+		
+		enemy1 = new Animator(spritesOrcAttack);
+		enemy1.setSpeed(200);
+		enemy1.play();
+		
+		enemy2 = new Animator(spritesOrcHit);
+		enemy2.setSpeed(200);
+		enemy2.play();
+		
+		enemy3 = new Animator(spritesOrcHeal);
+		enemy3.setSpeed(200);
+		enemy3.play();
 		
 		dude = new Animator(sprites);
 		dude.setSpeed(200);
@@ -176,6 +229,20 @@ public class GameWindow extends JFrame {
 	
 	public void paintComponent(Graphics g) {
 		g.drawImage(background, 0, 0, 800, 600, null);
+		
+		if(enemy2 != null) {
+			enemy2.update(System.currentTimeMillis());
+			g.drawImage(enemy2.sprite, 160, 260, 150, 150, null);
+		}
+		if(enemy1 != null) {
+			enemy1.update(System.currentTimeMillis());
+			g.drawImage(enemy1.sprite, 220, 335, 160, 160, null);
+		}
+		if(enemy3 != null) {
+			enemy3.update(System.currentTimeMillis());
+			g.drawImage(enemy3.sprite, 75, 420, 150, 175, null);
+		}
+		
 		if(dude != null) {
 			dude.update(System.currentTimeMillis());
 			g.drawImage(dude.sprite, x, y, 75, 75, null);
