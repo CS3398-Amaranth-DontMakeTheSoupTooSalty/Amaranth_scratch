@@ -175,9 +175,9 @@ public class GameWindow extends JFrame {
 		
 		// orc heal sequence
 		spritesOrcHeal.add(ssOrc.grabSprite(25, 10, 75, 100));
-		spritesOrcHeal.add(ssOrc.grabSprite(100, 10, 75, 100));
-		spritesOrcHeal.add(ssOrc.grabSprite(175, 10, 75, 100));
-		spritesOrcHeal.add(ssOrc.grabSprite(250, 10, 75, 100));
+		spritesOrcHeal.add(ssOrc.grabSprite(105, 10, 75, 100));
+		spritesOrcHeal.add(ssOrc.grabSprite(190, 10, 75, 100));
+		spritesOrcHeal.add(ssOrc.grabSprite(272, 10, 75, 100));
 		
 		// orc hit sequence
 		spritesOrcHit.add(ssOrc.grabSprite(10, 1280, 100, 100));
