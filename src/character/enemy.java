@@ -1,7 +1,14 @@
 package character;
+import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import SpriteSheet.*;
+
+import java.util.ArrayList;
 import java.util.Random;
 
 public class enemy extends character {
@@ -11,7 +18,15 @@ public class enemy extends character {
 	int healFactor;
 	public String getType() {return type;}
 	public int getBlockFactor() {return blockFactor;}
-	public int getHealFactor() {return healFactor;}	
+	public int getHealFactor() {return healFactor;}
+	
+	// variables for animation
+	public BufferedImage sprite;
+	public ArrayList<BufferedImage> sprites;
+	public SpriteSheet ss;
+	public Animator avatar;
+	public BufferedImageLoader loader;
+	public BufferedImage spriteSheet;
 	
 	public enemy() {
 		name = "";
@@ -26,7 +41,31 @@ public class enemy extends character {
 		blockFactor = 5;
 		healFactor = 13;
 		
-		/* call to charGen */
+		// initialization of animation variables
+		BufferedImageLoader loader = new BufferedImageLoader();
+		BufferedImage spriteSheet = null;
+		
+		// set enemy graphic to idle and play
+		try {
+			spriteSheet = loader.loadImage("orc.png");
+		} catch (IOException ex) {
+			Logger.getLogger(GameWindow.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		
+		ss = new SpriteSheet(spriteSheet);
+		sprites = new ArrayList<BufferedImage>();
+		
+		// orc idle sequence
+		sprites.add(ss.grabSprite(600, 1280, 100, 100));
+		
+		avatar = new Animator(sprites);
+		avatar.setSpeed(200);;
+		avatar.play();
+		try {
+		    Thread.sleep(300);                 
+		} catch(InterruptedException ex) {
+		    Thread.currentThread().interrupt();
+		}
 	}
 	
 	public void printEnemyStats() {

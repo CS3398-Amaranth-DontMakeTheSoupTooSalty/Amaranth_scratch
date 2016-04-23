@@ -18,6 +18,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import character.*;
 
 
 public class GameWindow extends JFrame {
@@ -37,11 +38,13 @@ public class GameWindow extends JFrame {
 	SpriteSheet ss; // hero
 	SpriteSheet ssOrc; // orc
 	
-	Animator dude;
-	Animator enemy1;
+	//Animator dude;
+	//Animator enemy1;
 	Animator enemy2;
 	Animator enemy3;
 	Animator enemy4;
+	enemy enemy1 = new enemy();
+	player playerCharacter = new player();
 	
 	BufferedImage background = null;
 	
@@ -54,73 +57,73 @@ public class GameWindow extends JFrame {
 			int keyCode = e.getKeyCode();
 			if(keyCode == e.VK_LEFT) {
 				if(e != preE) {
-					sprites.clear();
-					sprites.add(ss.grabSprite(0, 32, 32, 32));
-					sprites.add(ss.grabSprite(32, 32, 32, 32));
-					sprites.add(ss.grabSprite(64, 32, 32, 32));
-					dude.loadFrames(sprites);
-					dude.resume();
+//					sprites.clear();
+//					sprites.add(ss.grabSprite(0, 32, 32, 32));
+//					sprites.add(ss.grabSprite(32, 32, 32, 32));
+//					sprites.add(ss.grabSprite(64, 32, 32, 32));
+//					dude.loadFrames(sprites);
+//					dude.resume();
 				}
-				
-				if(x <= 5)
-					x = 5;
-				
-				preE = e;
-				x -=2 ;
+				playerCharacter.loadAttackFrames();
+//				if(x <= 5)
+//					x = 5;
+//				
+//				preE = e;
+//				x -=2 ;
 			}
 			if(keyCode == e.VK_RIGHT) {
 				if(e != preE) {
-					sprites.clear();
-					sprites.add(ss.grabSprite(0, 64, 32, 32));
-					sprites.add(ss.grabSprite(32, 64, 32, 32));
-					sprites.add(ss.grabSprite(64, 64, 32, 32));
-					dude.loadFrames(sprites);
-					dude.resume();
+//					sprites.clear();
+//					sprites.add(ss.grabSprite(0, 64, 32, 32));
+//					sprites.add(ss.grabSprite(32, 64, 32, 32));
+//					sprites.add(ss.grabSprite(64, 64, 32, 32));
+//					dude.loadFrames(sprites);
+//					dude.resume();
 				}
-				
-				if(x >= 725)
-					x = 725;
-				
-				preE = e;
-				x += 2;
+				playerCharacter.loadBlockFrames();
+//				if(x >= 725)
+//					x = 725;
+//				
+//				preE = e;
+//				x += 2;
 			}
 			if(keyCode == e.VK_UP) {
 				if(e != preE) {
-					sprites.clear();
-					sprites.add(ss.grabSprite(0, 96, 32, 32));
-					sprites.add(ss.grabSprite(32, 96, 32, 32));
-					sprites.add(ss.grabSprite(64, 96, 32, 32));
-					dude.loadFrames(sprites);
-					dude.resume();
+//					sprites.clear();
+//					sprites.add(ss.grabSprite(0, 96, 32, 32));
+//					sprites.add(ss.grabSprite(32, 96, 32, 32));
+//					sprites.add(ss.grabSprite(64, 96, 32, 32));
+//					dude.loadFrames(sprites);
+//					dude.resume();
 				}
-				
-				if(y <= 320)
-					y = 320;
-				
-				preE = e;
-				y -= 2;
+				playerCharacter.loadHealFrames();
+//				if(y <= 320)
+//					y = 320;
+//				
+//				preE = e;
+//				y -= 2;
 			}
 			if(keyCode == e.VK_DOWN) {
 				if(e != preE) {
-					sprites.clear();
-					sprites.add(ss.grabSprite(0, 0, 32, 32));
-					sprites.add(ss.grabSprite(32, 0, 32, 32));
-					sprites.add(ss.grabSprite(64, 0, 32, 32));
-					dude.loadFrames(sprites);
-					dude.resume();
+//					sprites.clear();
+//					sprites.add(ss.grabSprite(0, 0, 32, 32));
+//					sprites.add(ss.grabSprite(32, 0, 32, 32));
+//					sprites.add(ss.grabSprite(64, 0, 32, 32));
+//					dude.loadFrames(sprites);
+//					dude.resume();
 				}
-				
-				if(y >= 500)
-					y = 500;
-				
-				preE = e;
-				y += 2;
+				playerCharacter.loadHitFrames();
+//				if(y >= 500)
+//					y = 500;
+//				
+//				preE = e;
+//				y += 2;
 			}
 			
 		}
 		
 		public void keyReleased(KeyEvent e) {
-			dude.stop();
+//			dude.stop();
 			preE = null;
 		}
 	}
@@ -143,8 +146,8 @@ public class GameWindow extends JFrame {
 		setBackground(Color.GREEN);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-		x = 650;
-		y = 400;
+		x = 625;
+		y = 300;
 				
 		init();
 	}
@@ -226,9 +229,9 @@ public class GameWindow extends JFrame {
 		spritesOrcBlocking.add(ssOrc.grabSprite(285, 1165, 75, 100));
 		spritesOrcBlocking.add(ssOrc.grabSprite(285, 1165, 75, 100));
 		
-		enemy1 = new Animator(spritesOrcHit);
-		enemy1.setSpeed(200);
-		enemy1.play();
+//		enemy1 = new Animator(spritesOrcHit);
+//		enemy1.setSpeed(200);
+//		enemy1.play();
 		
 		enemy2 = new Animator(spritesOrcDying);
 		enemy2.setSpeed(200);
@@ -242,15 +245,15 @@ public class GameWindow extends JFrame {
 		enemy4.setSpeed(200);
 		enemy4.play();
 		
-		dude = new Animator(sprites);
-		dude.setSpeed(200);
-		dude.play();
+//		dude = new Animator(sprites);
+//		dude.setSpeed(200);
+//		dude.play();
 		try {
 		    Thread.sleep(300);                 
 		} catch(InterruptedException ex) {
 		    Thread.currentThread().interrupt();
 		}
-		dude.stop();
+//		dude.stop();
 	}
 	
 	Image dbImage;
@@ -271,9 +274,9 @@ public class GameWindow extends JFrame {
 			enemy2.update(System.currentTimeMillis());
 			g.drawImage(enemy2.sprite, 160, 260, 150, 150, null);
 		}
-		if(enemy1 != null) {
-			enemy1.update(System.currentTimeMillis());
-			g.drawImage(enemy1.sprite, 220, 340, 160, 160, null);
+		if((enemy1 != null) && (enemy1.avatar != null)) {
+			enemy1.avatar.update(System.currentTimeMillis());
+			g.drawImage(enemy1.avatar.sprite, 220, 340, 160, 160, null);
 		}
 		if(enemy4 != null) {
 			enemy4.update(System.currentTimeMillis());
@@ -284,9 +287,9 @@ public class GameWindow extends JFrame {
 			g.drawImage(enemy3.sprite, 75, 420, 150, 175, null);
 		}
 		
-		if(dude != null) {
-			dude.update(System.currentTimeMillis());
-			g.drawImage(dude.sprite, x, y, 75, 75, null);
+		if((playerCharacter != null) && (playerCharacter.avatar != null)) {
+			playerCharacter.avatar.update(System.currentTimeMillis());
+			g.drawImage(playerCharacter.avatar.sprite, x, y, 150, 150, null);
 		}
 		repaint();
 	}
