@@ -68,6 +68,112 @@ public class enemy extends character {
 		}
 	}
 	
+	public void loadIdleFrames() {
+		avatar.stop();
+		sprites.clear();
+		
+		// orc idle sequence
+		sprites.add(ss.grabSprite(600, 1280, 100, 100)); // orc  idle
+		
+		avatar.play();
+	}
+	
+	public void loadAttackFrames() {
+		avatar.stop();
+		sprites.clear();
+		
+		// orc attack sequence
+		sprites.add(ss.grabSprite(10, 455, 100, 100));
+		sprites.add(ss.grabSprite(120, 455, 100, 100));
+		sprites.add(ss.grabSprite(220, 455, 100, 100));
+		sprites.add(ss.grabSprite(10, 830, 100, 100));
+		sprites.add(ss.grabSprite(220, 455, 100, 100));
+		sprites.add(ss.grabSprite(120, 455, 100, 100));
+		sprites.add(ss.grabSprite(10, 455, 100, 100));
+		sprites.add(ss.grabSprite(600, 1280, 100, 100)); // orc  idle
+		sprites.add(ss.grabSprite(600, 1280, 100, 100)); // orc  idle
+		sprites.add(ss.grabSprite(600, 1280, 100, 100)); // orc  idle
+		sprites.add(ss.grabSprite(600, 1280, 100, 100)); // orc  idle
+		
+		avatar.play();
+	}
+	
+	public void loadBlockFrames() {
+		avatar.stop();
+		sprites.clear();
+		
+		// orc blocking sequence
+		sprites.add(ss.grabSprite(25, 1165, 75, 100));
+		sprites.add(ss.grabSprite(105, 1165, 75, 100));
+		sprites.add(ss.grabSprite(200, 1165, 75, 100));
+		sprites.add(ss.grabSprite(285, 1165, 75, 100));
+		sprites.add(ss.grabSprite(285, 1165, 75, 100));
+		sprites.add(ss.grabSprite(285, 1165, 75, 100));
+		
+		avatar.play();
+	}
+	
+	public void loadHealFrames() {
+		avatar.stop();
+		sprites.clear();
+		
+		// orc heal sequence
+		sprites.add(ss.grabSprite(25, 10, 75, 100));
+		sprites.add(ss.grabSprite(105, 10, 75, 100));
+		sprites.add(ss.grabSprite(190, 10, 75, 100));
+		sprites.add(ss.grabSprite(272, 10, 75, 100));
+		sprites.add(ss.grabSprite(190, 10, 75, 100));
+		sprites.add(ss.grabSprite(105, 10, 75, 100));
+		sprites.add(ss.grabSprite(25, 10, 75, 100));
+		sprites.add(ss.grabSprite(600, 1280, 100, 100)); // orc  idle
+		sprites.add(ss.grabSprite(600, 1280, 100, 100)); // orc  idle
+		sprites.add(ss.grabSprite(600, 1280, 100, 100)); // orc  idle
+		sprites.add(ss.grabSprite(600, 1280, 100, 100)); // orc  idle
+		
+		avatar.play();
+	}
+	
+	public void loadHitFrames() {
+		avatar.stop();
+		sprites.clear();
+		
+		// orc hit sequence
+		sprites.add(ss.grabSprite(10, 1280, 100, 100));
+		sprites.add(ss.grabSprite(240, 1280, 100, 100));
+		sprites.add(ss.grabSprite(375, 1280, 100, 100));
+		sprites.add(ss.grabSprite(500, 1280, 100, 100));
+		sprites.add(ss.grabSprite(600, 1280, 100, 100)); // orc  idle
+		sprites.add(ss.grabSprite(600, 1280, 100, 100)); // orc  idle
+		sprites.add(ss.grabSprite(600, 1280, 100, 100)); // orc  idle
+		sprites.add(ss.grabSprite(600, 1280, 100, 100)); // orc  idle
+		
+		avatar.play();
+	}
+	
+	public void loadDyingFrames() {
+		avatar.stop();
+		sprites.clear();
+		
+		// orc dying sequence
+		sprites.add(ss.grabSprite(10, 1280, 100, 100));
+		sprites.add(ss.grabSprite(240, 1280, 100, 100));
+		sprites.add(ss.grabSprite(485, 1043, 100, 100));
+		sprites.add(ss.grabSprite(585, 1043, 100, 100));
+		sprites.add(ss.grabSprite(585, 1043, 100, 100));
+		sprites.add(ss.grabSprite(585, 1043, 100, 100));
+		sprites.add(ss.grabSprite(585, 1043, 100, 100));
+		sprites.add(ss.grabSprite(585, 1043, 100, 100));
+		sprites.add(ss.grabSprite(585, 1043, 100, 100));
+		
+		avatar.play();
+		try {
+		    Thread.sleep(1500);                 
+		} catch(InterruptedException ex) {
+		    Thread.currentThread().interrupt();
+		}
+		avatar = null;
+	}
+	
 	public void printEnemyStats() {
 		System.out.println("************************");
 		System.out.println("Enemy Stats: ");
