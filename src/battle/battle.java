@@ -72,7 +72,7 @@ public class battle {
 						    Thread.currentThread().interrupt();
 						} // delay after player move
 						playerChar.loadAttackFrames(); // attack animation
-						
+// player attack sound						
 						returnVal = attack.attackUnarmed(playerChar, enemyArray[enemyChoice-1]);
 						
 						if(returnVal == attack.DEATH_BLOW) {
@@ -81,7 +81,7 @@ public class battle {
 							} catch(InterruptedException ex) {
 							    Thread.currentThread().interrupt();
 							} // delay after player move
-							
+// enemy dying sound							
 							tempEnemy.loadDyingFrames();
 							System.out.println("Killed enemy " + enemyChoice);
 							gameWindow.setMessageString("Killed enemy " + enemyChoice); // battle window output
@@ -94,7 +94,7 @@ public class battle {
 							} catch(InterruptedException ex) {
 							    Thread.currentThread().interrupt();
 							} // delay after player move
-							
+// enemy getting hit sound							
 							tempEnemy.loadHitFrames(); // enemy hit animation
 							System.out.println("Hit enemy " + enemyChoice + " with " + returnVal + " damage");
 							gameWindow.setMessageString("Hit enemy " + enemyChoice + " with " + returnVal + " damage"); // window 
@@ -126,7 +126,7 @@ public class battle {
 						}
 						else
 							defense.block(playerChar);
-						
+// player blocking sound						
 						playerChar.loadBlockFrames(); // block animation
 						System.out.println("Player blocking");
 						gameWindow.setMessageString("Player blocking"); // print to battle window 
@@ -144,7 +144,7 @@ public class battle {
 						// if blocking, remove block
 						if(playerChar.getBlocking() == true)
 							defense.removeBlock(playerChar);
-						
+// player healing sound						
 						playerChar.loadHealFrames(); // heal animation
 						magic.heal(playerChar);
 						System.out.println("Player health + 4");
@@ -190,6 +190,7 @@ public class battle {
 					
 					randVal = rand.nextInt(100) + 1; // generate random number (1-100)
 					if((tempEnemy.getHealth() < 8) && ((randVal % 2) == 0)) {
+// enemy healing sound						
 						tempEnemy.loadHealFrames(); // enemy heal animation
 						magic.heal(tempEnemy);
 						System.out.println("Enemy " + (i+1) + " cast heal");
@@ -197,6 +198,7 @@ public class battle {
 					}
 					
 					else if((randVal % tempEnemy.getBlockFactor()) == 0) {
+// enemy blocking sound						
 						tempEnemy.loadBlockFrames(); // enemy block animation
 						defense.block(tempEnemy);
 						System.out.println("Enemy " + (i+1) + " is blocking");
@@ -204,6 +206,7 @@ public class battle {
 					}
 					
 					else if((randVal % tempEnemy.getHealFactor()) == 0) {
+// enemy healing sound						
 						tempEnemy.loadHealFrames(); // enemy heal animation
 						magic.heal(tempEnemy);
 						System.out.println("Enemy " + (i+1) + " cast heal");
@@ -211,6 +214,7 @@ public class battle {
 					}
 					
 					else {
+// enemy attacking sound						 
 						 tempEnemy.loadAttackFrames(); // enemy attack animation
 						 try {
 							    Thread.sleep(500);
@@ -220,6 +224,7 @@ public class battle {
 						 returnVal = attack.attackUnarmed(tempEnemy, playerChar);
 						 if(returnVal == attack.damageDealt) {
 							 playerChar.setXPosition(650);
+// player getting hit sound							 
 							 playerChar.loadHitFrames(); // player hit animation
 							 System.out.println("Hit by Enemy " + (i+1));
 							 gameWindow.setMessageString("Hit by Enemy " + (i+1)); // print to battle window
@@ -227,6 +232,7 @@ public class battle {
 						 else if(returnVal == attack.DEATH_BLOW) {
 							 System.out.println("Killed by Enemy " + (i+1));
 							 gameWindow.setMessageString("Killed by Enemy " + (i+1)); // print to battle window
+// player dying sound							 
 							 playerChar.loadDyingFrames(); // player death animation
 						 }
 						 else {
