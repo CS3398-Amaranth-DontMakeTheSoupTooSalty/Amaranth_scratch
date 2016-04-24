@@ -35,16 +35,25 @@ public class GameWindow extends JFrame {
 	// gui display components
 	BufferedImageLoader loader = new BufferedImageLoader();
 	BufferedImage spriteSheet = null;
+	BufferedImage spriteSheetCursor = null;
 	BufferedImage background = null;
+	BufferedImage leftArrow = null;
+	BufferedImage rightArrow = null;
+	BufferedImage upArrow = null;
+	BufferedImage downArrow = null;
 	BufferedImage playerStatsWindow = null;
 	BufferedImage messageWindow = null;
 	BufferedImage moveSelectWindow = null;
 	Font font1 = new Font("Arial", Font.BOLD, 27);
 	Font font2 = new Font("Arial", Font.BOLD, 15);
+	Font font3 = new Font("Arial", Font.BOLD, 20);
 	String messageString = null;
 	String playerStats = null;
 	SpriteSheet ss;
+	SpriteSheet ssCursor;
 	boolean displayMoveSelect = false;
+	int[] choiceArrowPosition = {490, 520, 550};
+	int yPosition = 0;
 	
 	public void setMoveSelect(boolean boolVal) {
 		displayMoveSelect = boolVal;
@@ -66,16 +75,20 @@ public class GameWindow extends JFrame {
 		public void keyPressed(KeyEvent e) {
 			int keyCode = e.getKeyCode();
 			if(keyCode == e.VK_LEFT) {
-			
+				
 			}
 			if(keyCode == e.VK_RIGHT) {
 				
 			}
 			if(keyCode == e.VK_UP) {
-				
+				yPosition--;
+				if(yPosition < 0)
+					yPosition = 0;
 			}
 			if(keyCode == e.VK_DOWN) {
-				
+				yPosition++;
+				if(yPosition > 2)
+					yPosition = 2;
 			}
 		}
 		
@@ -127,6 +140,19 @@ public class GameWindow extends JFrame {
 		playerStatsWindow = ss.grabSprite(20, 20, 320, 40);
 		messageWindow = ss.grabSprite(20, 70, 310, 135);
 		moveSelectWindow = ss.grabSprite(20, 200, 310, 340);
+		
+		// load cursor components
+		try {
+			spriteSheetCursor = bgLoader.loadImage("cursor.png");
+		} catch (IOException ex) {
+			Logger.getLogger(GameWindow.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		
+		ssCursor = new SpriteSheet(spriteSheetCursor);
+		leftArrow = ssCursor.grabSprite(120, 38, 15, 20);
+		rightArrow = ssCursor.grabSprite(153, 38, 15, 20);
+		upArrow = ssCursor.grabSprite(135, 25, 20, 15);
+		downArrow = ssCursor.grabSprite(135, 58, 20, 15);
 				
 		// battle window properties
 		addKeyListener(new AL());
@@ -152,20 +178,22 @@ public class GameWindow extends JFrame {
 	
 	public void paintComponent(Graphics g) {
 		g.drawImage(background, 0, 0, 800, 600, null);
-		g.setFont(font1);
 		g.setColor(Color.BLACK);
 		if(messageString != null) {
+			g.setFont(font1);
 			g.drawImage(messageWindow, 220, 515, 525, 80, null);
 			g.drawString(messageString, 270, 570);
 		}
-		
-		g.setFont(font2);
-		
 		if(displayMoveSelect == true) {
+			g.setFont(font3);
 			g.drawImage(moveSelectWindow, 626, 455, 150, 140, null);
-			g.drawString(playerStats, 635, 479);
+			g.drawString("Attack", 650, 512);
+			g.drawString("Block", 650, 542);
+			g.drawString("Heal", 650, 572);
+			g.drawImage(rightArrow, 620, choiceArrowPosition[yPosition], 25, 30, null);
 		}
 		if(playerStats != null) {
+			g.setFont(font2);
 			g.drawImage(playerStatsWindow, 625, 448, 150, 50, null);
 			g.drawString(playerStats, 635, 479);
 		}
