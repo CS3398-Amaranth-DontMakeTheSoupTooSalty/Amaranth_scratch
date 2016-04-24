@@ -51,4 +51,4 @@ public class charGen {
 		int statPoints = 20;
 	}
 
-}
+} // comment for sync push

@@ -5,6 +5,7 @@ import character.*;
 import battle.attack;
 import java.util.Scanner;
 import java.util.Random;
+import SpriteSheet.*;
 
 public class battle {
 	public static final int ENEMIES_VANQUISHED = 0;
@@ -23,14 +24,7 @@ public class battle {
 			enemyArray = enemy.enemyGen(enemyFile, numEnemies);
 		}catch(FileNotFoundException e) {e.printStackTrace();}
 		
-		/*for(int i = 0; i < numEnemies; i++) {
-			enemy newEnemy = new enemy();
-			try {
-				newEnemy = enemy.enemyGen(enemyFile, numEnemies);
-			}catch(FileNotFoundException e) {e.printStackTrace();}
-			
-			enemyArray[i] = newEnemy;
-		} // populates an array of enemy characters*/
+		GameWindow gameWindow = new GameWindow(playerChar, enemyArray, numEnemies);
 		
 		Scanner choiceInput = new Scanner ( System.in );
 		String choice = "";
@@ -54,29 +48,61 @@ public class battle {
 				// call appropriate method
 				switch(choice.toLowerCase()) {
 					case "at":
+						playerChar.loadIdleFrames();
 						// if blocking, remove block
 						if(playerChar.getBlocking() == true)
 							defense.removeBlock(playerChar);
-				
-						System.out.println("Enter the number of the enemy you wish to attack"
-								+ "(1-" + numEnemies + "): ");
-						enemyChoice = choiceInput.nextInt();
+			
+							System.out.println("Enter the number of the enemy you wish to attack"
+									+ "(1-" + numEnemies + "): ");
+							enemyChoice = choiceInput.nextInt();
+							tempEnemy = enemyArray[enemyChoice-1];
+							if(tempEnemy.getHealth() <= 0) {
+								tempEnemy = enemyArray[(enemyChoice++)%numEnemies];
+							} // handles player choosing a dead enemy
+							
+						
+						playerChar.loadAttackFrames(); // attack animation
+						
 						returnVal = attack.attackUnarmed(playerChar, enemyArray[enemyChoice-1]);
 						
 						if(returnVal == attack.DEATH_BLOW) {
+							try {
+							    Thread.sleep(500);
+							} catch(InterruptedException ex) {
+							    Thread.currentThread().interrupt();
+							} // delay after player move
+							
+							tempEnemy.loadDyingFrames();
 							System.out.println("Killed enemy " + enemyChoice);
 							remainingEnemies--;
 						}
 						
-						else if(returnVal == attack.damageDealt)
+						else if(returnVal == attack.damageDealt) {
+							try {
+							    Thread.sleep(500);
+							} catch(InterruptedException ex) {
+							    Thread.currentThread().interrupt();
+							} // delay after player move
+							
+							tempEnemy.loadHitFrames();
 							System.out.println("Hit enemy " + enemyChoice + " with " + returnVal + " damage");
+						}
 						
 						validChoice = true;
 						try {
-						    Thread.sleep(1000);
+						    Thread.sleep(500);
 						} catch(InterruptedException ex) {
 						    Thread.currentThread().interrupt();
 						} // delay after player move
+						
+						playerChar.loadIdleFrames();
+						if(returnVal == attack.DEATH_BLOW) {
+							// set enemy avatar to null
+						}
+						else
+							tempEnemy.loadIdleFrames();
+						
 						break;
 					
 					case "bl":
@@ -88,6 +114,7 @@ public class battle {
 						else
 							defense.block(playerChar);
 						
+						playerChar.loadBlockFrames();
 						System.out.println("Player blocking");
 						validChoice = true;
 						try {
@@ -98,10 +125,12 @@ public class battle {
 						break;
 						
 					case "he":
+						playerChar.loadIdleFrames();
 						// if blocking, remove block
 						if(playerChar.getBlocking() == true)
 							defense.removeBlock(playerChar);
 						
+						playerChar.loadHealFrames();
 						magic.heal(playerChar);
 						System.out.println("Player health + 4");
 						validChoice = true;
@@ -111,6 +140,7 @@ public class battle {
 						} catch(InterruptedException ex) {
 						    Thread.currentThread().interrupt();
 						} // delay after player move
+						playerChar.loadIdleFrames();
 						break;
 					
 					default:

@@ -114,10 +114,6 @@ public class mainDriver {
 	    		System.out.println("Oh no, something went wrong!");
 	    }
 	    
-	    else if(startObj.interfaceChoice == 5) {
-	    	GameWindow gameWindow = new GameWindow();
-	    }
-	    
 	    //TEST BLOCK, TO BE REVISED FOR FILE SYSTEM
 	    String testEnvironDesc = "FOREST the thousand acre woods";
 	    String testEnvironName ="START";
@@ -129,4 +125,4 @@ public class mainDriver {
 	    
 		input.close();
 	}
-}
+} // comment for sync push

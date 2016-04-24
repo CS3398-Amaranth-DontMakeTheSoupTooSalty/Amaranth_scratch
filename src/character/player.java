@@ -96,6 +96,14 @@ public class player extends character implements Serializable {
 		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
 		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
 		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
+		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
+		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
+		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
+		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
+		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
+		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
+		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
+		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
 		
 		avatar.play();
 	}

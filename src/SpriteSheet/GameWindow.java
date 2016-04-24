@@ -23,14 +23,15 @@ import character.*;
 
 public class GameWindow extends JFrame {
 	
-	int x, y;
+	int x, y, numEnemies = 4;
 	//int[] locationArray = new int[2];
 	
-	enemy enemy1 = new enemy();
-	enemy enemy2 = new enemy();
-	enemy enemy3 = new enemy();
+	enemy[] enemyArray = new enemy[numEnemies];
+	enemy enemy1 = null;
+	enemy enemy2 = null;
+	enemy enemy3 = null;
 	enemy enemy4 = null;
-	player playerCharacter = new player();
+	player playerCharacter = null;
 	
 	BufferedImage background = null;
 	
@@ -59,7 +60,31 @@ public class GameWindow extends JFrame {
 		}
 	}
 	
-	public GameWindow() {
+	public GameWindow(player _playerCharacter, enemy[] _enemyArray, int _numEnemies) {
+		numEnemies = _numEnemies;
+		enemyArray = _enemyArray;
+		playerCharacter = _playerCharacter;
+		
+		for(int i = 0; i < numEnemies; i++) {
+			switch(i) {
+				case 0: 
+					enemy1 = enemyArray[0];
+					break;
+				
+				case 1:
+					enemy2 = enemyArray[1];
+					break;
+				
+				case 2:
+					enemy3 = enemyArray[2];
+					break;
+				
+				case 3:
+					enemy4 = enemyArray[3];
+					break;
+			}
+		}
+		
 		// load background image		
 		BufferedImageLoader bgLoader = new BufferedImageLoader(); 
 		try {
