@@ -31,12 +31,31 @@ public class GameWindow extends JFrame {
 	enemy enemy3 = null;
 	enemy enemy4 = null;
 	player playerCharacter = null;
-	BufferedImage background = null;
-	Font font = new Font("Arial", Font.BOLD, 30);
-	String string = null;
 	
-	public void setString(String _string) {
-		string = _string;
+	// gui display components
+	BufferedImageLoader loader = new BufferedImageLoader();
+	BufferedImage spriteSheet = null;
+	BufferedImage background = null;
+	BufferedImage playerStatsWindow = null;
+	BufferedImage messageWindow = null;
+	BufferedImage moveSelectWindow = null;
+	Font font1 = new Font("Arial", Font.BOLD, 27);
+	Font font2 = new Font("Arial", Font.BOLD, 15);
+	String messageString = null;
+	String playerStats = null;
+	SpriteSheet ss;
+	boolean displayMoveSelect = false;
+	
+	public void setMoveSelect(boolean boolVal) {
+		displayMoveSelect = boolVal;
+	}
+	
+	public void setMessageString(String string) {
+		messageString = string;
+	}
+	
+	public void setPlayerStats(String string) {
+		playerStats = string;
 	}
 	
 	public class AL extends KeyAdapter {
@@ -97,6 +116,18 @@ public class GameWindow extends JFrame {
 			Logger.getLogger(GameWindow.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		
+		// load gui components
+		try {
+			spriteSheet = bgLoader.loadImage("gui_game.png");
+		} catch (IOException ex) {
+			Logger.getLogger(GameWindow.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		
+		ss = new SpriteSheet(spriteSheet);
+		playerStatsWindow = ss.grabSprite(20, 20, 320, 40);
+		messageWindow = ss.grabSprite(20, 70, 310, 135);
+		moveSelectWindow = ss.grabSprite(20, 200, 310, 340);
+				
 		// battle window properties
 		addKeyListener(new AL());
 		setTitle("Battle Demo");
@@ -121,13 +152,22 @@ public class GameWindow extends JFrame {
 	
 	public void paintComponent(Graphics g) {
 		g.drawImage(background, 0, 0, 800, 600, null);
-		g.setColor(Color.DARK_GRAY);
-		g.fillRect(275, 525, 450, 75);
-		g.setFont(font);
-		g.setColor(Color.WHITE);
+		g.setFont(font1);
+		g.setColor(Color.BLACK);
+		if(messageString != null) {
+			g.drawImage(messageWindow, 220, 515, 525, 80, null);
+			g.drawString(messageString, 270, 570);
+		}
 		
-		if(string != null) {
-			g.drawString(string, 300, 570);
+		g.setFont(font2);
+		
+		if(displayMoveSelect == true) {
+			g.drawImage(moveSelectWindow, 626, 455, 150, 140, null);
+			g.drawString(playerStats, 635, 479);
+		}
+		if(playerStats != null) {
+			g.drawImage(playerStatsWindow, 625, 448, 150, 50, null);
+			g.drawString(playerStats, 635, 479);
 		}
 		if((enemy2 != null) && (enemy2.avatar != null)) {
 			enemy2.avatar.update(System.currentTimeMillis());

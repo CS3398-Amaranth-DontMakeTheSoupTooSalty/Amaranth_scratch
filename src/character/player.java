@@ -41,7 +41,7 @@ public class player extends character implements Serializable {
 	 *   methods into this class or sub-classes.
 	 */
 	public player() {
-		name  = "";
+		name  = "Hero";
 		health = 25;
 		defense = 15;
 		accuracy = 15;
