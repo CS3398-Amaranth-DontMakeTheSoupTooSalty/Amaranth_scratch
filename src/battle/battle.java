@@ -81,6 +81,7 @@ public class battle {
 							
 							tempEnemy.loadDyingFrames();
 							System.out.println("Killed enemy " + enemyChoice);
+							gameWindow.setString("Killed enemy " + enemyChoice); // battle window output
 							remainingEnemies--;
 						}
 						
@@ -93,6 +94,7 @@ public class battle {
 							
 							tempEnemy.loadHitFrames(); // enemy hit animation
 							System.out.println("Hit enemy " + enemyChoice + " with " + returnVal + " damage");
+							gameWindow.setString("Hit enemy " + enemyChoice + " with " + returnVal + " damage"); // battle window 
 						}
 						
 						validChoice = true;
@@ -123,6 +125,7 @@ public class battle {
 						
 						playerChar.loadBlockFrames(); // block animation
 						System.out.println("Player blocking");
+						gameWindow.setString("Player blocking"); // print to battle window 
 						validChoice = true;
 						try {
 						    Thread.sleep(1000);
@@ -140,6 +143,7 @@ public class battle {
 						playerChar.loadHealFrames(); // heal animation
 						magic.heal(playerChar);
 						System.out.println("Player health + 4");
+						gameWindow.setString("Player health + 4"); // print to battle window 
 						validChoice = true;
 						
 						try {
@@ -182,63 +186,81 @@ public class battle {
 						tempEnemy.loadHealFrames(); // enemy heal animation
 						magic.heal(tempEnemy);
 						System.out.println("Enemy " + (i+1) + " cast heal");
+						gameWindow.setString("Enemy " + (i+1) + " cast heal"); // print to battle window 
 					}
 					
 					else if((randVal % tempEnemy.getBlockFactor()) == 0) {
 						tempEnemy.loadBlockFrames(); // enemy block animation
 						defense.block(tempEnemy);
 						System.out.println("Enemy " + (i+1) + " is blocking");
+						gameWindow.setString("Enemy " + (i+1) + " is blocking"); // print to battle window 
 					}
 					
 					else if((randVal % tempEnemy.getHealFactor()) == 0) {
 						tempEnemy.loadHealFrames(); // enemy heal animation
 						magic.heal(tempEnemy);
 						System.out.println("Enemy " + (i+1) + " cast heal");
+						gameWindow.setString("Enemy " + (i+1) + " cast heal"); // print to battle window 
 					}
 					
 					else {
 						 tempEnemy.loadAttackFrames(); // enemy attack animation
+						 try {
+							    Thread.sleep(500);
+							} catch(InterruptedException ex) {
+							    Thread.currentThread().interrupt();
+							} // delay after enemy move
 						 returnVal = attack.attackUnarmed(tempEnemy, playerChar);
 						 if(returnVal == attack.damageDealt) {
 							 playerChar.setXPosition(650);
 							 playerChar.loadHitFrames(); // player hit animation
 							 System.out.println("Hit by Enemy " + (i+1));
+							 gameWindow.setString("Hit by Enemy " + (i+1)); // print to battle window
 						 } 
 						 else if(returnVal == attack.DEATH_BLOW) {
 							 System.out.println("Killed by Enemy " + (i+1));
+							 gameWindow.setString("Killed by Enemy " + (i+1)); // print to battle window
 							 playerChar.loadDyingFrames(); // player death animation
 						 }
-						 else
+						 else {
 							 System.out.println("Enemy " + (i+1) + " missed");
+						 	 gameWindow.setString("Enemy " + (i+1) + " missed"); // print to battle window
+						 }
 					}
 					
+					playerChar.setXPosition(625);
 					try {
-					    Thread.sleep(1500);
+					    Thread.sleep(1000);
 					} catch(InterruptedException ex) {
 					    Thread.currentThread().interrupt();
 					} // delay after enemy move
 					if(tempEnemy.getBlocking() == false)
 						tempEnemy.loadIdleFrames(); // enemy idle animation
 					
-					playerChar.setXPosition(625);
 					playerChar.loadIdleFrames(); // player idle animation
 				}
 			}
 			// display player stats
 			System.out.println("************************");
 			System.out.println("Player Stats");
-			if(playerChar.getHealth() <= 0)
+			if(playerChar.getHealth() <= 0) {
 				System.out.println("DEAD");
+				gameWindow.setString("DEAD"); // print to battle window
+			}
 			else
 				playerChar.printSimplePlayerStats();
 		}
 		choiceInput.close();
 		
-		if(remainingEnemies == 0)
+		if(remainingEnemies == 0) {
+			gameWindow.setString("Enemies vanquished!"); // print to battle window
 			return ENEMIES_VANQUISHED;
+		}
 		
-		else if(playerChar.getHealth() <= 0)
+		else if(playerChar.getHealth() <= 0) {
+			gameWindow.setString("You died!"); // print to battle window
 			return PLAYER_DEATH;
+		}
 		
 		else
 			return ERROR;

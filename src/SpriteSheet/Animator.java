@@ -37,8 +37,6 @@ public class Animator {
 					currentFrame = 0;
 					sprite = frames.get(currentFrame);
 				}
-				//locationArray[0] = (locationArray[0]+3) % 100;
-				//locationArray[1] = (locationArray[1]+3) % 100;
 				previousTime = time;
 			}
 		}

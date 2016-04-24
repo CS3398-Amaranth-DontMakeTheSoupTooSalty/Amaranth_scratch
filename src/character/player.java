@@ -193,11 +193,11 @@ public class player extends character implements Serializable {
 		// avatar.play();
 		
 		try {
-		    Thread.sleep(1500);                 
+		    Thread.sleep(100);                 
 		} catch(InterruptedException ex) {
 		    Thread.currentThread().interrupt();
 		}
-		avatar = null;
+		//avatar = null;
 	}
 	
 	public void printSimplePlayerStats() {

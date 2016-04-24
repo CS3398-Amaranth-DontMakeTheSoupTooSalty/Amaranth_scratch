@@ -3,6 +3,7 @@ package SpriteSheet;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.KeyAdapter;
@@ -30,8 +31,13 @@ public class GameWindow extends JFrame {
 	enemy enemy3 = null;
 	enemy enemy4 = null;
 	player playerCharacter = null;
-	
 	BufferedImage background = null;
+	Font font = new Font("Arial", Font.BOLD, 30);
+	String string = null;
+	
+	public void setString(String _string) {
+		string = _string;
+	}
 	
 	public class AL extends KeyAdapter {
 		@SuppressWarnings("static-access")
@@ -115,7 +121,14 @@ public class GameWindow extends JFrame {
 	
 	public void paintComponent(Graphics g) {
 		g.drawImage(background, 0, 0, 800, 600, null);
+		g.setColor(Color.DARK_GRAY);
+		g.fillRect(275, 525, 450, 75);
+		g.setFont(font);
+		g.setColor(Color.WHITE);
 		
+		if(string != null) {
+			g.drawString(string, 300, 570);
+		}
 		if((enemy2 != null) && (enemy2.avatar != null)) {
 			enemy2.avatar.update(System.currentTimeMillis());
 			g.drawImage(enemy2.avatar.sprite, 160, 260, 150, 150, null);
