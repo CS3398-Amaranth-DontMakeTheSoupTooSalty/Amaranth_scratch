@@ -48,27 +48,33 @@ public class battle {
 				// call appropriate method
 				switch(choice.toLowerCase()) {
 					case "at":
-						playerChar.loadIdleFrames();
+						playerChar.loadIdleFrames(); // removal of block animation
 						// if blocking, remove block
 						if(playerChar.getBlocking() == true)
 							defense.removeBlock(playerChar);
 			
-							System.out.println("Enter the number of the enemy you wish to attack"
-									+ "(1-" + numEnemies + "): ");
-							enemyChoice = choiceInput.nextInt();
-							tempEnemy = enemyArray[enemyChoice-1];
-							if(tempEnemy.getHealth() <= 0) {
-								tempEnemy = enemyArray[(enemyChoice++)%numEnemies];
-							} // handles player choosing a dead enemy
+						System.out.println("Enter the number of the enemy you wish to attack"
+								+ "(1-" + numEnemies + "): ");
+						enemyChoice = choiceInput.nextInt();
+						tempEnemy = enemyArray[enemyChoice-1];
+						if(tempEnemy.getHealth() <= 0) {
+							tempEnemy = enemyArray[(enemyChoice++)%numEnemies];
+						} // handles player choosing a dead enemy
 							
 						
+						playerChar.setXPosition(525);
+						try {
+						    Thread.sleep(300);
+						} catch(InterruptedException ex) {
+						    Thread.currentThread().interrupt();
+						} // delay after player move
 						playerChar.loadAttackFrames(); // attack animation
 						
 						returnVal = attack.attackUnarmed(playerChar, enemyArray[enemyChoice-1]);
 						
 						if(returnVal == attack.DEATH_BLOW) {
 							try {
-							    Thread.sleep(500);
+							    Thread.sleep(750);
 							} catch(InterruptedException ex) {
 							    Thread.currentThread().interrupt();
 							} // delay after player move
@@ -80,12 +86,12 @@ public class battle {
 						
 						else if(returnVal == attack.damageDealt) {
 							try {
-							    Thread.sleep(500);
+							    Thread.sleep(750);
 							} catch(InterruptedException ex) {
 							    Thread.currentThread().interrupt();
 							} // delay after player move
 							
-							tempEnemy.loadHitFrames();
+							tempEnemy.loadHitFrames(); // enemy hit animation
 							System.out.println("Hit enemy " + enemyChoice + " with " + returnVal + " damage");
 						}
 						
@@ -96,12 +102,13 @@ public class battle {
 						    Thread.currentThread().interrupt();
 						} // delay after player move
 						
+						playerChar.setXPosition(625);
 						playerChar.loadIdleFrames();
 						if(returnVal == attack.DEATH_BLOW) {
-							// set enemy avatar to null
+							// do nothing
 						}
 						else
-							tempEnemy.loadIdleFrames();
+							tempEnemy.loadIdleFrames(); // reset enemy to idle animation
 						
 						break;
 					
@@ -114,7 +121,7 @@ public class battle {
 						else
 							defense.block(playerChar);
 						
-						playerChar.loadBlockFrames();
+						playerChar.loadBlockFrames(); // block animation
 						System.out.println("Player blocking");
 						validChoice = true;
 						try {
@@ -130,7 +137,7 @@ public class battle {
 						if(playerChar.getBlocking() == true)
 							defense.removeBlock(playerChar);
 						
-						playerChar.loadHealFrames();
+						playerChar.loadHealFrames(); // heal animation
 						magic.heal(playerChar);
 						System.out.println("Player health + 4");
 						validChoice = true;
@@ -166,40 +173,55 @@ public class battle {
 				else
 					tempEnemy.printSimpleEnemyStats();
 				if(tempEnemy.getHealth() > 0) {
+					tempEnemy.loadIdleFrames(); // removal of block animation
 					if(tempEnemy.getBlocking() == true)
 						defense.removeBlock(tempEnemy); // if blocking, remove block
 					
 					randVal = rand.nextInt(100) + 1; // generate random number (1-100)
 					if((tempEnemy.getHealth() < 8) && ((randVal % 2) == 0)) {
+						tempEnemy.loadHealFrames(); // enemy heal animation
 						magic.heal(tempEnemy);
 						System.out.println("Enemy " + (i+1) + " cast heal");
 					}
 					
 					else if((randVal % tempEnemy.getBlockFactor()) == 0) {
+						tempEnemy.loadBlockFrames(); // enemy block animation
 						defense.block(tempEnemy);
 						System.out.println("Enemy " + (i+1) + " is blocking");
 					}
 					
 					else if((randVal % tempEnemy.getHealFactor()) == 0) {
+						tempEnemy.loadHealFrames(); // enemy heal animation
 						magic.heal(tempEnemy);
 						System.out.println("Enemy " + (i+1) + " cast heal");
 					}
 					
 					else {
+						 tempEnemy.loadAttackFrames(); // enemy attack animation
 						 returnVal = attack.attackUnarmed(tempEnemy, playerChar);
-						 if(returnVal == attack.damageDealt)
+						 if(returnVal == attack.damageDealt) {
+							 playerChar.setXPosition(650);
+							 playerChar.loadHitFrames(); // player hit animation
 							 System.out.println("Hit by Enemy " + (i+1));
-						 else if(returnVal == attack.DEATH_BLOW)
+						 } 
+						 else if(returnVal == attack.DEATH_BLOW) {
 							 System.out.println("Killed by Enemy " + (i+1));
+							 playerChar.loadDyingFrames(); // player death animation
+						 }
 						 else
 							 System.out.println("Enemy " + (i+1) + " missed");
 					}
 					
 					try {
-					    Thread.sleep(1000);
+					    Thread.sleep(1500);
 					} catch(InterruptedException ex) {
 					    Thread.currentThread().interrupt();
 					} // delay after enemy move
+					if(tempEnemy.getBlocking() == false)
+						tempEnemy.loadIdleFrames(); // enemy idle animation
+					
+					playerChar.setXPosition(625);
+					playerChar.loadIdleFrames(); // player idle animation
 				}
 			}
 			// display player stats

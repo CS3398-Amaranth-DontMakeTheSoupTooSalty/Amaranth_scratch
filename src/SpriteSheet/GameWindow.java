@@ -23,9 +23,7 @@ import character.*;
 
 public class GameWindow extends JFrame {
 	
-	int x, y, numEnemies = 4;
-	//int[] locationArray = new int[2];
-	
+	int numEnemies = 4;	
 	enemy[] enemyArray = new enemy[numEnemies];
 	enemy enemy1 = null;
 	enemy enemy2 = null;
@@ -102,8 +100,6 @@ public class GameWindow extends JFrame {
 		setBackground(Color.GREEN);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-		x = 625;
-		y = 300;
 	}
 	
 	Image dbImage;
@@ -139,9 +135,11 @@ public class GameWindow extends JFrame {
 		
 		if((playerCharacter != null) && (playerCharacter.avatar != null)) {
 			playerCharacter.avatar.update(System.currentTimeMillis());
-			g.drawImage(playerCharacter.avatar.sprite, x, y, 150, 150, null);
+			g.drawImage(playerCharacter.avatar.sprite, playerCharacter.getXPosition(), 
+					playerCharacter.getYPosition(), 150, 150, null);
 		}
 		repaint();
+		
 	}
 
 }

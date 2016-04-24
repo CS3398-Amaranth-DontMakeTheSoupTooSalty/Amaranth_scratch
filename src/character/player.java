@@ -22,6 +22,8 @@ public class player extends character implements Serializable {
 	public Animator avatar;
 	public BufferedImageLoader loader;
 	public BufferedImage spriteSheet;
+	public int xPosition = 625;
+	public int yPosition = 300;
 	
 	private static final long serialVersionUID = 1L;
 
@@ -74,6 +76,22 @@ public class player extends character implements Serializable {
 		}
 	}
 	
+	public int getXPosition() {
+		return xPosition;
+	}
+	
+	public int getYPosition() {
+		return yPosition;
+	}
+	
+	public void setXPosition(int x) {
+		xPosition = x;
+	}
+	
+	public void setYPosition(int y) {
+		yPosition = y;
+	}
+	
 	public void loadIdleFrames() {
 		avatar.stop();
 		sprites.clear();
@@ -122,9 +140,22 @@ public class player extends character implements Serializable {
 		avatar.stop();
 		sprites.clear();
 		
-		// hero idle sequence
+		// hero heal sequence
+		sprites.add(ss.grabSprite(0, 10, 80, 70));
 		sprites.add(ss.grabSprite(0, 10, 80, 70));
 		sprites.add(ss.grabSprite(0, 220, 80, 68));
+		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
+		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
+		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
+		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
+		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
+		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
+		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
+		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
+		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
+		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
+		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
+		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
 		
 		avatar.play();
 	}
@@ -133,15 +164,39 @@ public class player extends character implements Serializable {
 		avatar.stop();
 		sprites.clear();
 		
-		// hero idle sequence
+		// hero hit sequence
+		sprites.add(ss.grabSprite(0, 10, 80, 70));
 		sprites.add(ss.grabSprite(0, 10, 80, 70));
 		sprites.add(ss.grabSprite(0, 220, 80, 68));
+		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
+		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
+		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
+		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
+		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
+		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
+		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
+		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
+		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
+		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
+		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
+		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
 		
 		avatar.play();
 	}
 	
 	public void loadDyingFrames() {
 		avatar.stop();
+		sprites.clear();
+		
+		// load player dying sequence
+		
+		// avatar.play();
+		
+		try {
+		    Thread.sleep(1500);                 
+		} catch(InterruptedException ex) {
+		    Thread.currentThread().interrupt();
+		}
 		avatar = null;
 	}
 	

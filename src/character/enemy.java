@@ -109,6 +109,12 @@ public class enemy extends character {
 		sprites.add(ss.grabSprite(285, 1165, 75, 100));
 		sprites.add(ss.grabSprite(285, 1165, 75, 100));
 		sprites.add(ss.grabSprite(285, 1165, 75, 100));
+		sprites.add(ss.grabSprite(285, 1165, 75, 100));
+		sprites.add(ss.grabSprite(285, 1165, 75, 100));
+		sprites.add(ss.grabSprite(285, 1165, 75, 100));
+		sprites.add(ss.grabSprite(285, 1165, 75, 100));
+		sprites.add(ss.grabSprite(285, 1165, 75, 100));
+		sprites.add(ss.grabSprite(285, 1165, 75, 100));
 		
 		avatar.play();
 	}
