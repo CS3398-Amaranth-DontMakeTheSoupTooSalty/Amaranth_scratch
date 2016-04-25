@@ -77,7 +77,7 @@ public class battle {
 						} // delay after player move
 						playerChar.loadAttackFrames(); // attack animation
 // player attack sound
-						sfx.playSound("Die Voice");					
+						sfx.playSound("Hit");					
 						returnVal = attack.attackUnarmed(playerChar, enemyArray[enemyChoice-1]);
 						
 						if(returnVal == attack.DEATH_BLOW) {

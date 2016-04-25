@@ -11,7 +11,7 @@ public class Sound extends JFrame {
 	 public Sound() {
 		try {
 			// Open an audio input stream.
-			File soundFile = new File("bin/sound/LordOfTheLand.wav");
+			File soundFile = new File("src/sound/LordOfTheLand.wav");
 			AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
 			// Get a sound clip resource
 			clip = AudioSystem.getClip();
@@ -29,7 +29,7 @@ public class Sound extends JFrame {
 	}
 	public Sound(String track) {
 		try {
-		File soundFile = new File("bin/sound/" + track + ".wav");
+		File soundFile = new File("src/sound/" + track + ".wav");
 		AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
 		clip = AudioSystem.getClip();
 		clip.open(audioIn);
@@ -53,11 +53,12 @@ public class Sound extends JFrame {
 	public void newTrack(String track) {
 		stopClip();
 		try {
-			File soundFile = new File("bin/sound/" + track + ".wav");
+			File soundFile = new File("src/sound/" + track + ".wav");
 			AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
 			clip = AudioSystem.getClip();
 			clip.open(audioIn);
-			clip.start();
+			clip.loop(Clip.LOOP_CONTINUOUSLY);
+			//clip.start(); plays sound file once
 		}
 		catch (UnsupportedAudioFileException e) {
 			e.printStackTrace();
@@ -75,7 +76,7 @@ public class Sound extends JFrame {
 			AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
 			clip = AudioSystem.getClip();
 			clip.open(audioIn);
-			clip.loop(Clip.LOOP_CONTINUOUSLY);
+			clip.start();
 		}
 		catch (UnsupportedAudioFileException e) {
 			e.printStackTrace();
