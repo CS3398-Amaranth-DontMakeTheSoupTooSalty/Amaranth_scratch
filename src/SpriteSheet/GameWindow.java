@@ -52,8 +52,17 @@ public class GameWindow extends JFrame {
 	SpriteSheet ss;
 	SpriteSheet ssCursor;
 	boolean displayMoveSelect = false;
+	boolean displayEnemySelect = false;
 	int[] choiceArrowPosition = {490, 520, 550};
+	int[][] enemySelect = {
+			{0, 0, 0, 0},
+			{0, 0, 0, 0}
+	};
 	int yPosition = 0;
+	
+	public void setYPosition(int value) {
+		yPosition = value;
+	}
 	
 	public void setMoveSelect(boolean boolVal) {
 		displayMoveSelect = boolVal;
@@ -69,8 +78,6 @@ public class GameWindow extends JFrame {
 	
 	public class AL extends KeyAdapter {
 		@SuppressWarnings("static-access")
-		
-		//KeyEvent preE;
 		
 		public void keyPressed(KeyEvent e) {
 			int keyCode = e.getKeyCode();
@@ -179,21 +186,23 @@ public class GameWindow extends JFrame {
 	public void paintComponent(Graphics g) {
 		g.drawImage(background, 0, 0, 800, 600, null);
 		g.setColor(Color.BLACK);
+		g.setFont(font1);
 		if(messageString != null) {
-			g.setFont(font1);
 			g.drawImage(messageWindow, 220, 515, 525, 80, null);
+			if(messageString == null)
+				messageString = ""; // prevents null pointer error
 			g.drawString(messageString, 270, 570);
 		}
+		g.setFont(font3);
 		if(displayMoveSelect == true) {
-			g.setFont(font3);
 			g.drawImage(moveSelectWindow, 626, 455, 150, 140, null);
 			g.drawString("Attack", 650, 512);
 			g.drawString("Block", 650, 542);
 			g.drawString("Heal", 650, 572);
 			g.drawImage(rightArrow, 620, choiceArrowPosition[yPosition], 25, 30, null);
 		}
+		g.setFont(font2);
 		if(playerStats != null) {
-			g.setFont(font2);
 			g.drawImage(playerStatsWindow, 625, 448, 150, 50, null);
 			g.drawString(playerStats, 635, 479);
 		}
@@ -212,6 +221,9 @@ public class GameWindow extends JFrame {
 		if((enemy3 != null) && (enemy3.avatar != null)) {
 			enemy3.avatar.update(System.currentTimeMillis());
 			g.drawImage(enemy3.avatar.sprite, 75, 420, 175, 175, null);
+		}
+		if(displayEnemySelect == true) {
+			g.drawImage(rightArrow, 250, 400, 25, 30, null);
 		}
 		
 		if((playerCharacter != null) && (playerCharacter.avatar != null)) {
