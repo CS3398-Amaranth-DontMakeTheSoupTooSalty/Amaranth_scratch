@@ -71,7 +71,7 @@ public class Sound extends JFrame {
 	//playSound to be used for hits and sound effects
 	public void playSound(String track) {
 		try {
-			File soundFile = new File("bin/sound/" + track + ".wav");
+			File soundFile = new File("src/sound/" + track + ".wav");
 			AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
 			clip = AudioSystem.getClip();
 			clip.open(audioIn);
