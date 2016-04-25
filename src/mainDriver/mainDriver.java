@@ -114,7 +114,8 @@ public class mainDriver {
 	    	else if(returnVal == battle.ERROR)
 	    		System.out.println("Oh no, something went wrong!");
 	    }
-	    
+	    else if(startObj.interfaceChoice == 5)
+	    {
 	    //TEST BLOCK, TO BE REVISED FOR FILE SYSTEM
 	    String testEnvironDesc = "FOREST the thousand acre woods";
 	    String testEnvironName ="START";
@@ -122,6 +123,7 @@ public class mainDriver {
 	    gameWorldObj.environmentGeneratorCLI(testEnvironName, testEnvironDesc);
 	    Scanner inputA = new Scanner( System.in );
 	    environment.gameWorld.environmentCreatorCLI(inputA);
+	    }
 	    
 	    
 		input.close();
