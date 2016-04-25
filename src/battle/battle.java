@@ -6,6 +6,9 @@ import battle.attack;
 import java.util.Scanner;
 import java.util.Random;
 import SpriteSheet.*;
+import sound.*;
+
+
 
 public class battle {
 	public static final int ENEMIES_VANQUISHED = 0;
@@ -18,6 +21,7 @@ public class battle {
 		if((numEnemies > 4) || (numEnemies < 1))
 			return ERROR;
 		
+		Sound sfx = new Sound("Kazoo");
 		int remainingEnemies = numEnemies;
 		enemy[] enemyArray = new enemy[numEnemies];
 		try {
@@ -72,7 +76,8 @@ public class battle {
 						    Thread.currentThread().interrupt();
 						} // delay after player move
 						playerChar.loadAttackFrames(); // attack animation
-// player attack sound						
+// player attack sound
+						sfx.playSound("Die Voice");					
 						returnVal = attack.attackUnarmed(playerChar, enemyArray[enemyChoice-1]);
 						
 						if(returnVal == attack.DEATH_BLOW) {
@@ -81,7 +86,9 @@ public class battle {
 							} catch(InterruptedException ex) {
 							    Thread.currentThread().interrupt();
 							} // delay after player move
-// enemy dying sound							
+// enemy dying sound		
+							sfx.playSound("Die Voice");
+							sfx.playSound("Enemy Die");
 							tempEnemy.loadDyingFrames();
 							System.out.println("Killed enemy " + enemyChoice);
 							gameWindow.setMessageString("Killed enemy " + enemyChoice); // battle window output
@@ -94,7 +101,8 @@ public class battle {
 							} catch(InterruptedException ex) {
 							    Thread.currentThread().interrupt();
 							} // delay after player move
-// enemy getting hit sound							
+// enemy getting hit sound	
+							sfx.playSound("Hit");
 							tempEnemy.loadHitFrames(); // enemy hit animation
 							System.out.println("Hit enemy " + enemyChoice + " with " + returnVal + " damage");
 							gameWindow.setMessageString("Hit enemy " + enemyChoice + " with " + returnVal + " damage"); // window 
@@ -126,7 +134,8 @@ public class battle {
 						}
 						else
 							defense.block(playerChar);
-// player blocking sound						
+// player blocking sound
+						sfx.playSound("Block");
 						playerChar.loadBlockFrames(); // block animation
 						System.out.println("Player blocking");
 						gameWindow.setMessageString("Player blocking"); // print to battle window 
@@ -144,7 +153,8 @@ public class battle {
 						// if blocking, remove block
 						if(playerChar.getBlocking() == true)
 							defense.removeBlock(playerChar);
-// player healing sound						
+// player healing sound	
+						sfx.playSound("Heal");
 						playerChar.loadHealFrames(); // heal animation
 						magic.heal(playerChar);
 						System.out.println("Player health + 4");
@@ -190,7 +200,8 @@ public class battle {
 					
 					randVal = rand.nextInt(100) + 1; // generate random number (1-100)
 					if((tempEnemy.getHealth() < 8) && ((randVal % 2) == 0)) {
-// enemy healing sound						
+// enemy healing sound	
+						sfx.playSound("Heal");
 						tempEnemy.loadHealFrames(); // enemy heal animation
 						magic.heal(tempEnemy);
 						System.out.println("Enemy " + (i+1) + " cast heal");
@@ -198,7 +209,8 @@ public class battle {
 					}
 					
 					else if((randVal % tempEnemy.getBlockFactor()) == 0) {
-// enemy blocking sound						
+// enemy blocking sound	
+						sfx.playSound("Block");
 						tempEnemy.loadBlockFrames(); // enemy block animation
 						defense.block(tempEnemy);
 						System.out.println("Enemy " + (i+1) + " is blocking");
@@ -206,7 +218,8 @@ public class battle {
 					}
 					
 					else if((randVal % tempEnemy.getHealFactor()) == 0) {
-// enemy healing sound						
+// enemy healing sound	
+						sfx.playSound("Heal");
 						tempEnemy.loadHealFrames(); // enemy heal animation
 						magic.heal(tempEnemy);
 						System.out.println("Enemy " + (i+1) + " cast heal");
@@ -214,7 +227,8 @@ public class battle {
 					}
 					
 					else {
-// enemy attacking sound						 
+// enemy attacking sound 
+						 sfx.playSound("Hit");
 						 tempEnemy.loadAttackFrames(); // enemy attack animation
 						 try {
 							    Thread.sleep(500);
@@ -224,7 +238,8 @@ public class battle {
 						 returnVal = attack.attackUnarmed(tempEnemy, playerChar);
 						 if(returnVal == attack.damageDealt) {
 							 playerChar.setXPosition(650);
-// player getting hit sound							 
+// player getting hit sound			
+							 sfx.playSound("Enemy Hit");
 							 playerChar.loadHitFrames(); // player hit animation
 							 System.out.println("Hit by Enemy " + (i+1));
 							 gameWindow.setMessageString("Hit by Enemy " + (i+1)); // print to battle window
@@ -232,7 +247,8 @@ public class battle {
 						 else if(returnVal == attack.DEATH_BLOW) {
 							 System.out.println("Killed by Enemy " + (i+1));
 							 gameWindow.setMessageString("Killed by Enemy " + (i+1)); // print to battle window
-// player dying sound							 
+// player dying sound		 
+							 sfx.playSound("Player Die");
 							 playerChar.loadDyingFrames(); // player death animation
 						 }
 						 else {

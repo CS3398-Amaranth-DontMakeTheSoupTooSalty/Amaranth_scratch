@@ -24,7 +24,7 @@ public class mainDriver {
 	
 	public static void main(String[] args) {
 	
-		new Sound();
+		Sound song = new Sound();
 		
 		Scanner input = new Scanner( System.in );
 		//Allows user to choose between a CLI or a GUI
@@ -98,6 +98,7 @@ public class mainDriver {
 	    }
 	    	
 	    else if(startObj.interfaceChoice == 4) {
+	    	song.newTrack("SerpentineTrek");
 	    	int numEnemies;
 	    	player playerCharacter = new player();
 	    	int returnVal;

@@ -75,7 +75,7 @@ public class Sound extends JFrame {
 			AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
 			clip = AudioSystem.getClip();
 			clip.open(audioIn);
-			clip.start();
+			clip.loop(Clip.LOOP_CONTINUOUSLY);
 		}
 		catch (UnsupportedAudioFileException e) {
 			e.printStackTrace();
