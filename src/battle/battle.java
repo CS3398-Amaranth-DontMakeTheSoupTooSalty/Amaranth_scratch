@@ -19,7 +19,6 @@ public class battle {
 	public static boolean validChoice = false;
 	int yPosition = 0;
 	
-	
 	public static int battleMode(player playerChar, int numEnemies, String enemyFile) {
 		if((numEnemies > 4) || (numEnemies < 1))
 			return ERROR;

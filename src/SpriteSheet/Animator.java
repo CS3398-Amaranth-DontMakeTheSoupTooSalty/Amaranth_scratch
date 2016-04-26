@@ -30,7 +30,7 @@ public class Animator {
 		if(running) {
 			if(time - previousTime >= speed) {
 				// Update the animation
-				currentFrame++;
+				currentFrame = (currentFrame+1) % frames.size();
 				try {
 					sprite = frames.get(currentFrame);
 				} catch(IndexOutOfBoundsException e) {
