@@ -20,9 +20,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import character.*;
-
+import battle.*;
 
 public class GameWindow extends JFrame {
+	
+	String[] choice = {""};
 	
 	int numEnemies = 4;	
 	enemy[] enemyArray = new enemy[numEnemies];
@@ -31,6 +33,7 @@ public class GameWindow extends JFrame {
 	enemy enemy3 = null;
 	enemy enemy4 = null;
 	player playerCharacter = null;
+	enemy tempEnemy = null;
 	
 	// gui display components
 	BufferedImageLoader loader = new BufferedImageLoader();
@@ -53,12 +56,17 @@ public class GameWindow extends JFrame {
 	SpriteSheet ssCursor;
 	boolean displayMoveSelect = false;
 	boolean displayEnemySelect = false;
-	int[] choiceArrowPosition = {490, 520, 550};
+	int[] choiceArrowPosition = {490, 520, 550}; // attack, block, heal
 	int[][] enemySelect = {
-			{0, 0, 0, 0},
-			{0, 0, 0, 0}
-	};
+			{330, 265, 195, 185},
+			{400, 320, 480, 370}
+	}; /* 330, 400 - enemy 1
+		  265, 320 - enemy 2
+		  195, 480 - enemy 3
+		  185, 370 - enemy 4 */
 	int yPosition = 0;
+	int[] enemyChoice = {0};
+	boolean[] enemySelected = {false};
 	
 	public void setYPosition(int value) {
 		yPosition = value;
@@ -66,6 +74,10 @@ public class GameWindow extends JFrame {
 	
 	public void setMoveSelect(boolean boolVal) {
 		displayMoveSelect = boolVal;
+	}
+	
+	public void setEnemySelect(boolean value) {
+		displayEnemySelect = value;
 	}
 	
 	public void setMessageString(String string) {
@@ -88,14 +100,71 @@ public class GameWindow extends JFrame {
 				
 			}
 			if(keyCode == e.VK_UP) {
-				yPosition--;
-				if(yPosition < 0)
-					yPosition = 0;
+				if(displayMoveSelect == true) {
+					yPosition--;
+					if(yPosition < 0)
+						yPosition = 0;
+				}
+				else if(displayEnemySelect == true) {
+					enemyChoice[0] = (enemyChoice[0]+1)%numEnemies;
+				}
 			}
 			if(keyCode == e.VK_DOWN) {
-				yPosition++;
-				if(yPosition > 2)
-					yPosition = 2;
+				if(displayMoveSelect == true) {
+					yPosition++;
+					if(yPosition > 2)
+						yPosition = 2;
+				}
+				else if(displayEnemySelect == true) {
+					if(enemyChoice[0] == 0) {
+						enemyChoice[0] = numEnemies - 1;
+						tempEnemy = enemyArray[enemyChoice[0]];
+						while(tempEnemy.getHealth() <= 0) {
+							enemyChoice[0] = enemyChoice[0] - 1;
+							if(enemyChoice[0] <= 0)
+								enemyChoice[0] = numEnemies - 1;
+							tempEnemy = enemyArray[enemyChoice[0]];
+						}
+					}					
+					else {
+						enemyChoice[0] = enemyChoice[0] - 1;
+						tempEnemy = enemyArray[enemyChoice[0]];
+						while(tempEnemy.getHealth() <= 0) {
+							enemyChoice[0] = enemyChoice[0] - 1;
+							if(enemyChoice[0] <= 0)
+								enemyChoice[0] = numEnemies - 1;
+							tempEnemy = enemyArray[enemyChoice[0]];
+						}
+					}
+				}
+			}
+			if(keyCode == e.VK_ENTER) {
+				if(displayMoveSelect == true) {
+					switch(yPosition){
+						case 0: 
+							choice[0] = "at";
+							displayMoveSelect = false;
+							break;
+							
+						case 1:
+							choice[0] = "bl";
+							displayMoveSelect = false;
+							break;
+							
+						case 2:
+							choice[0] = "he";
+							displayMoveSelect = false;
+							break;
+					}
+				}
+				else if(displayEnemySelect == true) {
+					enemySelected[0] = true;
+					try {
+					    Thread.sleep(10);
+					} catch(InterruptedException ex) {
+					    Thread.currentThread().interrupt();
+					} // delay after player move
+				}
 			}
 		}
 		
@@ -103,10 +172,14 @@ public class GameWindow extends JFrame {
 		}
 	}
 	
-	public GameWindow(player _playerCharacter, enemy[] _enemyArray, int _numEnemies) {
+	public GameWindow(player _playerCharacter, enemy[] _enemyArray, int _numEnemies, String[] _choice, 
+			int[] _enemyChoice, boolean[] _enemySelected) {
 		numEnemies = _numEnemies;
 		enemyArray = _enemyArray;
 		playerCharacter = _playerCharacter;
+		choice = _choice;
+		enemyChoice = _enemyChoice;
+		enemySelected = _enemySelected;
 		
 		for(int i = 0; i < numEnemies; i++) {
 			switch(i) {
@@ -189,8 +262,10 @@ public class GameWindow extends JFrame {
 		g.setFont(font1);
 		if(messageString != null) {
 			g.drawImage(messageWindow, 220, 515, 525, 80, null);
-			if(messageString == null)
-				messageString = ""; // prevents null pointer error
+			if(messageString == null) {
+				g.drawImage(background, 0, 0, 800, 600, null);
+				messageString = ""; 
+			} // prevents null pointer error
 			g.drawString(messageString, 270, 570);
 		}
 		g.setFont(font3);
@@ -223,7 +298,7 @@ public class GameWindow extends JFrame {
 			g.drawImage(enemy3.avatar.sprite, 75, 420, 175, 175, null);
 		}
 		if(displayEnemySelect == true) {
-			g.drawImage(rightArrow, 250, 400, 25, 30, null);
+			g.drawImage(leftArrow, enemySelect[0][enemyChoice[0]], enemySelect[1][enemyChoice[0]], 25, 30, null);
 		}
 		
 		if((playerCharacter != null) && (playerCharacter.avatar != null)) {

@@ -18,6 +18,9 @@ public class battle {
 	public static final int ERROR = -1;
 	public static boolean validChoice = false;
 	int yPosition = 0;
+	public static String[] choice = { "" };
+	public static int[] enemyChoice = {0};
+	public static boolean[] enemySelected = {false};
 	
 	public static int battleMode(player playerChar, int numEnemies, String enemyFile) {
 		if((numEnemies > 4) || (numEnemies < 1))
@@ -30,11 +33,9 @@ public class battle {
 			enemyArray = enemy.enemyGen(enemyFile, numEnemies);
 		}catch(FileNotFoundException e) {e.printStackTrace();}
 		
-		GameWindow gameWindow = new GameWindow(playerChar, enemyArray, numEnemies);
+		GameWindow gameWindow = new GameWindow(playerChar, enemyArray, numEnemies, choice, enemyChoice, enemySelected);
 		
 		Scanner choiceInput = new Scanner ( System.in );
-		String choice = "";
-		int enemyChoice;
 		int returnVal;
 		enemy tempEnemy = new enemy();
 		Random rand = new Random();
@@ -48,28 +49,40 @@ public class battle {
 			System.out.println("(At)tack");
 			System.out.println("(Bl)ock");
 			System.out.println("(He)al");
-			gameWindow.setMessageString(null);
-			gameWindow.setMoveSelect(true);
+			gameWindow.setMessageString(null); // blanks out message window
+			gameWindow.setMoveSelect(true); // displays move select prompt
 
+			choice[0] = "";
 			validChoice = false;
-			while(!validChoice) {
-				choice = choiceInput.next();
+			while(validChoice == false) {
+				//choice[0] = choiceInput.next(); // gets choice from command line
 				// call appropriate method
-				switch(choice.toLowerCase()) {
+				switch(choice[0]) {
 					case "at":
+						gameWindow.setMoveSelect(false); // hide move select window
 						playerChar.loadIdleFrames(); // removal of block animation
 						// if blocking, remove block
 						if(playerChar.getBlocking() == true)
 							defense.removeBlock(playerChar);
 			
-						System.out.println("Enter the number of the enemy you wish to attack"
-								+ "(1-" + numEnemies + "): ");
-						enemyChoice = choiceInput.nextInt();
-						tempEnemy = enemyArray[enemyChoice-1];
-						if(tempEnemy.getHealth() <= 0) {
-							tempEnemy = enemyArray[(enemyChoice++)%numEnemies];
-						} // handles player choosing a dead enemy
-							
+//						System.out.println("Enter the number of the enemy you wish to attack"
+//								+ "(1-" + numEnemies + "): ");
+						//enemyChoice[0] = choiceInput.nextInt();
+						gameWindow.setEnemySelect(true);
+						while(enemySelected[0] == false) {
+							tempEnemy = enemyArray[enemyChoice[0]];
+							while(tempEnemy.getHealth() <= 0) {
+								enemyChoice[0] = (enemyChoice[0]+1)%numEnemies;
+								tempEnemy = enemyArray[enemyChoice[0]];
+							} // handles player choosing a dead enemy
+							try {
+							    Thread.sleep(10);
+							} catch(InterruptedException ex) {
+							    Thread.currentThread().interrupt();
+							} // delay after player move
+						}
+						enemySelected[0] = false; // reset enemyChoice for next iteration
+						gameWindow.setEnemySelect(false);
 						
 						playerChar.setXPosition(525);
 						try {
@@ -79,20 +92,20 @@ public class battle {
 						} // delay after player move
 						playerChar.loadAttackFrames(); // attack animation
 						sfx.playSound("Hit"); // player attack sound				
-						returnVal = attack.attackUnarmed(playerChar, enemyArray[enemyChoice-1]);
+						returnVal = attack.attackUnarmed(playerChar, tempEnemy);
 						
 						if(returnVal == attack.DEATH_BLOW) {
 							sfx.playSound("Die Voice");
 							try {
-							    Thread.sleep(250);
+							    Thread.sleep(100); // was 250
 							} catch(InterruptedException ex) {
 							    Thread.currentThread().interrupt();
 							} // delay after player move
 							
 							tempEnemy.loadDyingFrames();
 							sfx.playSound("Enemy Die"); // enemy dying sound		
-							System.out.println("Killed enemy " + enemyChoice);
-							gameWindow.setMessageString("Killed enemy " + enemyChoice); // battle window output
+							System.out.println("Killed enemy " + (enemyChoice[0]+1));
+							gameWindow.setMessageString("Killed enemy " + (enemyChoice[0]+1)); // battle window output
 							remainingEnemies--;
 						}
 						
@@ -105,8 +118,8 @@ public class battle {
 							
 							tempEnemy.loadHitFrames(); // enemy hit animation
 							sfx.playSound("Hit"); // enemy getting hit sound
-							System.out.println("Hit enemy " + enemyChoice + " with " + returnVal + " damage");
-							gameWindow.setMessageString("Hit enemy " + enemyChoice + " with " + returnVal + " damage"); // window 
+							System.out.println("Hit enemy " + (enemyChoice[0]+1) + " with " + returnVal + " damage");
+							gameWindow.setMessageString("Hit enemy " + (enemyChoice[0]+1) + " with " + returnVal + " damage"); // window 
 						}
 						
 						validChoice = true;
@@ -124,10 +137,10 @@ public class battle {
 						else
 							tempEnemy.loadIdleFrames(); // reset enemy to idle animation
 						
-						gameWindow.setMoveSelect(false);
 						break;
 					
 					case "bl":
+						gameWindow.setMoveSelect(false); // hide move select window
 						// if blocking, break
 						if(playerChar.getBlocking() == true) {
 							validChoice = true;
@@ -146,10 +159,10 @@ public class battle {
 						} catch(InterruptedException ex) {
 						    Thread.currentThread().interrupt();
 						} // delay after player move
-						gameWindow.setMoveSelect(false);
 						break;
 						
 					case "he":
+						gameWindow.setMoveSelect(false); // hide move select window
 						playerChar.loadIdleFrames();
 						// if blocking, remove block
 						if(playerChar.getBlocking() == true)
@@ -169,21 +182,22 @@ public class battle {
 						    Thread.currentThread().interrupt();
 						} // delay after player move
 						playerChar.loadIdleFrames();
-						gameWindow.setMoveSelect(false);
 						break;
 					
 					default:
-						System.out.println("Invalid choice - Try again");
-						validChoice = false;
-						
+						/* do nothing */
+//						System.out.println("Invalid choice - Try again");
+//						validChoice = false;
+						choice[0] = "";
 						try {
-						    Thread.sleep(500);
+						    Thread.sleep(100);
 						} catch(InterruptedException ex) {
 						    Thread.currentThread().interrupt();
 						} // delay after player move
 						break;			
 				}
 			}
+			choice[0] = ""; // resets choice for next iteration
 			
 			// enemy move selection
 			for(int i = 0; i < numEnemies; i++) {
