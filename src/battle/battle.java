@@ -97,7 +97,7 @@ public class battle {
 						if(returnVal == attack.DEATH_BLOW) {
 							sfx.playSound("Die Voice");
 							try {
-							    Thread.sleep(100); // was 250
+							    Thread.sleep(25); // was 250
 							} catch(InterruptedException ex) {
 							    Thread.currentThread().interrupt();
 							} // delay after player move
@@ -253,6 +253,7 @@ public class battle {
 							 playerChar.loadHitFrames(); // player hit animation
 							 System.out.println("Hit by Enemy " + (i+1));
 							 gameWindow.setMessageString("Hit by Enemy " + (i+1)); // print to battle window
+							 gameWindow.setPlayerStats(playerChar.getName() + ": " + playerChar.getHealth() + "/25"); // print to playerStats
 						 } 
 						 else if(returnVal == attack.DEATH_BLOW) {
 							 System.out.println("Killed by Enemy " + (i+1));

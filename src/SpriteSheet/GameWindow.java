@@ -204,7 +204,7 @@ public class GameWindow extends JFrame {
 		// load background image		
 		BufferedImageLoader bgLoader = new BufferedImageLoader(); 
 		try {
-			background = bgLoader.loadImage("woods.png");
+			background = bgLoader.loadImage("forest_battle.png");
 		} catch (IOException ex) {
 			Logger.getLogger(GameWindow.class.getName()).log(Level.SEVERE, null, ex);
 		}
