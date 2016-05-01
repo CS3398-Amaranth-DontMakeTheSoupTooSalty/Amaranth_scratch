@@ -59,7 +59,7 @@ public class GameWindow extends JFrame {
 	int[] choiceArrowPosition = {490, 520, 550}; // attack, block, heal
 	int[][] enemySelect = {
 			{330, 265, 195, 185},
-			{400, 320, 480, 370}
+			{330, 220, 430, 290}
 	}; /* 330, 400 - enemy 1
 		  265, 320 - enemy 2
 		  195, 480 - enemy 3
@@ -204,7 +204,7 @@ public class GameWindow extends JFrame {
 		// load background image		
 		BufferedImageLoader bgLoader = new BufferedImageLoader(); 
 		try {
-			background = bgLoader.loadImage("forest_battle.png");
+			background = bgLoader.loadImage("forest_light.png");
 		} catch (IOException ex) {
 			Logger.getLogger(GameWindow.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -238,7 +238,7 @@ public class GameWindow extends JFrame {
 		addKeyListener(new AL());
 		setTitle("Battle Demo");
 		setSize(800, 600);
-		setResizable(false);
+		setResizable(true);
 		setVisible(true);
 		setBackground(Color.GREEN);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -283,19 +283,19 @@ public class GameWindow extends JFrame {
 		}
 		if((enemy2 != null) && (enemy2.avatar != null)) {
 			enemy2.avatar.update(System.currentTimeMillis());
-			g.drawImage(enemy2.avatar.sprite, 160, 260, 150, 150, null);
+			g.drawImage(enemy2.avatar.sprite, 160, 160, 150, 150, null);
 		}
 		if((enemy1 != null) && (enemy1.avatar != null)) {
 			enemy1.avatar.update(System.currentTimeMillis());
-			g.drawImage(enemy1.avatar.sprite, 220, 340, 160, 160, null);
+			g.drawImage(enemy1.avatar.sprite, 220, 270, 160, 160, null);
 		}
 		if((enemy4 != null) && (enemy4.avatar != null)) {
 			enemy4.avatar.update(System.currentTimeMillis());
-			g.drawImage(enemy4.avatar.sprite, 75, 310, 155, 155, null);
+			g.drawImage(enemy4.avatar.sprite, 75, 230, 155, 155, null);
 		}
 		if((enemy3 != null) && (enemy3.avatar != null)) {
 			enemy3.avatar.update(System.currentTimeMillis());
-			g.drawImage(enemy3.avatar.sprite, 75, 420, 175, 175, null);
+			g.drawImage(enemy3.avatar.sprite, 75, 370, 175, 175, null);
 		}
 		if(displayEnemySelect == true) {
 			g.drawImage(leftArrow, enemySelect[0][enemyChoice[0]], enemySelect[1][enemyChoice[0]], 25, 30, null);
@@ -304,7 +304,7 @@ public class GameWindow extends JFrame {
 		if((playerCharacter != null) && (playerCharacter.avatar != null)) {
 			playerCharacter.avatar.update(System.currentTimeMillis());
 			g.drawImage(playerCharacter.avatar.sprite, playerCharacter.getXPosition(), 
-					playerCharacter.getYPosition(), 150, 150, null);
+					playerCharacter.getYPosition(), 225, 225, null);
 		}
 		repaint();
 		

@@ -84,13 +84,13 @@ public class battle {
 						enemySelected[0] = false; // reset enemyChoice for next iteration
 						gameWindow.setEnemySelect(false);
 						
-						playerChar.setXPosition(525);
+						playerChar.setXPosition(500);
+						playerChar.loadAttackFrames(); // attack animation
 						try {
 						    Thread.sleep(300);
 						} catch(InterruptedException ex) {
 						    Thread.currentThread().interrupt();
 						} // delay after player move
-						playerChar.loadAttackFrames(); // attack animation
 						sfx.playSound("Hit"); // player attack sound				
 						returnVal = attack.attackUnarmed(playerChar, tempEnemy);
 						
@@ -129,7 +129,7 @@ public class battle {
 						    Thread.currentThread().interrupt();
 						} // delay after player move
 						
-						playerChar.setXPosition(625);
+						playerChar.setXPosition(550);
 						playerChar.loadIdleFrames();
 						if(returnVal == attack.DEATH_BLOW) {
 							// do nothing
@@ -155,7 +155,7 @@ public class battle {
 						gameWindow.setMessageString("Player blocking"); // print to battle window 
 						validChoice = true;
 						try {
-						    Thread.sleep(1000);
+						    Thread.sleep(1500);
 						} catch(InterruptedException ex) {
 						    Thread.currentThread().interrupt();
 						} // delay after player move
@@ -169,15 +169,19 @@ public class battle {
 							defense.removeBlock(playerChar);
 
 						playerChar.loadHealFrames(); // heal animation
+						try {
+						    Thread.sleep(750);
+						} catch(InterruptedException ex) {
+						    Thread.currentThread().interrupt();
+						} // delay after player move
 						sfx.playSound("Heal"); // player healing sound	
 						magic.heal(playerChar);
 						System.out.println("Player health + 4");
 						gameWindow.setMessageString("Player health + 4"); // print to battle window 
 						gameWindow.setPlayerStats(playerChar.getName() + ": " + playerChar.getHealth() + "/25"); // print playerStats
 						validChoice = true;
-						
 						try {
-						    Thread.sleep(1000);
+						    Thread.sleep(750);
 						} catch(InterruptedException ex) {
 						    Thread.currentThread().interrupt();
 						} // delay after player move
@@ -248,7 +252,7 @@ public class battle {
 							} // delay after enemy move
 						 returnVal = attack.attackUnarmed(tempEnemy, playerChar);
 						 if(returnVal == attack.damageDealt) {
-							 playerChar.setXPosition(650);		
+							 playerChar.setXPosition(560);		
 							 sfx.playSound("Enemy Hit"); // player getting hit sound	
 							 playerChar.loadHitFrames(); // player hit animation
 							 System.out.println("Hit by Enemy " + (i+1));
@@ -267,7 +271,7 @@ public class battle {
 						 }
 					}
 					
-					playerChar.setXPosition(625);
+					playerChar.setXPosition(550);
 					try {
 					    Thread.sleep(1000);
 					} catch(InterruptedException ex) {

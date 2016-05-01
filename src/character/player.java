@@ -22,8 +22,8 @@ public class player extends character implements Serializable {
 	public Animator avatar;
 	public BufferedImageLoader loader;
 	public BufferedImage spriteSheet;
-	public int xPosition = 625;
-	public int yPosition = 300;
+	public int xPosition = 550;
+	public int yPosition = 225;
 	
 	private static final long serialVersionUID = 1L;
 
@@ -55,7 +55,7 @@ public class player extends character implements Serializable {
 		
 		// set enemy graphic to idle and play
 		try {
-			spriteSheet = loader.loadImage("hero.png");
+			spriteSheet = loader.loadImage("hero_sprite_sheet.png");
 		} catch (IOException ex) {
 			Logger.getLogger(GameWindow.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -64,7 +64,9 @@ public class player extends character implements Serializable {
 		sprites = new ArrayList<BufferedImage>();
 		
 		// hero idle sequence
-		sprites.add(ss.grabSprite(0, 220, 80, 68));
+		sprites.add(ss.grabSprite(0, 2500, 500, 500));
+		sprites.add(ss.grabSprite(500, 2500, 500, 500));
+		sprites.add(ss.grabSprite(1000, 2500, 500, 500));
 		
 		avatar = new Animator(sprites);
 		avatar.setSpeed(200);;
@@ -97,7 +99,9 @@ public class player extends character implements Serializable {
 		sprites.clear();
 		
 		// hero idle sequence
-		sprites.add(ss.grabSprite(0, 220, 80, 68));
+		sprites.add(ss.grabSprite(0, 2500, 500, 500));
+		sprites.add(ss.grabSprite(500, 2500, 500, 500));
+		sprites.add(ss.grabSprite(1000, 2500, 500, 500));
 		
 		avatar.play();
 	}
@@ -107,21 +111,20 @@ public class player extends character implements Serializable {
 		sprites.clear();
 		
 		// hero attack sequence
-		sprites.add(ss.grabSprite(0, 80, 80, 70));
-		sprites.add(ss.grabSprite(0, 150, 80, 70));
-		sprites.add(ss.grabSprite(0, 80, 80, 70));
-		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
-		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
-		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
-		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
-		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
-		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
-		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
-		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
-		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
-		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
-		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
-		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
+		sprites.add(ss.grabSprite(0, 0, 500, 500));
+		sprites.add(ss.grabSprite(500, 0, 500, 500));
+		sprites.add(ss.grabSprite(1000, 0, 500, 500));
+		sprites.add(ss.grabSprite(1500, 0, 500, 500));
+		sprites.add(ss.grabSprite(2000, 0, 500, 500));
+		sprites.add(ss.grabSprite(0, 2500, 500, 500)); // begin hero idle
+		sprites.add(ss.grabSprite(500, 2500, 500, 500));
+		sprites.add(ss.grabSprite(1000, 2500, 500, 500));
+		sprites.add(ss.grabSprite(0, 2500, 500, 500));
+		sprites.add(ss.grabSprite(500, 2500, 500, 500));
+		sprites.add(ss.grabSprite(1000, 2500, 500, 500));
+		sprites.add(ss.grabSprite(0, 2500, 500, 500));
+		sprites.add(ss.grabSprite(500, 2500, 500, 500));
+		sprites.add(ss.grabSprite(1000, 2500, 500, 500));
 		
 		avatar.play();
 	}
@@ -131,7 +134,22 @@ public class player extends character implements Serializable {
 		sprites.clear();
 		
 		// hero block sequence
-		sprites.add(ss.grabSprite(0, 2, 80, 70));
+		sprites.add(ss.grabSprite(0, 500, 500, 500));
+		sprites.add(ss.grabSprite(500, 500, 500, 500));
+		sprites.add(ss.grabSprite(1000, 500, 500, 500));
+		sprites.add(ss.grabSprite(1000, 500, 500, 500));
+		sprites.add(ss.grabSprite(1000, 500, 500, 500));
+		sprites.add(ss.grabSprite(1000, 500, 500, 500));
+		sprites.add(ss.grabSprite(1000, 500, 500, 500));
+		sprites.add(ss.grabSprite(1500, 500, 500, 500));
+		sprites.add(ss.grabSprite(2000, 500, 500, 500));
+		sprites.add(ss.grabSprite(500, 500, 500, 500));
+		sprites.add(ss.grabSprite(1000, 500, 500, 500));
+		sprites.add(ss.grabSprite(1000, 500, 500, 500));
+		sprites.add(ss.grabSprite(1000, 500, 500, 500));
+		sprites.add(ss.grabSprite(1000, 500, 500, 500));
+		sprites.add(ss.grabSprite(1000, 500, 500, 500));
+		
 		
 		avatar.play();
 	}
@@ -141,21 +159,16 @@ public class player extends character implements Serializable {
 		sprites.clear();
 		
 		// hero heal sequence
-		sprites.add(ss.grabSprite(0, 10, 80, 70));
-		sprites.add(ss.grabSprite(0, 10, 80, 70));
-		sprites.add(ss.grabSprite(0, 220, 80, 68));
-		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
-		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
-		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
-		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
-		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
-		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
-		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
-		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
-		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
-		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
-		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
-		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
+		sprites.add(ss.grabSprite(0, 1000, 500, 500));
+		sprites.add(ss.grabSprite(500, 1000, 500, 500));
+		sprites.add(ss.grabSprite(1000, 1000, 500, 500));
+		sprites.add(ss.grabSprite(1500, 1000, 500, 500));
+		sprites.add(ss.grabSprite(2000, 1000, 500, 500));
+		sprites.add(ss.grabSprite(0, 1500, 500, 500));
+		sprites.add(ss.grabSprite(500, 1500, 500, 500));
+		sprites.add(ss.grabSprite(1000, 1500, 500, 500));
+		sprites.add(ss.grabSprite(1500, 1500, 500, 500));
+		sprites.add(ss.grabSprite(2000, 1500, 500, 500));
 		
 		avatar.play();
 	}
@@ -165,21 +178,19 @@ public class player extends character implements Serializable {
 		sprites.clear();
 		
 		// hero hit sequence
-		sprites.add(ss.grabSprite(0, 10, 80, 70));
-		sprites.add(ss.grabSprite(0, 10, 80, 70));
-		sprites.add(ss.grabSprite(0, 220, 80, 68));
-		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
-		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
-		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
-		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
-		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
-		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
-		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
-		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
-		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
-		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
-		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
-		sprites.add(ss.grabSprite(0, 220, 80, 68)); // hero idle sequence
+		sprites.add(ss.grabSprite(0, 3000, 500, 500));
+		sprites.add(ss.grabSprite(500, 3000, 500, 500));
+		sprites.add(ss.grabSprite(485, 3000, 500, 500));
+		sprites.add(ss.grabSprite(470, 3000, 500, 500));
+		sprites.add(ss.grabSprite(0, 2500, 500, 500)); // begin hero idle
+		sprites.add(ss.grabSprite(500, 2500, 500, 500));
+		sprites.add(ss.grabSprite(1000, 2500, 500, 500));
+		sprites.add(ss.grabSprite(0, 2500, 500, 500));
+		sprites.add(ss.grabSprite(500, 2500, 500, 500));
+		sprites.add(ss.grabSprite(1000, 2500, 500, 500));
+		sprites.add(ss.grabSprite(0, 2500, 500, 500));
+		sprites.add(ss.grabSprite(500, 2500, 500, 500));
+		sprites.add(ss.grabSprite(1000, 2500, 500, 500));
 		
 		avatar.play();
 	}
@@ -188,9 +199,15 @@ public class player extends character implements Serializable {
 		avatar.stop();
 		sprites.clear();
 		
-		// load player dying sequence
+		// hero dying sequence
+		sprites.add(ss.grabSprite(0, 2000, 500, 500));
+		sprites.add(ss.grabSprite(500, 2000, 500, 500));
+		sprites.add(ss.grabSprite(1000, 2000, 500, 500));
+		sprites.add(ss.grabSprite(1500, 2000, 500, 500));
+		sprites.add(ss.grabSprite(1500, 2000, 500, 500));
+		sprites.add(ss.grabSprite(1500, 2000, 500, 500));
 		
-		// avatar.play();
+		avatar.play();
 		
 		try {
 		    Thread.sleep(100);                 

@@ -173,7 +173,7 @@ public class enemy extends character {
 		
 		avatar.play();
 		try {
-		    Thread.sleep(1500);                 
+		    Thread.sleep(1000);                 
 		} catch(InterruptedException ex) {
 		    Thread.currentThread().interrupt();
 		}
