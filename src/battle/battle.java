@@ -264,6 +264,12 @@ public class battle {
 							 gameWindow.setMessageString("Killed by Enemy " + (i+1)); // print to battle window
 							 sfx.playSound("Player Die"); // player dying sound
 							 playerChar.loadDyingFrames(); // player death animation
+							 try {
+								    Thread.sleep(250);
+							 } catch(InterruptedException ex) {
+							     Thread.currentThread().interrupt();
+							 } // delay after player move
+							 playerChar.loadPlayerDead();
 						 }
 						 else {
 							 System.out.println("Enemy " + (i+1) + " missed");
@@ -279,8 +285,8 @@ public class battle {
 					} // delay after enemy move
 					if(tempEnemy.getBlocking() == false)
 						tempEnemy.loadIdleFrames(); // enemy idle animation
-					
-					playerChar.loadIdleFrames(); // player idle animation
+					if(playerChar.getHealth() >= 0)
+						playerChar.loadIdleFrames(); // player idle animation
 				}
 			}
 			// display player stats

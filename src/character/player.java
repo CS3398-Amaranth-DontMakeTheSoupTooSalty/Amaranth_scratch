@@ -206,15 +206,33 @@ public class player extends character implements Serializable {
 		sprites.add(ss.grabSprite(1500, 2000, 500, 500));
 		sprites.add(ss.grabSprite(1500, 2000, 500, 500));
 		sprites.add(ss.grabSprite(1500, 2000, 500, 500));
+		sprites.add(ss.grabSprite(1500, 2000, 500, 500));
+		sprites.add(ss.grabSprite(1500, 2000, 500, 500));
+		sprites.add(ss.grabSprite(1500, 2000, 500, 500));
+		sprites.add(ss.grabSprite(1500, 2000, 500, 500));
+		sprites.add(ss.grabSprite(1500, 2000, 500, 500));
+		sprites.add(ss.grabSprite(1500, 2000, 500, 500));
+		sprites.add(ss.grabSprite(1500, 2000, 500, 500));
+		sprites.add(ss.grabSprite(1500, 2000, 500, 500));
+		sprites.add(ss.grabSprite(1500, 2000, 500, 500));
 		
 		avatar.play();
 		
 		try {
-		    Thread.sleep(100);                 
+		    Thread.sleep(1500);                 
 		} catch(InterruptedException ex) {
 		    Thread.currentThread().interrupt();
 		}
 		//avatar = null;
+	}
+	
+	public void loadPlayerDead() {
+		avatar.stop();
+		sprites.clear();
+		
+		sprites.add(ss.grabSprite(1500, 2000, 500, 500));
+		
+		avatar.play();
 	}
 	
 	public void printSimplePlayerStats() {
