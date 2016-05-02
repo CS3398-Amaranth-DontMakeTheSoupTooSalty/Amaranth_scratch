@@ -43,6 +43,7 @@ public class player extends character implements Serializable {
 	public player() {
 		name  = "Hero";
 		health = 25;
+		//maxHealth = 25;
 		defense = 15;
 		accuracy = 15;
 		damage = 7;

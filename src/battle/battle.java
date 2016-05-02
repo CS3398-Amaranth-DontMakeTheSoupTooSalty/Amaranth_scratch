@@ -310,7 +310,7 @@ public class battle {
 		choiceInput.close();
 		
 		if(remainingEnemies == 0) {
-			gameWindow.setMessageString("Enemies vanquished!"); // print to battle window
+			gameWindow.setMessageString("You have vanquished your enemies!"); // print to battle window
 			return ENEMIES_VANQUISHED;
 		}
 		

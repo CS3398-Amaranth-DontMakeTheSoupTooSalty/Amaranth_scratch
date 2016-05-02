@@ -105,16 +105,24 @@ public class GameWindow extends JFrame {
 					yPosition--;
 					if(yPosition < 0)
 						yPosition = 0;
+				/*	if(yPosition > 0)
+						yPosition--;
+					else
+						yPosition = 0;*/
 				}
 				else if(displayEnemySelect == true) {
 					enemyChoice[0] = (enemyChoice[0]+1)%numEnemies;
 				}
 			}
-			if(keyCode == e.VK_DOWN) {
+			if(keyCode == e.VK_DOWN) { //|| keyCode == e.VK_END
 				if(displayMoveSelect == true) {
 					yPosition++;
 					if(yPosition > 2)
 						yPosition = 2;
+					/*if(yPosition < 1)
+						yPosition++;
+					else
+						yPosition = 2;*/
 				}
 				else if(displayEnemySelect == true) {
 					if(enemyChoice[0] == 0) {
