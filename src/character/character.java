@@ -12,7 +12,7 @@ public class character implements Serializable {
 	String name;
 	String location;
 	int health;
-	int maxHealth;
+	//int maxHealth;
 	int defense;
 	int accuracy;
 	int damage;
@@ -31,13 +31,13 @@ public class character implements Serializable {
 	public String getName() {return name;}
 	public String getLoc() {return location;}
 	public int getHealth() {return health;}
-	public int getMaxHealth() {return maxHealth;}
+	//public int getMaxHealth() {return maxHealth;}
 	public int getDefense() {return defense;}
 	public int getAccuracy() {return accuracy;}
 	public int getDamage() {return damage;}
 	public int getLevel() {return level;}
 	public void setHealth(int _health) {health = _health;}
-	public void setMaxHealth(int _maxHealth) {maxHealth = _maxHealth;}
+	//public void setMaxHealth(int _maxHealth) {maxHealth = _maxHealth;}
 	public void setDefense(int _defense) {defense = _defense;}
 	public void setAccuracy(int _accuracy) {accuracy = _accuracy;}
 	public void setDamage(int _damage) {damage = _damage;}
@@ -48,7 +48,7 @@ public class character implements Serializable {
 		name = "";
 		location = "";
 		health = 0;
-		maxHealth = 0;
+		//maxHealth = 0;
 		defense = 0;
 		accuracy = 0;
 		damage = 0;
