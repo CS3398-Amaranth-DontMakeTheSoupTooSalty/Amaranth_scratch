@@ -21,23 +21,25 @@ public class battle {
 	public static String[] choice = { "" };
 	public static int[] enemyChoice = {0};
 	public static boolean[] enemySelected = {false};
-	public static boolean bossBattle = false;
+	public static boolean[] bossBattle = {false};
 	
-	public static int battleMode(player playerChar, int numEnemies, String enemyFile, boolean _bossBattle) {
+	public static int battleMode(player playerChar, int numEnemies, String enemyFile, boolean[] _bossBattle) {
 		if((numEnemies > 4) || (numEnemies < 1))
 			return ERROR;
 		
 		bossBattle = _bossBattle;
+		
 		int remainingEnemies = numEnemies;
 		enemy[] enemyArray = new enemy[numEnemies];
 		try {
 			enemyArray = enemy.enemyGen(enemyFile, numEnemies);
 		}catch(FileNotFoundException e) {e.printStackTrace();}
 		
-		if(bossBattle == true) {
+		if(bossBattle[0] == true) {
 			boss evilBoss = new boss();
 			enemyArray[0] = evilBoss;
 		}
+		
 		GameWindow gameWindow = new GameWindow(playerChar, enemyArray, numEnemies, choice, enemyChoice, enemySelected, bossBattle);
 		Sound sfx = new Sound("Kazoo");
 		

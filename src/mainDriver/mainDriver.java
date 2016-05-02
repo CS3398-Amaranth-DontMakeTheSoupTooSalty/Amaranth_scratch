@@ -106,7 +106,9 @@ public class mainDriver {
 	    	System.out.println("How many enemies do you want to battle?");
 	    	System.out.println("Enter 1-4: ");
 	    	numEnemies = input.nextInt();
-	    	returnVal = battle.battleMode(playerCharacter, numEnemies, "forestOrc.txt", false);
+	    	
+	    	boolean[] bossBattle = {false};
+	    	returnVal = battle.battleMode(playerCharacter, numEnemies, "forestOrc.txt", bossBattle);
 	    	if(returnVal == battle.PLAYER_DEATH)
 	    		System.out.println("You died!");
 	    	else if(returnVal == battle.ENEMIES_VANQUISHED)
@@ -134,7 +136,9 @@ public class mainDriver {
 	    	System.out.println("How many enemies do you want to battle?");
 	    	System.out.println("Enter 1-4: ");
 	    	numEnemies = input.nextInt();
-	    	returnVal = battle.battleMode(playerCharacter, numEnemies, "forestOrc.txt", true);
+	    	
+	    	boolean[] bossBattle = {true};
+	    	returnVal = battle.battleMode(playerCharacter, numEnemies, "forestOrc.txt", bossBattle);
 	    	if(returnVal == battle.PLAYER_DEATH)
 	    		System.out.println("You died!");
 	    	else if(returnVal == battle.ENEMIES_VANQUISHED)

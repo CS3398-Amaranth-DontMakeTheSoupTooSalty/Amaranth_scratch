@@ -26,15 +26,16 @@ public class GameWindow extends JFrame {
 	
 	String[] choice = {""};
 	
-	int numEnemies = 4;	
+	int numEnemies = 5;	
 	enemy[] enemyArray = new enemy[numEnemies];
-	enemy enemy1 = null;
-	enemy enemy2 = null;
-	enemy enemy3 = null;
-	enemy enemy4 = null;
+//	enemy enemy1 = null;
+//	enemy enemy2 = null;
+//	enemy enemy3 = null;
+//	enemy enemy4 = null;
+//	boss enemy5 = null;
 	player playerCharacter = null;
 	enemy tempEnemy = null;
-	boolean bossBattle = false;
+	boolean[] bossBattle = {false};
 	
 	// gui display components
 	BufferedImageLoader loader = new BufferedImageLoader();
@@ -105,10 +106,6 @@ public class GameWindow extends JFrame {
 					yPosition--;
 					if(yPosition < 0)
 						yPosition = 0;
-				/*	if(yPosition > 0)
-						yPosition--;
-					else
-						yPosition = 0;*/
 				}
 				else if(displayEnemySelect == true) {
 					enemyChoice[0] = (enemyChoice[0]+1)%numEnemies;
@@ -119,10 +116,6 @@ public class GameWindow extends JFrame {
 					yPosition++;
 					if(yPosition > 2)
 						yPosition = 2;
-					/*if(yPosition < 1)
-						yPosition++;
-					else
-						yPosition = 2;*/
 				}
 				else if(displayEnemySelect == true) {
 					if(enemyChoice[0] == 0) {
@@ -182,7 +175,7 @@ public class GameWindow extends JFrame {
 	}
 	
 	public GameWindow(player _playerCharacter, enemy[] _enemyArray, int _numEnemies, String[] _choice, 
-			int[] _enemyChoice, boolean[] _enemySelected, boolean _bossBattle) {
+			int[] _enemyChoice, boolean[] _enemySelected, boolean[] _bossBattle) {
 	
 		numEnemies = _numEnemies;
 		enemyArray = _enemyArray;
@@ -190,42 +183,46 @@ public class GameWindow extends JFrame {
 		choice = _choice;
 		enemyChoice = _enemyChoice;
 		enemySelected = _enemySelected;
-		bossBattle = _bossBattle;
+		bossBattle = _bossBattle;	
 		
-		if(bossBattle == true) {
-			boss enemy1 = null;
-		}
-		
-		else {
-			enemy enemy1 = null;
-		}
-		
+//		if(bossBattle[0] == true) {
+//			boss enemy1 = null;
+//		}
+//		else {
+//			enemy enemy1 = null;
+//		}
+//		enemy enemy1 = null;
 //		enemy enemy2 = null;
 //		enemy enemy3 = null;
 //		enemy enemy4 = null;
 		
-		for(int i = 0; i < numEnemies; i++) {
-			switch(i) {
-				case 0: 
-					if(bossBattle == true)
-						enemy1 = (boss) enemyArray[0];
-					else
-						enemy1 = enemyArray[0];
-					break;
-				
-				case 1:
-					enemy2 = enemyArray[1];
-					break;
-				
-				case 2:
-					enemy3 = enemyArray[2];
-					break;
-				
-				case 3:
-					enemy4 = enemyArray[3];
-					break;
-			}
-		}
+//		for(int i = 0; i < numEnemies; i++) {
+//			switch(i) {
+//				case 0: 
+//					if(bossBattle[0] == true)
+//						enemy1 = (boss) enemyArray[0];
+//					else
+//						enemy1 = enemyArray[0];
+//					break;
+//				
+//				case 1:
+//					enemy2 = enemyArray[1];
+//					break;
+//				
+//				case 2:
+//					enemy3 = enemyArray[2];
+//					break;
+//				
+//				case 3:
+//					enemy4 = enemyArray[3];
+//					break;
+//			}
+//		}
+		
+//		if(bossBattle[0] == true) {
+//			boss evilBoss = new boss();
+//			enemyArray[0] = evilBoss;
+//		}
 		
 		// load background image		
 		BufferedImageLoader bgLoader = new BufferedImageLoader(); 
@@ -307,21 +304,21 @@ public class GameWindow extends JFrame {
 			g.drawImage(playerStatsWindow, 625, 448, 150, 50, null);
 			g.drawString(playerStats, 635, 479);
 		}
-		if((enemy2 != null) && (enemy2.avatar != null)) {
-			enemy2.avatar.update(System.currentTimeMillis());
-			g.drawImage(enemy2.avatar.sprite, 110, 110, 200, 200, null);
+		if((numEnemies >= 2) && (enemyArray[1] != null) && (enemyArray[1].avatar != null)) { // enemy2
+			enemyArray[1].avatar.update(System.currentTimeMillis());
+			g.drawImage(enemyArray[1].avatar.sprite, 110, 110, 200, 200, null);
 		}
-		if((enemy1 != null) && (enemy1.avatar != null)) {
-			enemy1.avatar.update(System.currentTimeMillis());
-			g.drawImage(enemy1.avatar.sprite, 170, 220, 210, 210, null);
+		if((numEnemies >= 1) && (enemyArray[0] != null) && (enemyArray[0].avatar != null)) { // enemy1
+			enemyArray[0].avatar.update(System.currentTimeMillis());
+			g.drawImage(enemyArray[0].avatar.sprite, 170, 220, 210, 210, null);
 		}
-		if((enemy4 != null) && (enemy4.avatar != null)) {
-			enemy4.avatar.update(System.currentTimeMillis());
-			g.drawImage(enemy4.avatar.sprite, 25, 180, 205, 205, null);
+		if((numEnemies == 4) && (enemyArray[3] != null) && (enemyArray[3].avatar != null)) { // enemy4
+			enemyArray[3].avatar.update(System.currentTimeMillis());
+			g.drawImage(enemyArray[3].avatar.sprite, 25, 180, 205, 205, null);
 		}
-		if((enemy3 != null) && (enemy3.avatar != null)) {
-			enemy3.avatar.update(System.currentTimeMillis());
-			g.drawImage(enemy3.avatar.sprite, 25, 320, 225, 225, null);
+		if((numEnemies >= 3) && (enemyArray[2] != null) && (enemyArray[2].avatar != null)) { // enemy3
+			enemyArray[2].avatar.update(System.currentTimeMillis());
+			g.drawImage(enemyArray[2].avatar.sprite, 25, 320, 225, 225, null);
 		}
 		if(displayEnemySelect == true) {
 			g.drawImage(leftArrow, enemySelect[0][enemyChoice[0]], enemySelect[1][enemyChoice[0]], 25, 30, null);
