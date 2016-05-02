@@ -1,0 +1,19 @@
+type: Professor
+
+name: Dr. Lehr
+
+location: Forest
+
+level: 1
+
+health: 20
+
+damage: 4
+
+defense: 25
+
+accuracy: 4
+
+blockFactor: 7
+
+healFactor: 27

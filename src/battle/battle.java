@@ -21,19 +21,25 @@ public class battle {
 	public static String[] choice = { "" };
 	public static int[] enemyChoice = {0};
 	public static boolean[] enemySelected = {false};
+	public static boolean bossBattle = false;
 	
-	public static int battleMode(player playerChar, int numEnemies, String enemyFile) {
+	public static int battleMode(player playerChar, int numEnemies, String enemyFile, boolean _bossBattle) {
 		if((numEnemies > 4) || (numEnemies < 1))
 			return ERROR;
 		
-		Sound sfx = new Sound("Kazoo");
+		bossBattle = _bossBattle;
 		int remainingEnemies = numEnemies;
 		enemy[] enemyArray = new enemy[numEnemies];
 		try {
 			enemyArray = enemy.enemyGen(enemyFile, numEnemies);
 		}catch(FileNotFoundException e) {e.printStackTrace();}
 		
-		GameWindow gameWindow = new GameWindow(playerChar, enemyArray, numEnemies, choice, enemyChoice, enemySelected);
+		if(bossBattle == true) {
+			boss evilBoss = new boss();
+			enemyArray[0] = evilBoss;
+		}
+		GameWindow gameWindow = new GameWindow(playerChar, enemyArray, numEnemies, choice, enemyChoice, enemySelected, bossBattle);
+		Sound sfx = new Sound("Kazoo");
 		
 		Scanner choiceInput = new Scanner ( System.in );
 		int returnVal;
@@ -97,7 +103,7 @@ public class battle {
 						if(returnVal == attack.DEATH_BLOW) {
 							sfx.playSound("Die Voice");
 							try {
-							    Thread.sleep(25); // was 250
+							    Thread.sleep(100); // was 250
 							} catch(InterruptedException ex) {
 							    Thread.currentThread().interrupt();
 							} // delay after player move

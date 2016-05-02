@@ -11,7 +11,7 @@ import SpriteSheet.*;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class enemy extends character {
+public class boss extends enemy {
 	
 	String type;
 	int blockFactor;
@@ -28,18 +28,18 @@ public class enemy extends character {
 	public BufferedImageLoader loader;
 	public BufferedImage spriteSheet;
 	
-	public enemy() {
-		name = "";
-		type = "";
-		location = ""; 
-		health = 0;
-		defense = 0;
-		accuracy = 0;
-		damage = 0;
-		level = 0;
+	public boss() {
+		name = "Dr. Lehr";
+		type = "Professor";
+		location = "Forest"; 
+		health = 20;
+		defense = 25;
+		accuracy = 4;
+		damage = 4;
+		level = 1;
 		blocking = false;
-		blockFactor = 5;
-		healFactor = 13;
+		blockFactor = 3;
+		healFactor = 5;
 		
 		// initialization of animation variables
 		BufferedImageLoader loader = new BufferedImageLoader();
@@ -47,7 +47,7 @@ public class enemy extends character {
 		
 		// set enemy graphic to idle and play
 		try {
-			spriteSheet = loader.loadImage("enemy_sprite_sheet.png");
+			spriteSheet = loader.loadImage("dr_lehr_sprite_sheet.png");
 		} catch (IOException ex) {
 			Logger.getLogger(GameWindow.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -55,10 +55,10 @@ public class enemy extends character {
 		ss = new SpriteSheet(spriteSheet);
 		sprites = new ArrayList<BufferedImage>();
 		
-		// orc idle sequence
-		sprites.add(ss.grabSprite(0, 500, 525, 500));
-		sprites.add(ss.grabSprite(525, 500, 525, 500));
-		sprites.add(ss.grabSprite(1050, 500, 525, 500));
+		// lehr idle sequence
+		sprites.add(ss.grabSprite(0, 135, 144, 135));
+		sprites.add(ss.grabSprite(0, 135, 144, 135));
+		sprites.add(ss.grabSprite(576, 135, 144, 135));
 		
 		avatar = new Animator(sprites);
 		avatar.setSpeed(200);;
@@ -74,10 +74,10 @@ public class enemy extends character {
 		avatar.stop();
 		sprites.clear();
 		
-		// orc idle sequence
-		sprites.add(ss.grabSprite(0, 500, 525, 500));
-		sprites.add(ss.grabSprite(525, 500, 525, 500));
-		sprites.add(ss.grabSprite(1050, 500, 525, 500));
+		// lehr idle sequence
+		sprites.add(ss.grabSprite(0, 135, 144, 135));
+		sprites.add(ss.grabSprite(0, 135, 144, 135));
+		sprites.add(ss.grabSprite(576, 135, 144, 135));
 		
 		avatar.play();
 	}
@@ -86,20 +86,23 @@ public class enemy extends character {
 		avatar.stop();
 		sprites.clear();
 		
-		// orc attack sequence
-		sprites.add(ss.grabSprite(0, 0, 525, 500));
-		sprites.add(ss.grabSprite(525, 0, 525, 500));
-		sprites.add(ss.grabSprite(1050, 0, 525, 500));
-		sprites.add(ss.grabSprite(1575, 0, 525, 500));
-		sprites.add(ss.grabSprite(0, 500, 525, 500)); // begin orc idle
-		sprites.add(ss.grabSprite(525, 500, 525, 500));
-		sprites.add(ss.grabSprite(1050, 500, 525, 500));
-		sprites.add(ss.grabSprite(0, 500, 525, 500));
-		sprites.add(ss.grabSprite(525, 500, 525, 500));
-		sprites.add(ss.grabSprite(1050, 500, 525, 500));
-		sprites.add(ss.grabSprite(0, 500, 525, 500));
-		sprites.add(ss.grabSprite(525, 500, 525, 500));
-		sprites.add(ss.grabSprite(1050, 500, 525, 500));
+		// lehr attack sequence
+		// lehr idle sequence
+		sprites.add(ss.grabSprite(0, 810, 144, 135));
+		sprites.add(ss.grabSprite(144, 810, 144, 135));
+		sprites.add(ss.grabSprite(288, 810, 144, 135));
+		sprites.add(ss.grabSprite(864, 810, 144, 135));
+		sprites.add(ss.grabSprite(1008, 810, 144, 135));
+		sprites.add(ss.grabSprite(1152, 810, 144, 135));
+		sprites.add(ss.grabSprite(0, 135, 144, 135)); // begin idle sequence
+		sprites.add(ss.grabSprite(0, 135, 144, 135)); 
+		sprites.add(ss.grabSprite(576, 135, 144, 135));
+		sprites.add(ss.grabSprite(0, 135, 144, 135));
+		sprites.add(ss.grabSprite(0, 135, 144, 135));
+		sprites.add(ss.grabSprite(576, 135, 144, 135));
+		sprites.add(ss.grabSprite(0, 135, 144, 135));
+		sprites.add(ss.grabSprite(0, 135, 144, 135));
+		sprites.add(ss.grabSprite(576, 135, 144, 135));
 		
 		avatar.play();
 	}
@@ -108,14 +111,16 @@ public class enemy extends character {
 		avatar.stop();
 		sprites.clear();
 		
-		// orc blocking sequence
-		sprites.add(ss.grabSprite(0, 1000, 525, 500));
-		sprites.add(ss.grabSprite(525, 1000, 525, 500));
-		sprites.add(ss.grabSprite(525, 1000, 525, 500));
-		sprites.add(ss.grabSprite(525, 1000, 525, 500));
-		sprites.add(ss.grabSprite(525, 1000, 525, 500));
-		sprites.add(ss.grabSprite(525, 1000, 525, 500));
-		sprites.add(ss.grabSprite(1050, 1000, 525, 500));
+		// lehr blocking sequence
+		sprites.add(ss.grabSprite(0, 135, 144, 135));
+		sprites.add(ss.grabSprite(1008, 540, 144, 135));
+		sprites.add(ss.grabSprite(1152, 405, 144, 135));
+		sprites.add(ss.grabSprite(1152, 405, 144, 135));
+		sprites.add(ss.grabSprite(1152, 405, 144, 135));
+		sprites.add(ss.grabSprite(1152, 405, 144, 135));
+		sprites.add(ss.grabSprite(1152, 405, 144, 135));
+		sprites.add(ss.grabSprite(1152, 405, 144, 135));
+		sprites.add(ss.grabSprite(1152, 405, 144, 135));
 		
 		avatar.play();
 	}
@@ -124,20 +129,20 @@ public class enemy extends character {
 		avatar.stop();
 		sprites.clear();
 		
-		// orc heal sequence
-		sprites.add(ss.grabSprite(1575, 0, 525, 500));
-		sprites.add(ss.grabSprite(1050, 500, 525, 500));
-		sprites.add(ss.grabSprite(525, 0, 525, 500));
-		sprites.add(ss.grabSprite(525, 0, 525, 500));
-		sprites.add(ss.grabSprite(0, 500, 525, 500)); // begin orc idle
-		sprites.add(ss.grabSprite(525, 500, 525, 500));
-		sprites.add(ss.grabSprite(1050, 500, 525, 500));
-		sprites.add(ss.grabSprite(0, 500, 525, 500));
-		sprites.add(ss.grabSprite(525, 500, 525, 500));
-		sprites.add(ss.grabSprite(1050, 500, 525, 500));
-		sprites.add(ss.grabSprite(0, 500, 525, 500));
-		sprites.add(ss.grabSprite(525, 500, 525, 500));
-		sprites.add(ss.grabSprite(1050, 500, 525, 500));
+		// lehr heal sequence
+		sprites.add(ss.grabSprite(0, 540, 144, 135));
+		sprites.add(ss.grabSprite(288, 540, 144, 135));
+		sprites.add(ss.grabSprite(720, 540, 144, 135));
+		sprites.add(ss.grabSprite(1152, 540, 144, 135));
+		sprites.add(ss.grabSprite(0, 135, 144, 135)); // begin idle sequence
+		sprites.add(ss.grabSprite(0, 135, 144, 135)); 
+		sprites.add(ss.grabSprite(576, 135, 144, 135));
+		sprites.add(ss.grabSprite(0, 135, 144, 135));
+		sprites.add(ss.grabSprite(0, 135, 144, 135));
+		sprites.add(ss.grabSprite(576, 135, 144, 135));
+		sprites.add(ss.grabSprite(0, 135, 144, 135));
+		sprites.add(ss.grabSprite(0, 135, 144, 135));
+		sprites.add(ss.grabSprite(576, 135, 144, 135));
 		
 		avatar.play();
 	}
@@ -146,20 +151,20 @@ public class enemy extends character {
 		avatar.stop();
 		sprites.clear();
 		
-		// orc hit sequence
-		sprites.add(ss.grabSprite(0, 2000, 525, 500));
-		sprites.add(ss.grabSprite(525, 2000, 525, 500));
-		sprites.add(ss.grabSprite(540, 2000, 525, 500));
-		sprites.add(ss.grabSprite(555, 2000, 525, 500));
-		sprites.add(ss.grabSprite(0, 500, 525, 500)); // begin orc idle
-		sprites.add(ss.grabSprite(525, 500, 525, 500));
-		sprites.add(ss.grabSprite(1050, 500, 525, 500));
-		sprites.add(ss.grabSprite(0, 500, 525, 500));
-		sprites.add(ss.grabSprite(525, 500, 525, 500));
-		sprites.add(ss.grabSprite(1050, 500, 525, 500));
-		sprites.add(ss.grabSprite(0, 500, 525, 500));
-		sprites.add(ss.grabSprite(525, 500, 525, 500));
-		sprites.add(ss.grabSprite(1050, 500, 525, 500));
+		// lehr hit sequence
+		sprites.add(ss.grabSprite(0, 135, 144, 135));
+		sprites.add(ss.grabSprite(1008, 135, 144, 135));
+		sprites.add(ss.grabSprite(864, 135, 144, 135));
+		sprites.add(ss.grabSprite(1152, 135, 144, 135));
+		sprites.add(ss.grabSprite(0, 135, 144, 135)); // begin idle sequence
+		sprites.add(ss.grabSprite(0, 135, 144, 135)); 
+		sprites.add(ss.grabSprite(576, 135, 144, 135));
+		sprites.add(ss.grabSprite(0, 135, 144, 135));
+		sprites.add(ss.grabSprite(0, 135, 144, 135));
+		sprites.add(ss.grabSprite(576, 135, 144, 135));
+		sprites.add(ss.grabSprite(0, 135, 144, 135));
+		sprites.add(ss.grabSprite(0, 135, 144, 135));
+		sprites.add(ss.grabSprite(576, 135, 144, 135));
 		
 		avatar.play();
 	}
@@ -168,19 +173,23 @@ public class enemy extends character {
 		avatar.stop();
 		sprites.clear();
 		
-		// orc dying sequence
-		sprites.add(ss.grabSprite(0, 1500, 525, 500));
-		sprites.add(ss.grabSprite(525, 1500, 525, 500));
-		sprites.add(ss.grabSprite(1050, 1500, 525, 500));
-		sprites.add(ss.grabSprite(1050, 1500, 525, 500));
-		sprites.add(ss.grabSprite(1050, 1500, 525, 500));
-		sprites.add(ss.grabSprite(1050, 1500, 525, 500));
-		sprites.add(ss.grabSprite(1050, 1500, 525, 500));
-		sprites.add(ss.grabSprite(1050, 1500, 525, 500));
+		// lehr hit sequence
+		sprites.add(ss.grabSprite(0, 135, 144, 135));
+		sprites.add(ss.grabSprite(1008, 135, 144, 135));
+		sprites.add(ss.grabSprite(864, 135, 144, 135));
+		sprites.add(ss.grabSprite(1152, 135, 144, 135));
+		sprites.add(ss.grabSprite(1152, 1620, 144, 135));
+		sprites.add(ss.grabSprite(1152, 1620, 144, 135));
+		sprites.add(ss.grabSprite(1152, 1620, 144, 135));
+		sprites.add(ss.grabSprite(1152, 1620, 144, 135));
+		sprites.add(ss.grabSprite(1152, 1620, 144, 135));
+		sprites.add(ss.grabSprite(1152, 1620, 144, 135));
+		sprites.add(ss.grabSprite(1152, 1620, 144, 135));
+		
 		
 		avatar.play();
 		try {
-		    Thread.sleep(1000);                 
+		    Thread.sleep(1500);                 
 		} catch(InterruptedException ex) {
 		    Thread.currentThread().interrupt();
 		}

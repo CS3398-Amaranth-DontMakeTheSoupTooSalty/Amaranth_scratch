@@ -106,7 +106,7 @@ public class mainDriver {
 	    	System.out.println("How many enemies do you want to battle?");
 	    	System.out.println("Enter 1-4: ");
 	    	numEnemies = input.nextInt();
-	    	returnVal = battle.battleMode(playerCharacter, numEnemies, "forestOrc.txt");
+	    	returnVal = battle.battleMode(playerCharacter, numEnemies, "forestOrc.txt", false);
 	    	if(returnVal == battle.PLAYER_DEATH)
 	    		System.out.println("You died!");
 	    	else if(returnVal == battle.ENEMIES_VANQUISHED)
@@ -123,6 +123,24 @@ public class mainDriver {
 	    gameWorldObj.environmentGeneratorCLI(testEnvironName, testEnvironDesc);
 	    Scanner inputA = new Scanner( System.in );
 	    environment.gameWorld.environmentCreatorCLI(inputA);
+	    }
+	    
+	    else if(startObj.interfaceChoice == 6) {
+	    	song.newTrack("SerpentineTrek");
+	    	int numEnemies;
+	    	player playerCharacter = new player();
+	    	int returnVal;
+	    	
+	    	System.out.println("How many enemies do you want to battle?");
+	    	System.out.println("Enter 1-4: ");
+	    	numEnemies = input.nextInt();
+	    	returnVal = battle.battleMode(playerCharacter, numEnemies, "forestOrc.txt", true);
+	    	if(returnVal == battle.PLAYER_DEATH)
+	    		System.out.println("You died!");
+	    	else if(returnVal == battle.ENEMIES_VANQUISHED)
+	    		System.out.println("You have vanquished all your enemies!");
+	    	else if(returnVal == battle.ERROR)
+	    		System.out.println("Oh no, something went wrong!");
 	    }
 	    
 	    

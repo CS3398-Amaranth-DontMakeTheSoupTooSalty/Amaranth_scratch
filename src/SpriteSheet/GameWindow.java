@@ -34,6 +34,7 @@ public class GameWindow extends JFrame {
 	enemy enemy4 = null;
 	player playerCharacter = null;
 	enemy tempEnemy = null;
+	boolean bossBattle = false;
 	
 	// gui display components
 	BufferedImageLoader loader = new BufferedImageLoader();
@@ -173,18 +174,35 @@ public class GameWindow extends JFrame {
 	}
 	
 	public GameWindow(player _playerCharacter, enemy[] _enemyArray, int _numEnemies, String[] _choice, 
-			int[] _enemyChoice, boolean[] _enemySelected) {
+			int[] _enemyChoice, boolean[] _enemySelected, boolean _bossBattle) {
+	
 		numEnemies = _numEnemies;
 		enemyArray = _enemyArray;
 		playerCharacter = _playerCharacter;
 		choice = _choice;
 		enemyChoice = _enemyChoice;
 		enemySelected = _enemySelected;
+		bossBattle = _bossBattle;
+		
+		if(bossBattle == true) {
+			boss enemy1 = null;
+		}
+		
+		else {
+			enemy enemy1 = null;
+		}
+		
+//		enemy enemy2 = null;
+//		enemy enemy3 = null;
+//		enemy enemy4 = null;
 		
 		for(int i = 0; i < numEnemies; i++) {
 			switch(i) {
 				case 0: 
-					enemy1 = enemyArray[0];
+					if(bossBattle == true)
+						enemy1 = (boss) enemyArray[0];
+					else
+						enemy1 = enemyArray[0];
 					break;
 				
 				case 1:
@@ -283,19 +301,19 @@ public class GameWindow extends JFrame {
 		}
 		if((enemy2 != null) && (enemy2.avatar != null)) {
 			enemy2.avatar.update(System.currentTimeMillis());
-			g.drawImage(enemy2.avatar.sprite, 160, 160, 150, 150, null);
+			g.drawImage(enemy2.avatar.sprite, 110, 110, 200, 200, null);
 		}
 		if((enemy1 != null) && (enemy1.avatar != null)) {
 			enemy1.avatar.update(System.currentTimeMillis());
-			g.drawImage(enemy1.avatar.sprite, 220, 270, 160, 160, null);
+			g.drawImage(enemy1.avatar.sprite, 170, 220, 210, 210, null);
 		}
 		if((enemy4 != null) && (enemy4.avatar != null)) {
 			enemy4.avatar.update(System.currentTimeMillis());
-			g.drawImage(enemy4.avatar.sprite, 75, 230, 155, 155, null);
+			g.drawImage(enemy4.avatar.sprite, 25, 180, 205, 205, null);
 		}
 		if((enemy3 != null) && (enemy3.avatar != null)) {
 			enemy3.avatar.update(System.currentTimeMillis());
-			g.drawImage(enemy3.avatar.sprite, 75, 370, 175, 175, null);
+			g.drawImage(enemy3.avatar.sprite, 25, 320, 225, 225, null);
 		}
 		if(displayEnemySelect == true) {
 			g.drawImage(leftArrow, enemySelect[0][enemyChoice[0]], enemySelect[1][enemyChoice[0]], 25, 30, null);
