@@ -109,7 +109,7 @@ public class GameWindow extends JFrame {
 					enemyChoice[0] = (enemyChoice[0]+1)%numEnemies;
 				}
 			}
-			if(keyCode == e.VK_DOWN) {
+			if(keyCode == e.VK_DOWN || keyCode == e.VK_END) {
 				if(displayMoveSelect == true) {
 					yPosition++;
 					if(yPosition > 2)
